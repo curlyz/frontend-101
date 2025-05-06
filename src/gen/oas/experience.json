@@ -1,1 +1,0 @@
-{"type":"object","properties":{"level":{"type":"integer"},"experience":{"type":"integer"}},"required":["experience","level"],"x-readme-ref-name":"Experience"}

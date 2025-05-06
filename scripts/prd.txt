@@ -1,0 +1,81 @@
+1. Introduction to SPA and React
+Slide: Definitions
+SPA (Single Page Application): Loads a single HTML page and dynamically updates content. Improves perceived performance by avoiding full-page reloads.
+React: A declarative JavaScript library for building UIs. Component-based architecture, "learn once, write anywhere".
+
+Slide: React DOM
+ReactDOM.render(): Mounts a React tree into a DOM node.
+ReactDOM.createRoot (React 18+): Concurrent mode entry point.
+Browser integration: How React manipulates real DOM under the hood.
+
+Slide: React Rendering
+Virtual DOM: In-memory tree for diffing.
+Reconciliation: Batched updates via setState / hooks.
+Fiber architecture: Incremental rendering & interruptible work.
+
+2. React Fundamentals
+Slide: Components
+Function components: Simpler, with Hooks.
+Class components: Lifecycle methods (componentDidMount, etc.).
+JSX: HTML-like syntax, compiled to React.createElement.
+
+Slide: Hooks
+useState: Local state in functions.
+useEffect: Side-effects & data fetching.
+Custom Hooks: Extract reusable logic (useAuth, useFetch, etc.).
+
+Slide: State
+Local state: Tied to a single component.
+Lifting state up: Share between siblings via common parent.
+Immutable updates: Always return new objects.
+
+Slide: Props
+Read-only inputs: Data passed parent → child.
+PropTypes / TypeScript: Validate shapes & catch bugs.
+Default props & destructuring: Simplify child code.
+
+Slide: Fetching Data
+Built-in fetch: Promise-based, browser API.
+useEffect + async calls: Trigger on mount or dependencies.
+Data libraries: Axios, SWR, React Query for caching & revalidation.
+
+3. React State Management
+Slide: React Context
+Context API: Global provider/consumer pattern.
+When to use: Theming, auth, language settings.
+Pitfalls: Over-use can trigger extra renders.
+
+Slide: Redux
+Single store: Centralized state tree.
+Actions & reducers: Pure functions to update store.
+Middleware (Thunk/Saga): Handle async workflows.
+
+4. React Client Components vs Server Components
+Slide: Server Components
+Definition: Render on server, send HTML/JSON to client.
+Benefits: Smaller client bundles, faster initial load.
+Limitations: No client-only features (e.g. useState).
+
+Slide: Vite.js vs Next.js
+Vite.js: Lightning-fast HMR, minimal config. Ideal for pure SPAs; plug-and-play with React.
+Next.js: Built-in SSR/SSG, file-system routing. First-class support for React Server Components.
+
+5. Package Management
+Slide: npm vs Yarn
+npm (Node Package Manager): Default for Node.js, wide ecosystem. package-lock.json for reproducible installs.
+Yarn: Faster installs (Plug'n'Play, offline cache). Workspaces for monorepos.
+
+6. Deployment and Build Targets
+Slide: Build and Deployment
+Build tools: Webpack, Vite, Rollup.
+Output: Static assets (index.html, .js, .css).
+Hosting: Netlify, Vercel, AWS S3 + CloudFront; CI/CD pipelines.
+
+Slide: Port to Mobile App
+React Native: Write once, deploy iOS/Android. Uses native components under the hood.
+Alternative wrappers: Expo: preconfigured toolchain. Capacitor/Electron: wrap web app in native shell.
+
+7. Q&A
+Invitation to ask anything.
+Quick recap of key takeaways.
+Contact info / further reading links. 

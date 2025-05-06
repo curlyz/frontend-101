@@ -5,3 +5,8 @@ alwaysApply: false
 ---
 Use Yarn for package manager
 Use Immer for mutating state
+Always find API integration call inside src/gen
+    for direct client call: use src/gen/client
+    for react query: use src/gen/swr
+
+For UI component, prefer AntD Mobile and AntD

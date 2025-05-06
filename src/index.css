@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars on the body */
+}
+
+/* Optional: Add smooth transitions between slides */
+/* You might need a more sophisticated animation library for complex transitions */
+/* #root > * { 
+  transition: opacity 0.5s ease-in-out;
+} */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -27,7 +42,6 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;

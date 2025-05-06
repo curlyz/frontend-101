@@ -1,1 +1,0 @@
-{"type":"object","properties":{"game_index":{"type":"integer"},"generation":{"type":"object","properties":{"name":{"type":"string","maxLength":200},"url":{"type":"string","format":"uri","readOnly":true}},"required":["name","url"],"x-readme-ref-name":"GenerationSummary"}},"required":["game_index","generation"],"x-readme-ref-name":"TypeGameIndex"}
