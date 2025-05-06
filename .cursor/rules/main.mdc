@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Use Yarn for package manager
+Use Immer for mutating state
