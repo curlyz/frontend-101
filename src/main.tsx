@@ -10,7 +10,10 @@ import "./index.css";
 import "antd/dist/reset.css";
 import { queryClient } from "./queryClient";
 import MainLayout from "./layouts/MainLayout"; // Use the new layout
+import HomeSlide from "./slides/HomeSlide"; // Import Home
+import AboutSlide from "./slides/AboutSlide"; // Import About
 import ReactScanSlide from "./slides/ReactScanSlide"; // Import the new slide
+import ComponentDemoSlide from "./slides/ComponentDemoSlide"; // Import Demo Slide
 // import Slide1 from "./slides/Slide1"; // Comment out or remove unused old slides/layouts if needed
 // import Slide2 from "./slides/Slide2";
 // import RootLayout from "./RootLayout";
@@ -22,13 +25,25 @@ const router = createBrowserRouter([
     element: <MainLayout />, // Use MainLayout as the root element
     children: [
       {
-        // Redirect base path to the first slide
+        // Redirect base path to the home slide
         index: true,
-        element: <Navigate replace to="/react-scan" />,
+        element: <Navigate replace to="/home" />,
+      },
+      {
+        path: "home", // Route for Home slide
+        element: <HomeSlide />,
+      },
+      {
+        path: "about", // Route for About slide
+        element: <AboutSlide />,
       },
       {
         path: "react-scan", // Route for React Scan slide
         element: <ReactScanSlide />,
+      },
+      {
+        path: "component-demo", // Route for Component Demo slide
+        element: <ComponentDemoSlide />,
       },
       // Add routes for other slides here as children of MainLayout
       // {

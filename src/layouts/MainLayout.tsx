@@ -1,7 +1,12 @@
 import React from "react";
 import ProLayout, { PageContainer } from "@ant-design/pro-layout";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { ScanOutlined } from "@ant-design/icons"; // Example icons
+import {
+  HomeOutlined,
+  InfoCircleOutlined,
+  ScanOutlined,
+  CodeSandboxOutlined,
+} from "@ant-design/icons"; // Import new icons
 // import { theme } from 'antd'; // theme.useToken might not be needed directly with ProLayout
 
 // Define routes for ProLayout. The structure is slightly different.
@@ -9,10 +14,24 @@ const proLayoutRoutes = {
   path: "/",
   routes: [
     {
+      path: "/home", // Match route path
+      name: "Home", // Used for the menu item label
+      icon: <HomeOutlined />,
+    },
+    {
+      path: "/about", // Match route path
+      name: "About", // Used for the menu item label
+      icon: <InfoCircleOutlined />,
+    },
+    {
       path: "/react-scan",
       name: "React Scan", // Used for the menu item label
       icon: <ScanOutlined />,
-      // We handle navigation via menuItemRender below
+    },
+    {
+      path: "/component-demo", // Match route path
+      name: "Component Demo", // Used for the menu item label
+      icon: <CodeSandboxOutlined />,
     },
     // Add more slides here following the ProLayout route structure
     // {
