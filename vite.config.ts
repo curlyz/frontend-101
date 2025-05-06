@@ -2,10 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { codeInspectorPlugin } from "code-inspector-plugin";
 import reactScan from "@react-scan/vite-plugin-react-scan";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    tsconfigPaths(),
     react(),
     codeInspectorPlugin({
       bundler: "vite",
@@ -17,4 +19,7 @@ export default defineConfig({
       autoDisplayNames: true,
     }),
   ],
+  server: {
+    allowedHosts: true,
+  },
 });

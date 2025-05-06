@@ -6,39 +6,75 @@ import {
   InfoCircleOutlined,
   ScanOutlined,
   CodeSandboxOutlined,
-} from "@ant-design/icons"; // Import new icons
-// import { theme } from 'antd'; // theme.useToken might not be needed directly with ProLayout
+  SwapOutlined,
+  FormOutlined,
+  DashboardOutlined,
+  CloudDownloadOutlined,
+  GithubOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  LoginOutlined,
+  BulbOutlined,
+  ControlOutlined,
+} from "@ant-design/icons";
+import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
+import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
+import {
+  useIsAuthenticated,
+  useUser,
+  useLogin,
+  useLogout,
+} from "@/contexts/AuthContext";
 
-// Define routes for ProLayout. The structure is slightly different.
+// Define routes for ProLayout
 const proLayoutRoutes = {
   path: "/",
   routes: [
     {
-      path: "/home", // Match route path
-      name: "Home", // Used for the menu item label
+      path: "/home",
+      name: "Home",
       icon: <HomeOutlined />,
     },
     {
-      path: "/about", // Match route path
-      name: "About", // Used for the menu item label
+      path: "/about",
+      name: "About",
       icon: <InfoCircleOutlined />,
     },
     {
       path: "/react-scan",
-      name: "React Scan", // Used for the menu item label
+      name: "React Scan",
       icon: <ScanOutlined />,
     },
     {
-      path: "/component-demo", // Match route path
-      name: "Component Demo", // Used for the menu item label
+      path: "/component-demo",
+      name: "Component Demo",
       icon: <CodeSandboxOutlined />,
     },
-    // Add more slides here following the ProLayout route structure
-    // {
-    //   path: '/code-inspector',
-    //   name: 'Code Inspector',
-    //   icon: <CodeOutlined />,
-    // },
+    {
+      path: "/state-lifting-demo",
+      name: "State Lifting Demo",
+      icon: <SwapOutlined />,
+    },
+    {
+      path: "/form-handling-demo",
+      name: "Form Handling Demo",
+      icon: <FormOutlined />,
+    },
+    {
+      path: "/performance",
+      name: "Performance Hooks",
+      icon: <DashboardOutlined />,
+    },
+    {
+      path: "/data-fetching",
+      name: "Data Fetching",
+      icon: <CloudDownloadOutlined />,
+    },
+    {
+      path: "/redux-demo",
+      name: "Redux Demo",
+      icon: <ControlOutlined />,
+    },
   ],
 };
 
@@ -50,10 +86,44 @@ const proLayoutRoutes = {
  */
 const MainLayout: React.FC = () => {
   const location = useLocation();
-  // ProLayout typically uses its own theme tokens or Ant Design's default context
-  // const {
-  //   token: { colorBgContainer, borderRadiusLG },
-  // } = theme.useToken();
+  const themeMode = useThemeMode();
+  const toggleTheme = useToggleTheme();
+  const isAuthenticated = useIsAuthenticated();
+  const user = useUser();
+  const login = useLogin();
+  const logout = useLogout();
+
+  // Use environment variable for title, with fallback
+  const appTitle = import.meta.env.VITE_APP_TITLE || "Frontend 101";
+
+  const handleLogin = () => {
+    login({ id: "1", name: "Demo User", email: "demo@example.com" });
+  };
+
+  const avatarProps = {
+    icon: <UserOutlined />,
+    src: user?.email
+      ? `https://api.dicebear.com/7.x/initials/svg?seed=${user.email}`
+      : undefined,
+    title: user?.name || "Not Logged In",
+    size: "small" as const,
+  };
+
+  const authMenuItems = [
+    isAuthenticated
+      ? {
+          key: "logout",
+          icon: <LogoutOutlined />,
+          label: "Logout",
+          onClick: logout,
+        }
+      : {
+          key: "login",
+          icon: <LoginOutlined />,
+          label: "Login",
+          onClick: handleLogin,
+        },
+  ];
 
   return (
     <div
@@ -63,44 +133,73 @@ const MainLayout: React.FC = () => {
       }}
     >
       <ProLayout
-        title="Frontend 101" // Set your presentation title
-        logo="/logo.svg" // Optional: Add a path to your logo in public/
-        layout="mix" // 'side', 'top', or 'mix' (recommended)
+        title={appTitle}
+        logo={<GithubOutlined />}
+        layout="mix"
+        navTheme={themeMode === "light" ? "light" : "realDark"}
+        fixSiderbar
         siderWidth={208}
         location={{
-          // Pass location for route matching
           pathname: location.pathname,
         }}
-        route={proLayoutRoutes} // Pass the route configuration
+        route={proLayoutRoutes}
         menuItemRender={(menuItemProps, defaultDom) => {
           if (menuItemProps.isUrl || !menuItemProps.path) {
             return defaultDom;
           }
-          // Link component for internal navigation
           return <Link to={menuItemProps.path}>{defaultDom}</Link>;
         }}
-        // Collapsed state is handled internally by default
-        // You can control it with `collapsed` and `onCollapse` props if needed
+        actionsRender={(props) => {
+          if (props.isMobile) return [];
+          return [
+            <Tooltip
+              title={
+                themeMode === "light"
+                  ? "Switch to Dark Mode"
+                  : "Switch to Light Mode"
+              }
+              key="theme-toggle"
+            >
+              <Button
+                shape="circle"
+                icon={<BulbOutlined />}
+                onClick={toggleTheme}
+                type={themeMode === "light" ? "default" : "primary"}
+              />
+            </Tooltip>,
+            <Dropdown menu={{ items: authMenuItems }} key="auth-dropdown">
+              <Space style={{ cursor: "pointer" }}>
+                <Avatar {...avatarProps} />
+                <span>{avatarProps.title}</span>
+              </Space>
+            </Dropdown>,
+            <Tooltip title="View Source on GitHub" key="github-link">
+              <a
+                href="https://github.com/your-repo/frontend-101"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubOutlined
+                  style={{ fontSize: "20px", color: "inherit" }}
+                />
+              </a>
+            </Tooltip>,
+          ];
+        }}
       >
-        {/* PageContainer provides padding and card styling consistent with ProLayout */}
         <PageContainer
           header={{
-            // Hide the default PageContainer header if you only want the slide content
             title: null,
             breadcrumb: {},
           }}
           style={{
-            // Use PageContainer's background, or customize if needed
-            // background: colorBgContainer,
-            // borderRadius: borderRadiusLG,
-            minHeight: "calc(100vh - 56px)", // Adjust based on ProLayout header height
-            padding: 24, // Default padding, adjust if needed
+            minHeight: "calc(100vh - 56px)",
+            padding: 24,
+            background: themeMode === "light" ? "#fff" : undefined,
           }}
         >
-          {/* Outlet renders the matched child route component (the slide) */}
           <Outlet />
         </PageContainer>
-        {/* ProLayout has its own footer capabilities via the `footerRender` prop */}
       </ProLayout>
     </div>
   );
