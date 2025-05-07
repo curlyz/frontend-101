@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   SuperContestEffectRetrieveQueryResponse,
   SuperContestEffectRetrievePathParams,
 } from '../../models/contestsController/SuperContestEffectRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getSuperContestEffectRetrieveUrl(id: SuperContestEffectRetrievePathParams['id']) {
-  return `/api/v2/super-contest-effect/${id}/` as const
+  return `https://pokeapi.co//api/v2/super-contest-effect/${id}/` as const
 }
 
 /**

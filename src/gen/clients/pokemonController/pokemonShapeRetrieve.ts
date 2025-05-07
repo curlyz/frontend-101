@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { PokemonShapeRetrieveQueryResponse, PokemonShapeRetrievePathParams } from '../../models/pokemonController/PokemonShapeRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getPokemonShapeRetrieveUrl(id: PokemonShapeRetrievePathParams['id']) {
-  return `/api/v2/pokemon-shape/${id}/` as const
+  return `https://pokeapi.co//api/v2/pokemon-shape/${id}/` as const
 }
 
 /**

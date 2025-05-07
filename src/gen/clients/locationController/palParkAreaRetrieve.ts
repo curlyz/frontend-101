@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { PalParkAreaRetrieveQueryResponse, PalParkAreaRetrievePathParams } from '../../models/locationController/PalParkAreaRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getPalParkAreaRetrieveUrl(id: PalParkAreaRetrievePathParams['id']) {
-  return `/api/v2/pal-park-area/${id}/` as const
+  return `https://pokeapi.co//api/v2/pal-park-area/${id}/` as const
 }
 
 /**

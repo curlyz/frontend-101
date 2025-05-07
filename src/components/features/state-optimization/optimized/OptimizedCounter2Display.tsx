@@ -1,51 +1,37 @@
 import React from "react";
 import { useContextSelector } from "use-context-selector";
+import { Typography, Card } from "antd";
 import { OptimizedOptimizationContext } from "../../../../contexts/StateOptimizationContext";
 import RenderCounter from "../../../common/RenderCounter";
-import HighlightOnRender from "../../../common/HighlightOnRender";
+
+const { Title, Text } = Typography;
 
 /**
  * Displays counter2 using the optimized context with useContextSelector.
- * Only re-renders if counter2 or the dispatch function changes.
+ * Only re-renders if counter2 changes.
+ * Uses Ant Design components for UI.
  */
 const OptimizedCounter2DisplayInner: React.FC = () => {
   const counter2 = useContextSelector(
     OptimizedOptimizationContext,
     (ctx) => ctx?.counter2 ?? 0,
   );
-  const dispatch = useContextSelector(
-    OptimizedOptimizationContext,
-    (ctx) => ctx?.dispatch,
-  );
-
-  if (!dispatch) {
-    return <div>Loading context or context error...</div>;
-  }
+  // Dispatch is no longer subscribed to or used here.
+  // Actions to change counter2 should come from the shared ControlPanel.
 
   return (
-    <div
-      style={{ border: "1px solid lightgreen", padding: "10px", margin: "5px" }}
-    >
-      <h4>Counter 2 (Optimized Context)</h4>
-      <p>
+    <Card size="small" style={{ borderColor: "lightgreen" }}>
+      <Title level={5} style={{ marginTop: 0, marginBottom: "8px" }}>
+        Counter 2 (Optimized Display Only)
+      </Title>
+      <Text>
         Value: {counter2}
-        <RenderCounter componentId="OptimizedCounter2" />
-      </p>
-      <button onClick={() => dispatch({ type: "INCREMENT_COUNTER2" })}>
-        Increment Counter 2
-      </button>
-    </div>
+        <RenderCounter componentId="OptimizedCounter2Display" />
+      </Text>
+    </Card>
   );
 };
 
 const OptimizedCounter2Display = React.memo(OptimizedCounter2DisplayInner);
 
-const OptimizedCounter2DisplayWithHighlight: React.FC = () => {
-  return (
-    <HighlightOnRender>
-      <OptimizedCounter2Display />
-    </HighlightOnRender>
-  );
-};
-
-export default OptimizedCounter2DisplayWithHighlight;
+export default OptimizedCounter2Display;

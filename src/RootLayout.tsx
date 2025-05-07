@@ -1,5 +1,9 @@
 import React, { useEffect, useCallback } from "react";
 import { Outlet, useParams, useNavigate } from "react-router-dom";
+import { Layout, Button, FloatButton } from "antd";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+
+const { Content } = Layout;
 
 // --- Configuration ---
 // TODO: Find a better way to determine total slides (e.g., from router config)
@@ -9,6 +13,7 @@ const TOTAL_SLIDES = 2;
 /**
  * Root layout component for the slide presentation.
  * Handles navigation between slides via arrows and keyboard.
+ * Uses Ant Design components for layout and navigation.
  * @returns {React.ReactElement} The RootLayout component.
  */
 export default function RootLayout(): React.ReactElement {
@@ -56,36 +61,49 @@ export default function RootLayout(): React.ReactElement {
     };
   }, [handleKeyDown]);
 
+  // Styles for the navigation buttons to mimic the original Tailwind styles
+  // These could also be done with CSS classes if preferred
+  const navButtonStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    zIndex: 10,
+    // antd Button default styling for type='primary' or 'default' might be good enough
+    // or use type='text' or type='ghost' for more subtle buttons.
+    // For now, letting antd defaults play out, can be customized further.
+  };
+
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
-      {/* Previous Slide Button */}
+    <Layout
+      style={{ minHeight: "100vh", position: "relative", overflow: "hidden" }}
+    >
+      {/* Previous Slide Button - using FloatButton for a common antd pattern */}
       {currentSlideIndex > 1 && (
-        <button
-          type="button"
+        <FloatButton
+          icon={<LeftOutlined />}
           onClick={goToPrevSlide}
-          className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-3 text-white transition hover:bg-opacity-75 focus:outline-none"
           aria-label="Previous Slide"
-        >
-          &#8592; {/* Left Arrow */}
-        </button>
+          style={{ ...navButtonStyle, left: 16 }} // Adjust position as needed
+          // type="primary" // or default
+        />
       )}
 
-      {/* Slide Content */}
-      <div className="h-full w-full">
+      <Content style={{ height: "100%", width: "100%", overflowY: "auto" }}>
+        {" "}
+        {/* Ensure content can scroll if it overflows */}
         <Outlet />
-      </div>
+      </Content>
 
-      {/* Next Slide Button */}
+      {/* Next Slide Button - using FloatButton */}
       {currentSlideIndex < TOTAL_SLIDES && (
-        <button
-          type="button"
+        <FloatButton
+          icon={<RightOutlined />}
           onClick={goToNextSlide}
-          className="absolute right-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-gray-800 bg-opacity-50 p-3 text-white transition hover:bg-opacity-75 focus:outline-none"
           aria-label="Next Slide"
-        >
-          &#8594; {/* Right Arrow */}
-        </button>
+          style={{ ...navButtonStyle, right: 16 }} // Adjust position as needed
+          // type="primary"
+        />
       )}
-    </div>
+    </Layout>
   );
 }

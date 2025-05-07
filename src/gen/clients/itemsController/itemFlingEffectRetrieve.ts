@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { ItemFlingEffectRetrieveQueryResponse, ItemFlingEffectRetrievePathParams } from '../../models/itemsController/ItemFlingEffectRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getItemFlingEffectRetrieveUrl(id: ItemFlingEffectRetrievePathParams['id']) {
-  return `/api/v2/item-fling-effect/${id}/` as const
+  return `https://pokeapi.co//api/v2/item-fling-effect/${id}/` as const
 }
 
 /**

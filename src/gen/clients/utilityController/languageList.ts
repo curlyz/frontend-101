@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { LanguageListQueryResponse, LanguageListQueryParams } from '../../models/utilityController/LanguageList.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getLanguageListUrl() {
-  return `/api/v2/language/` as const
+  return `https://pokeapi.co//api/v2/language/` as const
 }
 
 /**

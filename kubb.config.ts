@@ -57,9 +57,10 @@ export default defineConfig({
     pluginClient({
       // Remove client config - let Kubb infer or use default
       // client: {
-      importPath: "@/lib/apiClient.ts",
+      // importPath: "./src/lib/apiClient.ts",
       // },
       // Simplify grouping if output structure is causing issues
+      baseURL: "https://pokeapi.co/",
       group: {
         type: "tag",
       },

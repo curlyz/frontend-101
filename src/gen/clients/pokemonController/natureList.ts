@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { NatureListQueryResponse, NatureListQueryParams } from '../../models/pokemonController/NatureList.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getNatureListUrl() {
-  return `/api/v2/nature/` as const
+  return `https://pokeapi.co//api/v2/nature/` as const
 }
 
 /**

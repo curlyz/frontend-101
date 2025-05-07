@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { ContestTypeRetrieveQueryResponse, ContestTypeRetrievePathParams } from '../../models/contestsController/ContestTypeRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getContestTypeRetrieveUrl(id: ContestTypeRetrievePathParams['id']) {
-  return `/api/v2/contest-type/${id}/` as const
+  return `https://pokeapi.co//api/v2/contest-type/${id}/` as const
 }
 
 /**

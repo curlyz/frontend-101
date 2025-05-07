@@ -1,13 +1,17 @@
 import React from "react";
-import OptimizedCounter1DisplayWithHighlight from "./OptimizedCounter1Display";
-import OptimizedCounter2DisplayWithHighlight from "./OptimizedCounter2Display";
-import OptimizedText1DisplayWithHighlight from "./OptimizedText1Display";
-import OptimizedText2DisplayWithHighlight from "./OptimizedText2Display";
+import { Typography, Space } from "antd";
+import OptimizedCounter1Display from "./OptimizedCounter1Display";
+import OptimizedCounter2Display from "./OptimizedCounter2Display";
+import OptimizedText1Display from "./OptimizedText1Display";
+import OptimizedText2Display from "./OptimizedText2Display";
+
+const { Title, Paragraph } = Typography;
 
 /**
  * Container component for the Optimized React Context (use-context-selector) demonstration.
  * It groups components that use useContextSelector to subscribe to specific parts of the context,
  * demonstrating how this avoids unnecessary re-renders.
+ * Uses Ant Design components for UI.
  */
 const OptimizedContextDemo: React.FC = () => {
   return (
@@ -18,23 +22,23 @@ const OptimizedContextDemo: React.FC = () => {
         borderRadius: "5px",
       }}
     >
-      <h3>
+      <Title level={3} style={{ marginTop: 0, marginBottom: "10px" }}>
         Optimized <code>use-context-selector</code> Demo
-      </h3>
-      <p>
+      </Title>
+      <Paragraph>
         These components use <code>useContextSelector</code> from the{" "}
         <code>use-context-selector</code> library. Each component selects only
         the specific pieces of state it needs. Notice how updating one value
         (e.g., Counter 1) <em>only</em> causes the component displaying Counter
         1 to re-render. Other components remain unaffected, showcasing the
         performance benefit.
-      </p>
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <OptimizedCounter1DisplayWithHighlight />
-        <OptimizedCounter2DisplayWithHighlight />
-        <OptimizedText1DisplayWithHighlight />
-        <OptimizedText2DisplayWithHighlight />
-      </div>
+      </Paragraph>
+      <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+        <OptimizedCounter1Display />
+        <OptimizedCounter2Display />
+        <OptimizedText1Display />
+        <OptimizedText2Display />
+      </Space>
     </div>
   );
 };

@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { PokemonListQueryResponse, PokemonListQueryParams } from '../../models/pokemonController/PokemonList.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getPokemonListUrl() {
-  return `/api/v2/pokemon/` as const
+  return `https://pokeapi.co//api/v2/pokemon/` as const
 }
 
 /**

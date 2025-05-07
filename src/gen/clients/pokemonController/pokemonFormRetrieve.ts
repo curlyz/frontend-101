@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { PokemonFormRetrieveQueryResponse, PokemonFormRetrievePathParams } from '../../models/pokemonController/PokemonFormRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getPokemonFormRetrieveUrl(id: PokemonFormRetrievePathParams['id']) {
-  return `/api/v2/pokemon-form/${id}/` as const
+  return `https://pokeapi.co//api/v2/pokemon-form/${id}/` as const
 }
 
 /**

@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { MoveBattleStyleRetrieveQueryResponse, MoveBattleStyleRetrievePathParams } from '../../models/movesController/MoveBattleStyleRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getMoveBattleStyleRetrieveUrl(id: MoveBattleStyleRetrievePathParams['id']) {
-  return `/api/v2/move-battle-style/${id}/` as const
+  return `https://pokeapi.co//api/v2/move-battle-style/${id}/` as const
 }
 
 /**

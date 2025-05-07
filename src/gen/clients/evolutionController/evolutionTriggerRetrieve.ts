@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { EvolutionTriggerRetrieveQueryResponse, EvolutionTriggerRetrievePathParams } from '../../models/evolutionController/EvolutionTriggerRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getEvolutionTriggerRetrieveUrl(id: EvolutionTriggerRetrievePathParams['id']) {
-  return `/api/v2/evolution-trigger/${id}/` as const
+  return `https://pokeapi.co//api/v2/evolution-trigger/${id}/` as const
 }
 
 /**

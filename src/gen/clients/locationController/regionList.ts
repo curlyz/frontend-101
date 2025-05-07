@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { RegionListQueryResponse, RegionListQueryParams } from '../../models/locationController/RegionList.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getRegionListUrl() {
-  return `/api/v2/region/` as const
+  return `https://pokeapi.co//api/v2/region/` as const
 }
 
 /**

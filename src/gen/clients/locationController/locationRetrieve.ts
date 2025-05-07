@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { LocationRetrieveQueryResponse, LocationRetrievePathParams } from '../../models/locationController/LocationRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getLocationRetrieveUrl(id: LocationRetrievePathParams['id']) {
-  return `/api/v2/location/${id}/` as const
+  return `https://pokeapi.co//api/v2/location/${id}/` as const
 }
 
 /**

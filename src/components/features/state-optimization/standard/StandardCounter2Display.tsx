@@ -1,39 +1,35 @@
 import React from "react";
+import { Typography, Card, Button, Space } from "antd";
 import { useStandardOptimizationContext } from "../../../../contexts/StateOptimizationContext";
 import RenderCounter from "../../../common/RenderCounter";
-import HighlightOnRender from "../../../common/HighlightOnRender";
+
+const { Title, Text } = Typography;
 
 /**
  * Displays counter2 from the standard context and allows incrementing it.
  * Demonstrates how standard context consumers re-render.
+ * This component is intentionally NOT memoized to show standard context behavior.
+ * Uses Ant Design components for UI.
  */
-const StandardCounter2DisplayInner: React.FC = () => {
+const StandardCounter2Display: React.FC = () => {
   const { counter2, dispatch } = useStandardOptimizationContext();
 
   return (
-    <div
-      style={{ border: "1px solid lightgray", padding: "10px", margin: "5px" }}
-    >
-      <h4>Counter 2 (Standard Context)</h4>
-      <p>
-        Value: {counter2}
-        <RenderCounter componentId="StandardCounter2" />
-      </p>
-      <button onClick={() => dispatch({ type: "INCREMENT_COUNTER2" })}>
-        Increment Counter 2
-      </button>
-    </div>
+    <Card size="small" style={{ borderColor: "lightgray" }}>
+      <Title level={5} style={{ marginTop: 0, marginBottom: "8px" }}>
+        Counter 2 (Standard Context)
+      </Title>
+      <Space direction="vertical" style={{ width: "100%" }}>
+        <Text>
+          Value: {counter2}
+          <RenderCounter componentId="StandardCounter2Display" />
+        </Text>
+        <Button onClick={() => dispatch({ type: "INCREMENT_COUNTER2" })} block>
+          Increment Counter 2
+        </Button>
+      </Space>
+    </Card>
   );
 };
 
-const StandardCounter2Display = React.memo(StandardCounter2DisplayInner);
-
-const StandardCounter2DisplayWithHighlight: React.FC = () => {
-  return (
-    <HighlightOnRender>
-      <StandardCounter2Display />
-    </HighlightOnRender>
-  );
-};
-
-export default StandardCounter2DisplayWithHighlight;
+export default StandardCounter2Display;

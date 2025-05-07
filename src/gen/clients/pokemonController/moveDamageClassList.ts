@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { MoveDamageClassListQueryResponse, MoveDamageClassListQueryParams } from '../../models/pokemonController/MoveDamageClassList.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getMoveDamageClassListUrl() {
-  return `/api/v2/move-damage-class/` as const
+  return `https://pokeapi.co//api/v2/move-damage-class/` as const
 }
 
 /**

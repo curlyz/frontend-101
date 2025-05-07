@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { VersionRetrieveQueryResponse, VersionRetrievePathParams } from '../../models/gamesController/VersionRetrieve.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getVersionRetrieveUrl(id: VersionRetrievePathParams['id']) {
-  return `/api/v2/version/${id}/` as const
+  return `https://pokeapi.co//api/v2/version/${id}/` as const
 }
 
 /**

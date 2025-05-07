@@ -1,6 +1,16 @@
-import React, { useState } from "react";
-import { Typography, Button, Card, Alert, Space, Row, Col } from "antd";
+import React, { useState, useEffect } from "react";
+import {
+  Typography,
+  Button,
+  Card,
+  Alert,
+  Space,
+  Row,
+  Col,
+  Divider,
+} from "antd";
 import { CodeDisplay } from "../../components/common/CodeDisplay";
+import mermaid from "mermaid";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -17,32 +27,85 @@ const simulateNetworkRequest = (delay: number): Promise<string> => {
   });
 };
 
-const exampleReactCode = `
+const badNetworkHandlerCode = `
 import React, { useState } from 'react';
-import { Button, Space } from 'antd';
+import { Button, Text, Space } from 'antd';
 
-interface CounterProps {
-  initialValue?: number;
-}
+// Assume simulateNetworkRequest exists and returns a Promise
+// const simulateNetworkRequest = (delay) => new Promise(...);
 
-const SimpleCounter: React.FC<CounterProps> = ({ initialValue = 0 }) => {
-  const [count, setCount] = useState(initialValue);
+const BadNetworkButton: React.FC = () => {
+  const [message, setMessage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const increment = () => setCount(prevCount => prevCount + 1);
-  const decrement = () => setCount(prevCount => prevCount - 1);
+  // 🚨 PROBLEM: Async logic, state updates directly in the handler
+  const handleClickDirectRequest = async () => {
+    setMessage(''); // Reset message
+    setIsLoading(true); // Set loading state
+    console.log('Starting direct network request...');
+
+    try {
+      // Simulate network delay
+      const response = await simulateNetworkRequest(2000);
+      setMessage(response); // Update message state on success
+      console.log('Direct network request finished.');
+    } catch (error) {
+      setMessage('Error fetching data.'); // Update message state on error
+      console.error('Error in direct request:', error);
+    } finally {
+      setIsLoading(false); // Ensure loading state is turned off
+    }
+  };
 
   return (
-    <Space direction="vertical" align="center">
-      <Text style={{ fontSize: '24px' }}>Count: {count}</Text>
-      <Space>
-        <Button onClick={decrement}>Decrement</Button>
-        <Button type="primary" onClick={increment}>Increment</Button>
-      </Space>
+    <Space direction="vertical">
+      <Button
+        type="primary"
+        onClick={handleClickDirectRequest} // Network call initiated here
+        loading={isLoading}
+      >
+        {isLoading ? 'Fetching...' : 'Fetch Data (Bad Way)'}
+      </Button>
+      {message && <Text>{message}</Text>}
     </Space>
   );
 };
 
-export default SimpleCounter;
+export default BadNetworkButton;
+`;
+
+// Define the Mermaid diagram string
+const problematicFlowDiagram = `
+sequenceDiagram
+    participant User
+    participant ButtonUI as Button UI
+    participant onClickHandler as onClick Handler (Main Thread)
+    participant Network as Network/Async Operation
+    participant ReactState as React State
+
+    User->>ButtonUI: Clicks Button
+    activate ButtonUI
+    ButtonUI->>onClickHandler: Executes Handler Directly
+    deactivate ButtonUI
+    activate onClickHandler
+
+    onClickHandler->>ReactState: setMessage('')
+    onClickHandler->>ReactState: setIsLoading(true)
+    Note over onClickHandler: UI might stutter/block here before await!
+
+    onClickHandler->>Network: Initiates Request (await...)
+    activate Network
+    Note over onClickHandler: Handler execution PAUSED
+
+    Network-->>onClickHandler: Response Received (Promise Resolved)
+    deactivate Network
+
+    Note over onClickHandler: Handler execution RESUMED
+    onClickHandler->>ReactState: setMessage(response or error)
+    onClickHandler->>ReactState: setIsLoading(false)
+
+    deactivate onClickHandler
+    ReactState-->>ButtonUI: Trigger Re-render
 `;
 
 /**
@@ -77,15 +140,35 @@ const NetworkRequestInOnClickSlide: React.FC = () => {
     setIsLoading(false);
   };
 
+  // Initialize and render Mermaid diagram on mount
+  useEffect(() => {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "base",
+    });
+    const timer = setTimeout(() => {
+      try {
+        mermaid.run();
+      } catch (e) {
+        console.error("Mermaid rendering error:", e);
+      }
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div style={{ padding: "20px" }}>
+    <Space
+      style={{ padding: "20px", width: "100%" }}
+      direction="vertical"
+      size="large"
+    >
       <Title level={2} style={{ textAlign: "center", marginBottom: "30px" }}>
         Problem: Network Requests Directly in onClick Handlers
       </Title>
 
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
-          <Space direction="vertical" style={{ width: "100%" }} size="large">
+          <Space direction="vertical" style={{ width: "100%" }} size="middle">
             <Card title="Demonstration of Bad Practice">
               <Paragraph>
                 Clicking the button below simulates a network request handled
@@ -93,7 +176,11 @@ const NetworkRequestInOnClickSlide: React.FC = () => {
                 become unresponsive or provide poor feedback during the
                 simulated delay.
               </Paragraph>
-              <Space direction="vertical" style={{ width: "100%" }}>
+              <Space
+                direction="vertical"
+                style={{ width: "100%" }}
+                size="middle"
+              >
                 <Button
                   type="primary"
                   onClick={handleClickDirectRequest}
@@ -161,14 +248,30 @@ const NetworkRequestInOnClickSlide: React.FC = () => {
         </Col>
         <Col xs={24} md={12}>
           <Card
-            title="Example React Component (MDX Style Code Block)"
+            title="Example Code (Problematic Pattern)"
             style={{ height: "100%" }}
           >
-            <CodeDisplay code={exampleReactCode} language="tsx" />
+            <CodeDisplay code={badNetworkHandlerCode} language="tsx" />
           </Card>
         </Col>
       </Row>
-    </div>
+
+      <Divider />
+
+      <Card title="Visual Flow of the Problem">
+        <div
+          className="mermaid"
+          style={{
+            textAlign: "center",
+            backgroundColor: "#999",
+            borderRadius: "10px",
+            padding: "10px",
+          }}
+        >
+          {problematicFlowDiagram}
+        </div>
+      </Card>
+    </Space>
   );
 };
 

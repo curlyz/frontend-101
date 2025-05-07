@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import client from '@/lib/apiClient.ts'
+import client from '@kubb/plugin-client/clients/axios'
 import type { GrowthRateListQueryResponse, GrowthRateListQueryParams } from '../../models/pokemonController/GrowthRateList.ts'
-import type { RequestConfig, ResponseErrorConfig } from '@/lib/apiClient.ts'
+import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
 
 function getGrowthRateListUrl() {
-  return `/api/v2/growth-rate/` as const
+  return `https://pokeapi.co//api/v2/growth-rate/` as const
 }
 
 /**
