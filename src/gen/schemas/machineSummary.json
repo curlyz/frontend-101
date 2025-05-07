@@ -1,0 +1,1 @@
+{"type":"object","properties":{"url":{"type":"string","format":"uri","readOnly":true}},"required":["url"],"x-readme-ref-name":"MachineSummary"}

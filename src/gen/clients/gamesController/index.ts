@@ -1,0 +1,8 @@
+export { generationList } from './generationList.ts'
+export { generationRetrieve } from './generationRetrieve.ts'
+export { pokedexList } from './pokedexList.ts'
+export { pokedexRetrieve } from './pokedexRetrieve.ts'
+export { versionGroupList } from './versionGroupList.ts'
+export { versionGroupRetrieve } from './versionGroupRetrieve.ts'
+export { versionList } from './versionList.ts'
+export { versionRetrieve } from './versionRetrieve.ts'
