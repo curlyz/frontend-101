@@ -25,6 +25,7 @@
     "@reduxjs/toolkit": "^2.7.0",
     "@types/scheduler": "^0.26.0",
     "antd": "^5.24.9",
+    "axios": "^1.9.0",
     "boxen": "^8.0.1",
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.5",
