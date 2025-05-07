@@ -390,24 +390,33 @@ const SwrPrefetchPokemon: React.FC = () => {
 // Mermaid Diagram Strings
 const directFetchDiagram = `
 sequenceDiagram
-    participant Comp as Component Mount/Update
-    participant Effect as useEffect Hook
+    participant User
+    participant ButtonUI as Button UI
+    participant Handler as handleReload
+    participant Comp as Component State/Effect
     participant FetchFunc as fetchData (Callback)
-    participant State as React State (useState)
     participant API as pokemonList API
+    participant State as React State (useState)
 
-    Comp->>Effect: Runs Effect [fetchCount]
-    activate Effect
-    Effect->>FetchFunc: Calls fetchData
-    deactivate Effect
+    User->>ButtonUI: Clicks Reload/Next
+    activate ButtonUI
+    ButtonUI->>Handler: Calls handleReload
+    deactivate ButtonUI
+    activate Handler
+    Handler->>Comp: setFetchCount(prev + 1)
+    deactivate Handler
+    activate Comp
+
+    Comp->>Comp: useEffect Runs [fetchCount changed]
+    Comp->>FetchFunc: Calls fetchData
+    deactivate Comp
     activate FetchFunc
 
-    FetchFunc->>State: setIsLoading(true)
-    FetchFunc->>State: setError(null)
-
+    FetchFunc->>State: setIsLoading(true), setError(null)
     FetchFunc->>API: await pokemonList({...})
     activate API
     API-->>FetchFunc: Returns Promise
+    deactivate API
 
     FetchFunc->>FetchFunc: Processes Response
     alt Success
@@ -424,12 +433,23 @@ sequenceDiagram
 
 const basicSWRDiagram = `
 sequenceDiagram
-    participant Comp as Component Render
+    participant User
+    participant ButtonUI as Button UI
+    participant Handler as Page Handlers
+    participant Comp as Component Render/State
     participant SWRHook as usePokemonList Hook
     participant SWRCache as SWR Cache
     participant API as pokemonList API
 
-    Comp->>SWRHook: Calls usePokemonList({limit, offset})
+    User->>ButtonUI: Clicks Next/Prev Page
+    activate ButtonUI
+    ButtonUI->>Handler: Calls handleNextPage/handlePrevPage
+    deactivate ButtonUI
+    activate Handler
+    Handler->>Comp: setOffset(...), setIsLoading(true), setError(null)
+    deactivate Handler
+
+    Comp->>SWRHook: Re-renders, Calls usePokemonList({limit, offset})
     activate SWRHook
 
     alt Cache Hit (Stale/Valid)
@@ -514,7 +534,7 @@ const DataFetchingSlide: React.FC = () => {
   useEffect(() => {
     mermaid.initialize({
       startOnLoad: false,
-      theme: "base", // Match theme from previous slide
+      theme: "forest", // Match theme from previous slide
     });
     // Delay rendering slightly to ensure elements exist
     const timer = setTimeout(() => {
@@ -547,19 +567,17 @@ const DataFetchingSlide: React.FC = () => {
       </Card>
 
       {/* --- Direct API Call Section --- */}
-      <Card title="Flow: Direct API Call (useEffect)">
-        <div
-          className="mermaid"
-          style={{
-            textAlign: "center",
-            backgroundColor: "#eee", // Slightly lighter grey than #999
-            borderRadius: "10px",
-            padding: "10px",
-          }}
-        >
-          {directFetchDiagram}
-        </div>
-      </Card>
+      <div
+        className="mermaid"
+        style={{
+          textAlign: "center",
+          backgroundColor: "#eee", // Slightly lighter grey than #999
+          borderRadius: "10px",
+          padding: "10px",
+        }}
+      >
+        {directFetchDiagram}
+      </div>
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
           <DirectPokemonList />
@@ -587,19 +605,17 @@ const DataFetchingSlide: React.FC = () => {
       <Divider />
 
       {/* --- Basic SWR Section --- */}
-      <Card title="Flow: Basic SWR">
-        <div
-          className="mermaid"
-          style={{
-            textAlign: "center",
-            backgroundColor: "#eee",
-            borderRadius: "10px",
-            padding: "10px",
-          }}
-        >
-          {basicSWRDiagram}
-        </div>
-      </Card>
+      <div
+        className="mermaid"
+        style={{
+          textAlign: "center",
+          backgroundColor: "#eee",
+          borderRadius: "10px",
+          padding: "10px",
+        }}
+      >
+        {basicSWRDiagram}
+      </div>
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
           <SwrPokemonList />
@@ -627,19 +643,17 @@ const DataFetchingSlide: React.FC = () => {
       <Divider />
 
       {/* --- Advanced SWR Section --- */}
-      <Card title="Flow: Advanced SWR (Prefetching)">
-        <div
-          className="mermaid"
-          style={{
-            textAlign: "center",
-            backgroundColor: "#eee",
-            borderRadius: "10px",
-            padding: "10px",
-          }}
-        >
-          {advancedSWRDiagram}
-        </div>
-      </Card>
+      <div
+        className="mermaid"
+        style={{
+          textAlign: "center",
+          backgroundColor: "#eee",
+          borderRadius: "10px",
+          padding: "10px",
+        }}
+      >
+        {advancedSWRDiagram}
+      </div>
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
           <SwrPrefetchPokemon />

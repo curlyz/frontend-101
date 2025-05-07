@@ -21,6 +21,7 @@ import {
   ToolOutlined,
   MobileOutlined,
   ApiOutlined,
+  LayoutOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -39,21 +40,6 @@ const proLayoutRoutes = {
       path: "/react-scan",
       name: "React Scan",
       icon: <ScanOutlined />,
-    },
-    {
-      path: "/component-demo",
-      name: "Component Demo",
-      icon: <CodeSandboxOutlined />,
-    },
-    {
-      path: "/state-lifting-demo",
-      name: "State Lifting Demo",
-      icon: <SwapOutlined />,
-    },
-    {
-      path: "/form-handling-demo",
-      name: "Form Handling Demo",
-      icon: <FormOutlined />,
     },
     {
       path: "/performance",
@@ -130,6 +116,11 @@ const proLayoutRoutes = {
       path: "/kubb",
       name: "Kubb OpenAPI Slide",
       icon: <ApiOutlined />,
+    },
+    {
+      path: "/layout-routing",
+      name: "Layouts & Routing",
+      icon: <LayoutOutlined />,
     },
   ],
 };

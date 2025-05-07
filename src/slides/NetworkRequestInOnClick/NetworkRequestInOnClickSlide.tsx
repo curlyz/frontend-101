@@ -258,19 +258,17 @@ const NetworkRequestInOnClickSlide: React.FC = () => {
 
       <Divider />
 
-      <Card title="Visual Flow of the Problem">
-        <div
-          className="mermaid"
-          style={{
-            textAlign: "center",
-            backgroundColor: "#999",
-            borderRadius: "10px",
-            padding: "10px",
-          }}
-        >
-          {problematicFlowDiagram}
-        </div>
-      </Card>
+      <div
+        className="mermaid"
+        style={{
+          textAlign: "center",
+          backgroundColor: "#999",
+          borderRadius: "10px",
+          padding: "10px",
+        }}
+      >
+        {problematicFlowDiagram}
+      </div>
     </Space>
   );
 };

@@ -138,14 +138,7 @@ const NpmVsYarnSlide: React.FC = () => {
 
       <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
         <Col xs={24} md={12}>
-          <Card
-            title="npm"
-            style={{ height: "100%" }}
-            headStyle={{
-              backgroundColor: "#FFF1F0",
-              borderBottom: "1px solid #FFCCC7",
-            }}
-          >
+          <Card title="npm" style={{ height: "100%" }}>
             <Paragraph>
               <Text strong>npm</Text> is the default package manager for
               Node.js, and it's the largest software registry in the world. It
@@ -163,14 +156,7 @@ const NpmVsYarnSlide: React.FC = () => {
           </Card>
         </Col>
         <Col xs={24} md={12}>
-          <Card
-            title="Yarn"
-            style={{ height: "100%" }}
-            headStyle={{
-              backgroundColor: "#E6F7FF",
-              borderBottom: "1px solid #91D5FF",
-            }}
-          >
+          <Card title="Yarn" style={{ height: "100%" }}>
             <Paragraph>
               On the other hand, <Text strong>Yarn</Text> was created as a fast,
               reliable, and secure alternative to npm, addressing some

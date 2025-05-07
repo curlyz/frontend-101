@@ -1,5 +1,5 @@
 import React from "react";
-import { Card as AntCard, Spin } from "antd";
+import { Card as AntCard, Spin, Typography } from "antd";
 import type { CardProps } from "antd";
 
 interface CommonCardProps extends CardProps {
@@ -32,7 +32,7 @@ const CommonCard: React.FC<CommonCardProps> = ({
     // Potentially render an Alert or just hide the card content
     return (
       <AntCard {...rest} title={rest.title || "Error"}>
-        <p style={{ color: "red" }}>{errorMessage}</p>
+        <Typography.Text type="danger">{errorMessage}</Typography.Text>
         {/* Optionally render children even on error? */}
         {/* {children} */}
       </AntCard>

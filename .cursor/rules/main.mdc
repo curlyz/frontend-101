@@ -13,19 +13,17 @@ Always find API integration call inside src/gen
     for react query: use src/gen/swr
 Use react-mermaid to add visual diagram, the diagram should be full screen width, using the following template:
 ```
- <Card title="Visual Flow of the Problem">
-    <div
-        className="mermaid"
-        style={{
-        textAlign: "center",
-        backgroundColor: "#999",
-        borderRadius: "10px",
-        padding: "10px",
-        }}
-    >
-        {mermaidDiagram}
-    </div>
-</Card>
+<div
+    className="mermaid"
+    style={{
+    textAlign: "center",
+    backgroundColor: "#999",
+    borderRadius: "10px",
+    padding: "10px",
+    }}
+>
+    {mermaidDiagram}
+</div>
 ```
 General layout for each demo:
 Mermaid diagram on top, full width, then the next row is 2 column, the demo and the code

@@ -122,7 +122,7 @@ function ThemeToggleRedux() {
 
   return (
     <div style={{ padding: '20px', /* ... other styles */ }}>
-      <p>Current theme (Redux): {theme}</p>
+      <Typography.Paragraph>Current theme (Redux): {theme}</Typography.Paragraph>
       <button onClick={toggleThemeHandler}>Toggle Theme (Redux)</button>
     </div>
   );

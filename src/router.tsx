@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import ReactScanSlide from "./slides/ReactScanSlide";
-import ComponentDemoSlide from "./slides/ComponentDemoSlide";
+// import ComponentDemoSlide from "./slides/ComponentDemoSlide"; // Removed unused import
 import StateLiftingSlide from "./slides/StateLiftingSlide";
 import FormHandlingSlide from "./slides/FormHandlingSlide";
 import PerformanceSlide from "./slides/PerformanceSlide";
@@ -22,6 +22,7 @@ import NpmVsYarnSlide from "./slides/MarkdownSlides/NpmVsYarnSlide";
 import BuildDeploySlide from "./slides/MarkdownSlides/BuildDeploySlide";
 import CapacitorSlide from "./slides/MarkdownSlides/CapacitorSlide";
 import KubbSlide from "./slides/MarkdownSlides/KubbSlide";
+import LayoutAndRoutingSlide from "./slides/MarkdownSlides/LayoutAndRoutingSlide";
 
 /**
  * Defines the application's routes using React Router.
@@ -40,10 +41,6 @@ export const router = createBrowserRouter([
       {
         path: "react-scan",
         element: <ReactScanSlide />,
-      },
-      {
-        path: "component-demo",
-        element: <ComponentDemoSlide />,
       },
       {
         path: "state-lifting",
@@ -112,6 +109,10 @@ export const router = createBrowserRouter([
       {
         path: "kubb",
         element: <KubbSlide />,
+      },
+      {
+        path: "layout-routing",
+        element: <LayoutAndRoutingSlide />,
       },
       {
         path: "*",

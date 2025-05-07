@@ -98,8 +98,8 @@ const StandardDisplay = () => {
   console.log('StandardDisplay rendered');
   return (
     <div>
-      <p>Counter1: {counter1}</p>
-      <p>Text1: {text1}</p>
+      <Typography.Paragraph>Counter1: {counter1}</Typography.Paragraph>
+      <Typography.Paragraph>Text1: {text1}</Typography.Paragraph>
     </div>
   );
 };
@@ -145,7 +145,7 @@ const OptimizedDisplayCounter1 = () => {
   );
   // Re-renders ONLY if 'counter1' changes
   console.log('OptimizedDisplayCounter1 rendered');
-  return <p>Counter1: {counter1}</p>;
+  return <Typography.Paragraph>Counter1: {counter1}</Typography.Paragraph>;
 };
 
 const OptimizedDisplayText1 = () => {
@@ -156,7 +156,7 @@ const OptimizedDisplayText1 = () => {
   );
   // Re-renders ONLY if 'text1' changes
   console.log('OptimizedDisplayText1 rendered');
-  return <p>Text1: {text1}</p>;
+  return <Typography.Paragraph>Text1: {text1}</Typography.Paragraph>;
 };
 
 // 5. Components are typically memoized
