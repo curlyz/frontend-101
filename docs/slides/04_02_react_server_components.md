@@ -1,11 +1,4 @@
-# React Client Components vs Server Components - Server Components
-
-## Prerequisites
-1. You need to understand the slide content, and search for online blogs about that topic
-2. Read at least 3 blogs online
-3. You should be creative on how to represent your ideas
-4. You should write each slides to be isolated, that is each slide page is a folder, which contain all the necessary files for that page, don't share with other slides
-
+# React Server Components
 
 ## Main Ideas to Convey
 
@@ -33,15 +26,20 @@
 
 ## Content
 
-React Server Components are components that render on the server side and send the HTML result to the client. This approach can improve initial page load time, reduce JavaScript bundle size, and improve overall app performance.
+React Server Components (RSCs) are a newer type of component that render on the server. Their output (which can be a special format, not just HTML) is then sent to the client. This approach can significantly improve initial page load times, reduce the amount of JavaScript sent to the browser, and enhance overall application performance.
 
-This approach is known as Server-side Rendering (RSR) [Note: While related, RSCs are a specific evolution beyond traditional SSR, often involving streaming and selective hydration. The original text uses RSR, so keeping it for consistency with the source]. It means:
+Key characteristics of Server Components:
 
-* They run only on the server and don't add to the client-side JavaScript bundle.
-* Access to server-side resources like databases and file systems.
+*   They execute on the server, meaning their code doesn't contribute to the client-side JavaScript bundle (for their own logic).
+*   They can directly access server-side resources like databases, file systems, or internal APIs without needing to expose API endpoints.
+*   They cannot use state (like `useState`) or lifecycle effects (`useEffect`) directly, as these are client-side concepts. They also cannot use browser-only APIs.
 
-Use Server Components when you need to optimize for performance, reduce JavaScript, or build static-like pages.
+Use Server Components when you want to:
+*   Optimize for initial page load and perceived performance.
+*   Reduce the client-side JavaScript bundle size.
+*   Access backend data sources directly during rendering.
+*   Render parts of your UI that are not highly interactive or don't require immediate client-side JavaScript.
 
-Additionally, we can combine Client Components and Server Components to strike a balance between performance and interactivity. Modern frameworks like NextJS and ViteJs support both rendering types, enabling developers to optimize loading speed while still delivering rich, interactive user experiences. 
+Modern React frameworks (like Next.js) allow you to seamlessly combine Server Components and Client Components. This hybrid approach lets you build applications that are fast to load (thanks to RSCs) while still offering rich interactivity where needed (thanks to Client Components).
 
-## Presentation Status: To Be Prepared 
+## Presentation Status: Ready for Review 

@@ -1,0 +1,5 @@
+[
+  "scripts/test-fixtures/alias-conversion/App.tsx",
+  "scripts/test-fixtures/alias-conversion/featureA/core/service.ts",
+  "scripts/test-fixtures/alias-conversion/featureA/ui/UserProfile.tsx"
+]

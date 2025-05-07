@@ -1,12 +1,5 @@
 # React State Management - Redux
 
-## Prerequisites
-1. You need to understand the slide content, and search for online blogs about that topic
-2. Read at least 3 blogs online
-3. You should be creative on how to represent your ideas
-4. You should write each slides to be isolated, that is each slide page is a folder, which contain all the necessary files for that page, don't share with other slides
-
-
 ## Main Ideas to Convey
 
 - Introduce Redux as a robust library for managing application state with a centralized store and predictable updates via actions.
@@ -54,24 +47,6 @@ This is step-by-step to create and use Redux toolkit manage states:
     ```
 
 2.  **Create store and provider.**
-
-    ```mdx title="themeSlice.js"
-    import { createSlice } from "@reduxjs/toolkit";
-
-    const themeSlice = createSlice({
-      name: "themeInfo",
-      initialState: { theme: "light" },
-      reducers: {
-        setTheme: (state, action) => {
-          // Immer is used by default in createSlice, so direct mutation is okay here.
-          state.theme = action.payload.newTheme;
-        }
-      }
-    });
-
-    export const { setTheme } = themeSlice.actions;
-    export default themeSlice.reducer;
-    ```
 
     ```mdx title="store.js"
     import { configureStore } from "@reduxjs/toolkit";
@@ -155,4 +130,4 @@ This is step-by-step to create and use Redux toolkit manage states:
     }
     ```
 
-## Presentation Status: To Be Prepared 
+## Presentation Status: Reviewed 

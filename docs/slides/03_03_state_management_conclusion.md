@@ -1,12 +1,5 @@
 # React State Management - Conclusion
 
-## Prerequisites
-1. You need to understand the slide content, and search for online blogs about that topic
-2. Read at least 3 blogs online
-3. You should be creative on how to represent your ideas
-4. You should write each slides to be isolated, that is each slide page is a folder, which contain all the necessary files for that page, don't share with other slides
-
-
 ## Main Ideas to Convey
 
 - Summarize that both Context API and Redux are useful state management tools.
@@ -30,6 +23,13 @@
 
 ## Content
 
-In conclusion, Context API and Redux are useful state management tools in React for different use cases. Context is ideal for simpler apps and avoiding prop drilling, while Redux is better for larger, more complex applications that require centralized and predictable state management. The right choice depends on your app's complexity, team experience, and specific needs. On next chapter, we will explore about react client component and server components. 
+In conclusion, managing state effectively is crucial in React development. We've explored several tools:
+- **Component State (`useState`, `useReducer`):** Ideal for local component logic.
+- **React Context API:** Excellent for avoiding prop drilling and sharing state across a component tree in simpler to moderately complex scenarios. We also saw how `use-context-selector` can optimize context performance by preventing unnecessary re-renders.
+- **Redux (with Redux Toolkit):** A powerful solution for larger, more complex applications demanding a centralized, predictable state container with robust debugging tools and middleware capabilities.
 
-## Presentation Status: To Be Prepared 
+The right choice always depends on your application's specific requirements, its complexity, your team's familiarity with the tools, and performance considerations. Understanding these options allows you to make informed decisions for building maintainable and scalable React applications.
+
+On next chapter, we will explore about react client component and server components. 
+
+## Presentation Status: Ready for Review 

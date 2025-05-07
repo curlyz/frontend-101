@@ -1,11 +1,5 @@
 # Automating Client Code with Kubb & OpenAPI
 
-## Prerequisites
-1. You need to understand the slide content, and search for online blogs about that topic
-2. Read at least 3 blogs online
-3. You should be creative on how to represent your ideas
-4. You should write each slides to be isolated, that is each slide page is a folder, which contain all the necessary files for that page, don't share with other slides
-
 ## Main Ideas to Convey
 
 - Introduce Kubb as a tool for generating client-side code from OpenAPI specifications.
@@ -133,4 +127,6 @@ Then you would typically run Kubb via a CLI command like `npx kubb` or a script 
 -   **Reduced Boilerplate:** Automates the creation of repetitive client code, types, and hooks.
 -   **Consistency:** Ensures that your frontend code stays in sync with your API definition.
 -   **Faster Development:** Spend less time writing and maintaining API interaction code and more time building features.
--   **Adaptability:** Supports various plugins for different needs and client libraries. 
+-   **Adaptability:** Supports various plugins for different needs and client libraries.
+
+## Presentation Status: Ready for Review 

@@ -1,12 +1,5 @@
 # Package Management - npm vs yarn
 
-## Prerequisites
-1. You need to understand the slide content, and search for online blogs about that topic
-2. Read at least 3 blogs online
-3. You should be creative on how to represent your ideas
-4. You should write each slides to be isolated, that is each slide page is a folder, which contain all the necessary files for that page, don't share with other slides
-
-
 ## Main Ideas to Convey
 
 - Briefly describe `npm` (default for Node.js, largest registry).
@@ -22,15 +15,17 @@
 
 ## Content
 
-npm is the default package manager for NodeJs, and it's the largest software registry in the world. It allows JavaScript developers to share and reuse code through packages (also called modules) and manages project dependencies efficiently.
+npm is the default package manager for Node.js, and it's the largest software registry in the world. It allows JavaScript developers to share and reuse code through packages (also called modules) and manages project dependencies efficiently.
 
-On the other hand, yarn is a fast, reliable, and secure alternative to npm to address some performance and consistency issues found in earlier versions of npm.
+On the other hand, Yarn was created as a fast, reliable, and secure alternative to npm, addressing some performance and consistency issues found in earlier versions of npm.
 
-| Aspect                  | npm                   | Yarn                     |
-| ----------------------- | --------------------- | ------------------------ |
-| Pre-installed with Node | ✅ Yes                | ❌ No (install separately) |
-| Speed                   | Slower (v6 and below) | Faster                   |
-| Offline Install         | Limited               | Robust                   |
-| Lockfile                | `package-lock.json`   | `yarn.lock`              |
+| Aspect                  | npm                                    | Yarn (Classic & Berry)           |
+| ----------------------- | -------------------------------------- | -------------------------------- |
+| Pre-installed with Node | ✅ Yes                                 | ❌ No (install separately)       |
+| Speed                   | Improved significantly, often comparable | Historically faster, focused on predictability |
+| Offline Install         | Supported with cache                   | Robust (Yarn Classic), Zero-installs (Berry) |
+| Lockfile                | `package-lock.json`                    | `yarn.lock`                      |
 
-In conclusion, yarn is more recommended in managing package for faster performance and consistent dependencies over various environment 
+In conclusion, both npm and Yarn are powerful package managers. Yarn often provides faster and more consistent installs, especially with features like Plug'n'Play in Yarn Berry. The choice can depend on project needs, team familiarity, and specific workflow advantages. This project uses Yarn, as indicated by the `yarn.lock` file.
+
+## Presentation Status: Ready for Review 

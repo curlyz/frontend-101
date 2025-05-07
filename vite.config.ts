@@ -14,7 +14,7 @@ export default defineConfig({
     }),
     reactScan({
       // Enable reactScan only in development mode
-      enable: process.env.NODE_ENV === "development",
+      enable: true,
       // Optional: Add display names automatically for better inspection
       autoDisplayNames: true,
     }),

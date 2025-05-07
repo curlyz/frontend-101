@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "generatedAt": "2025-05-07T07:27:06.386Z",
+    "tasksAnalyzed": 10,
+    "thresholdScore": 5,
+    "projectName": "Your Project Name",
+    "usedResearch": true
+  },
+  "complexityAnalysis": [
+    {
+      "taskId": 12,
+      "taskTitle": "Implement StateOptimizationSlide Comparing React Context Performance",
+      "complexityScore": 8,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "Break down the implementation of StateOptimizationSlide into specific subtasks covering: context creation, component implementation for both standard and selector approaches, render counting mechanism, visual indicators for re-renders, control panel implementation, and integration into the presentation flow.",
+      "reasoning": "This task involves complex React state management concepts, performance optimization, and interactive demonstrations. It requires creating a sophisticated component with side-by-side comparisons, render counting, and visual feedback. The implementation touches multiple technical areas including context API, performance optimization, and UI development."
+    },
+    {
+      "taskId": 23,
+      "taskTitle": "Review and Update Redux Slide with Presentation Status",
+      "complexityScore": 4,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the Redux slide review task into subtasks covering: technical content review, code example verification, slide flow improvement, and updating the presentation status.",
+      "reasoning": "This is primarily a content review task with moderate complexity. It requires technical knowledge of Redux but doesn't involve implementation. The task is well-defined with clear steps for reviewing content, checking for accuracy, and updating status."
+    },
+    {
+      "taskId": 24,
+      "taskTitle": "Prepare and Update State Management Conclusion Slide",
+      "complexityScore": 3,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the state management conclusion slide preparation into subtasks covering: content review, enhancement of key points, formatting according to presentation standards, and updating the presentation status.",
+      "reasoning": "This is a relatively straightforward content review and preparation task. It involves summarizing existing content rather than creating new technical implementations. The task is well-defined with clear steps and doesn't require deep technical expertise."
+    },
+    {
+      "taskId": 25,
+      "taskTitle": "Review and Update React Client Components Slide Presentation",
+      "complexityScore": 4,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the React Client Components slide review into subtasks covering: technical content verification, code example validation, preparation of presentation notes, and updating the presentation status.",
+      "reasoning": "This task involves reviewing and potentially updating technical content about React Client Components. It requires technical knowledge but is primarily focused on content review rather than implementation. The steps are clearly defined and straightforward."
+    },
+    {
+      "taskId": 26,
+      "taskTitle": "Review and Update React Server Components Slide",
+      "complexityScore": 5,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the React Server Components slide review into subtasks covering: technical content verification focusing on RSC concepts, code example validation, preparation of visual aids if needed, and updating the presentation status.",
+      "reasoning": "This task involves reviewing content on React Server Components, which is a relatively new and complex topic. It requires up-to-date knowledge of RSC concepts and implementation details. The complexity is moderate as it involves content review rather than implementation, but the technical subject matter is advanced."
+    },
+    {
+      "taskId": 27,
+      "taskTitle": "Prepare and Update Package Management Overview Slide",
+      "complexityScore": 3,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the Package Management Overview slide preparation into subtasks covering: content review for accuracy, verification of key package management concepts, preparation of speaker notes, and updating the presentation status.",
+      "reasoning": "This is a relatively straightforward content review task focused on package management concepts. The subject matter is less complex than some of the React-specific topics, and the task primarily involves ensuring the content is accurate and comprehensive."
+    },
+    {
+      "taskId": 28,
+      "taskTitle": "Review and Update npm vs yarn Comparison Slide",
+      "complexityScore": 4,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the npm vs yarn comparison slide review into subtasks covering: verification of comparison points between the tools, updating any outdated information, formatting for presentation clarity, and updating the presentation status.",
+      "reasoning": "This task involves comparing two package managers and ensuring the information is up-to-date. It requires knowledge of both npm and yarn, including recent updates to both tools. The complexity is moderate as it involves technical comparison but doesn't require implementation."
+    },
+    {
+      "taskId": 29,
+      "taskTitle": "Complete and Update Build & Deployment Slide Documentation",
+      "complexityScore": 6,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Break down the Build & Deployment slide completion into subtasks covering: review of existing content, research on missing CI/CD information, documentation of deployment strategies, addition of containerization details if applicable, and updating the presentation status.",
+      "reasoning": "This task involves not just reviewing but completing documentation on build and deployment processes. It requires research and knowledge of CI/CD, deployment strategies, and potentially containerization. The complexity is higher because it involves creating new content on technical topics rather than just reviewing."
+    },
+    {
+      "taskId": 30,
+      "taskTitle": "Review and Prepare Capacitor Mobile App Porting Slide",
+      "complexityScore": 5,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the Capacitor Mobile App Porting slide preparation into subtasks covering: verification of Capacitor concepts and setup process, platform-specific considerations review, code example validation, and updating the presentation status.",
+      "reasoning": "This task involves reviewing and potentially enhancing content about Capacitor for mobile app porting. It requires knowledge of Capacitor, mobile development considerations, and platform-specific details. The complexity is moderate as it involves specialized technical knowledge but is primarily a content review task."
+    },
+    {
+      "taskId": 31,
+      "taskTitle": "Review and Update Kubb OpenAPI Generation Slide with Presentation Status",
+      "complexityScore": 5,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the Kubb OpenAPI Generation slide review into subtasks covering: verification of Kubb concepts and configuration details, code example validation, comparison with other code generation tools, and updating the presentation status.",
+      "reasoning": "This task involves reviewing content about Kubb for OpenAPI code generation, which is a specialized technical topic. It requires knowledge of OpenAPI specifications and code generation tools. The complexity is moderate due to the specialized nature of the content, though it's primarily a review task rather than implementation."
+    }
+  ]
+}

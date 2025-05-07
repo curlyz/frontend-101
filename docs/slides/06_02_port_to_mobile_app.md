@@ -1,4 +1,4 @@
-# Deployment and Build Target - Port to Mobile App
+# Porting to Mobile Apps with Capacitor
 
 ## Main Ideas to Convey
 
@@ -55,9 +55,9 @@ Capacitor workflow:
     
     Alternatively, to compile your app in a terminal or in CI environments, you can use the build command to build the native project, outputting a signed AAB, APK or IPA file ready for distribution to a device or end users.
     
-    ```bashp
+    ```bash
     npx cap build android
     # or npx cap build ios (requires macOS environment and Xcode tools)
     ``` 
 
-## Presentation Status: To Be Prepared 
+## Presentation Status: Ready for Review 

@@ -17,6 +17,10 @@ import {
   BulbOutlined,
   ControlOutlined,
   AlertOutlined,
+  ReadOutlined,
+  ToolOutlined,
+  MobileOutlined,
+  ApiOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -80,6 +84,52 @@ const proLayoutRoutes = {
       path: "/network-in-onclick",
       name: "Network in onClick",
       icon: <AlertOutlined />,
+    },
+    // Flattened Slide Routes
+    {
+      path: "/redux-concepts",
+      name: "Redux Concepts Slide",
+      icon: <ReadOutlined />,
+    },
+    {
+      path: "/state-mgt-conclusion",
+      name: "State Mgt. Conclusion Slide",
+      icon: <InfoCircleOutlined />,
+    },
+    {
+      path: "/client-components",
+      name: "Client Components Slide",
+      icon: <UserOutlined />,
+    },
+    {
+      path: "/server-components",
+      name: "Server Components Slide",
+      icon: <CloudDownloadOutlined />,
+    },
+    {
+      path: "/pkg-mgt-overview",
+      name: "Pkg Mgt. Overview Slide",
+      icon: <CodeSandboxOutlined />,
+    },
+    {
+      path: "/npm-vs-yarn",
+      name: "npm vs Yarn Slide",
+      icon: <SwapOutlined />,
+    },
+    {
+      path: "/build-deploy",
+      name: "Build & Deployment Slide",
+      icon: <ToolOutlined />,
+    },
+    {
+      path: "/capacitor",
+      name: "Capacitor Mobile Slide",
+      icon: <MobileOutlined />,
+    },
+    {
+      path: "/kubb",
+      name: "Kubb OpenAPI Slide",
+      icon: <ApiOutlined />,
     },
   ],
 };

@@ -12,6 +12,17 @@ import PackageManagerSlide from "./slides/PackageManagerSlide/PackageManagerSlid
 import NetworkRequestInOnClickSlide from "./slides/NetworkRequestInOnClick/NetworkRequestInOnClickSlide";
 import NotFoundSlide from "./slides/NotFoundSlide";
 
+// Import newly created placeholder slide components
+import ReduxConceptsSlide from "./slides/MarkdownSlides/ReduxConceptsSlide";
+import StateMgtConclusionSlide from "./slides/MarkdownSlides/StateMgtConclusionSlide";
+import ClientComponentsSlide from "./slides/MarkdownSlides/ClientComponentsSlide";
+import ServerComponentsSlide from "./slides/MarkdownSlides/ServerComponentsSlide";
+import PkgMgtOverviewSlide from "./slides/MarkdownSlides/PkgMgtOverviewSlide";
+import NpmVsYarnSlide from "./slides/MarkdownSlides/NpmVsYarnSlide";
+import BuildDeploySlide from "./slides/MarkdownSlides/BuildDeploySlide";
+import CapacitorSlide from "./slides/MarkdownSlides/CapacitorSlide";
+import KubbSlide from "./slides/MarkdownSlides/KubbSlide";
+
 /**
  * Defines the application's routes using React Router.
  *
@@ -65,6 +76,42 @@ export const router = createBrowserRouter([
       {
         path: "network-in-onclick",
         element: <NetworkRequestInOnClickSlide />,
+      },
+      {
+        path: "redux-concepts",
+        element: <ReduxConceptsSlide />,
+      },
+      {
+        path: "state-mgt-conclusion",
+        element: <StateMgtConclusionSlide />,
+      },
+      {
+        path: "client-components",
+        element: <ClientComponentsSlide />,
+      },
+      {
+        path: "server-components",
+        element: <ServerComponentsSlide />,
+      },
+      {
+        path: "pkg-mgt-overview",
+        element: <PkgMgtOverviewSlide />,
+      },
+      {
+        path: "npm-vs-yarn",
+        element: <NpmVsYarnSlide />,
+      },
+      {
+        path: "build-deploy",
+        element: <BuildDeploySlide />,
+      },
+      {
+        path: "capacitor",
+        element: <CapacitorSlide />,
+      },
+      {
+        path: "kubb",
+        element: <KubbSlide />,
       },
       {
         path: "*",
