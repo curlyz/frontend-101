@@ -3,6 +3,9 @@ description:
 globs: 
 alwaysApply: false
 ---
+Source content for this website: https://datumhq.atlassian.net/wiki/spaces/DATUMHQ/pages/edit-v2/834174977
+
+
 Use Yarn for package manager
 Use Immer for mutating state
 Always find API integration call inside src/gen
@@ -10,3 +13,131 @@ Always find API integration call inside src/gen
     for react query: use src/gen/swr
 
 For UI component, prefer AntD Mobile and AntD
+
+# Adding a New Page or Slide
+
+This document outlines the steps to add a new page or slide to the application, ensuring it's correctly integrated into the navigation and project structure.
+
+## 1. Create Slide/Page Component
+
+- **Create a new component** for your slide or page content.
+  - Place slide-specific components in a new directory under `src/slides/`. For example, for a "Package Manager Slide", create `src/slides/PackageManagerSlide/PackageManagerSlide.tsx`.
+  - If the page is a more general feature, consider placing it under `src/components/features/` in an appropriately named subdirectory.
+- **Implement the component** with its specific logic and UI.
+  - Follow standard React best practices.
+  - Utilize existing common components from `src/components/common/` where applicable.
+  - For UI, prefer Ant Design Mobile (`antd-mobile`) or Ant Design (`antd`) components.
+
+  ```typescript
+  // Example: src/slides/PackageManagerSlide/PackageManagerSlide.tsx
+  import React from 'react';
+  import { Typography, Card, Row, Col, Tag } from 'antd';
+
+  const { Title, Paragraph } = Typography;
+
+  const PackageManagerSlide: React.FC = () => {
+    return (
+      <div style={{ padding: '20px' }}>
+        <Title level={2} style={{ textAlign: 'center', marginBottom: '30px' }}>
+          Popular JavaScript Package Managers
+        </Title>
+        {/* ... rest of the component ... */}
+      </div>
+    );
+  };
+
+  export default PackageManagerSlide;
+  ```
+
+## 2. Add to Navigation Menu
+
+- **Update the navigation menu** in `src/layouts/MainLayout.tsx` to include a link to your new page/slide.
+- Modify the `proLayoutRoutes` constant (or a similar structure that defines navigation items).
+
+  ```typescript
+  // Example modification in src/layouts/MainLayout.tsx
+  // ... existing imports ...
+  import { CodeSandboxOutlined } from '@ant-design/icons'; // Or any other relevant icon
+
+  const proLayoutRoutes = {
+    path: "/",
+    routes: [
+      // ... other menu items ...
+      {
+        path: "/redux-demo",
+        name: "Redux Demo",
+        icon: <ControlOutlined />,
+      },
+      {
+        path: "/package-managers", // Path for the new slide
+        name: "Package Managers",  // Display name in navigation
+        icon: <CodeSandboxOutlined />, // Choose an appropriate icon
+      },
+    ],
+  };
+  // ... rest of the MainLayout component ...
+  ```
+
+## 3. Define the Route
+
+- **Add a route definition** in your main router configuration file, typically `src/router.tsx`.
+- This step maps the URL path to your newly created slide component, enabling it to be rendered when the path is accessed.
+
+  ```typescript
+  // Example modification in src/router.tsx
+  import { createBrowserRouter, Navigate } from "react-router-dom";
+  import MainLayout from "./layouts/MainLayout";
+  // ... other slide imports ...
+  import PackageManagerSlide from "./slides/PackageManagerSlide/PackageManagerSlide"; // Import your new slide
+  import NotFoundSlide from "./slides/NotFoundSlide";
+
+  export const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <MainLayout />,
+      children: [
+        // ... other routes ...
+        {
+          path: "redux-demo",
+          element: <ReduxDemoSlide />,
+        },
+        {
+          path: "package-managers", // Must match the path in MainLayout.tsx
+          element: <PackageManagerSlide />,
+        },
+        {
+          path: "*",
+          element: <NotFoundSlide />,
+        },
+      ],
+    },
+  ]);
+  ```
+
+## 4. Add to Slide Deck (Optional)
+
+- If the new slide is part of a presentation or a sequence of slides managed by a specific library (e.g., `Spectacle`) or a custom slide manager (e.g., in a `src/slides/index.tsx` type of file), add your new slide component to that deck configuration.
+
+  ```typescript
+  // Example: src/slides/index.tsx or similar
+  // ... existing imports ...
+  import PackageManagerSlide from './PackageManagerSlide/PackageManagerSlide';
+
+  export const slides = [
+    // ... other slides ...
+    {
+      path: 'package-managers-deck-item', // Or use the direct route path if applicable
+      element: <PackageManagerSlide />,
+      title: 'Package Managers'
+    }
+  ];
+  ```
+
+## Summary of Files to Create/Modify:
+
+1.  **New Component**: `src/slides/YourNewSlide/YourNewSlide.tsx`
+2.  **Navigation Menu**: `src/layouts/MainLayout.tsx` (update `proLayoutRoutes` or equivalent)
+3.  **Routing Configuration**: `src/router.tsx` (add a new route definition)
+4.  **Slide Deck Configuration** (if applicable): e.g., `src/slides/index.tsx`
+
+Remember to follow the project's coding conventions, linting rules, and state management practices.

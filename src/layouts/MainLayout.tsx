@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProLayout, { PageContainer } from "@ant-design/pro-layout";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
@@ -16,6 +16,7 @@ import {
   LoginOutlined,
   BulbOutlined,
   ControlOutlined,
+  AlertOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -30,16 +31,6 @@ import {
 const proLayoutRoutes = {
   path: "/",
   routes: [
-    {
-      path: "/home",
-      name: "Home",
-      icon: <HomeOutlined />,
-    },
-    {
-      path: "/about",
-      name: "About",
-      icon: <InfoCircleOutlined />,
-    },
     {
       path: "/react-scan",
       name: "React Scan",
@@ -66,6 +57,11 @@ const proLayoutRoutes = {
       icon: <DashboardOutlined />,
     },
     {
+      path: "/state-optimization",
+      name: "State Optimization",
+      icon: <ControlOutlined />,
+    },
+    {
       path: "/data-fetching",
       name: "Data Fetching",
       icon: <CloudDownloadOutlined />,
@@ -74,6 +70,16 @@ const proLayoutRoutes = {
       path: "/redux-demo",
       name: "Redux Demo",
       icon: <ControlOutlined />,
+    },
+    {
+      path: "/package-managers",
+      name: "Package Managers",
+      icon: <CodeSandboxOutlined />,
+    },
+    {
+      path: "/network-in-onclick",
+      name: "Network in onClick",
+      icon: <AlertOutlined />,
     },
   ],
 };
@@ -95,6 +101,21 @@ const MainLayout: React.FC = () => {
 
   // Use environment variable for title, with fallback
   const appTitle = import.meta.env.VITE_APP_TITLE || "Frontend 101";
+
+  // Hotkey effect to toggle theme
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault(); // Prevent browser shortcuts (e.g., search)
+        toggleTheme();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [toggleTheme]); // Re-run effect if toggleTheme changes (should be stable)
 
   const handleLogin = () => {
     login({ id: "1", name: "Demo User", email: "demo@example.com" });
@@ -152,21 +173,6 @@ const MainLayout: React.FC = () => {
         actionsRender={(props) => {
           if (props.isMobile) return [];
           return [
-            <Tooltip
-              title={
-                themeMode === "light"
-                  ? "Switch to Dark Mode"
-                  : "Switch to Light Mode"
-              }
-              key="theme-toggle"
-            >
-              <Button
-                shape="circle"
-                icon={<BulbOutlined />}
-                onClick={toggleTheme}
-                type={themeMode === "light" ? "default" : "primary"}
-              />
-            </Tooltip>,
             <Dropdown menu={{ items: authMenuItems }} key="auth-dropdown">
               <Space style={{ cursor: "pointer" }}>
                 <Avatar {...avatarProps} />

@@ -1,5 +1,10 @@
-import { createContext, useContextSelector } from "use-context-selector";
-import React, { useState, useCallback, type ReactNode } from "react";
+import React, {
+  useState,
+  useCallback,
+  type ReactNode,
+  useContext,
+  createContext,
+} from "react";
 import { produce } from "immer";
 
 // Define the shape of a single task (matching original TaskManager)
@@ -26,7 +31,7 @@ const initialTasks: Task[] = [
     id: 1,
     text: "Watch a puppet show",
     done: false,
-    metadata: { createdAt: Date.now() - 3600000, priority: "low" },
+    metadata: { createdAt: Date.now() - 3700000, priority: "low" },
   },
   {
     id: 2,
@@ -45,8 +50,12 @@ interface TaskContextValue {
   setPriority: (taskId: number, priority: Task["metadata"]["priority"]) => void;
 }
 
-// Create the context
-const TaskContext = createContext<TaskContextValue>(undefined!);
+/**
+ * @const TaskContext
+ * Context for managing tasks state.
+ * Initialized with undefined to ensure provider usage.
+ */
+const TaskContext = createContext<TaskContextValue | undefined>(undefined);
 
 // ID generator
 let nextId = 3; // Start after initial tasks
@@ -142,37 +151,54 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };
 
-// --- Selector Hooks ---
+// --- Custom Hooks (using standard useContext) ---
 
-/** Hook to select the tasks array */
+/** Hook to get the tasks array */
 export const useTasks = (): Task[] => {
-  return useContextSelector(TaskContext, (v: TaskContextValue) => v.tasks);
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error("useTasks must be used within a TaskProvider");
+  }
+  return context.tasks;
 };
 
-/** Hook to select the addTask function */
+/** Hook to get the addTask function */
 export const useAddTask = (): ((text: string) => void) => {
-  return useContextSelector(TaskContext, (v: TaskContextValue) => v.addTask);
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error("useAddTask must be used within a TaskProvider");
+  }
+  return context.addTask;
 };
 
-/** Hook to select the changeTask function */
+/** Hook to get the changeTask function */
 export const useChangeTask = (): ((task: Task) => void) => {
-  return useContextSelector(TaskContext, (v: TaskContextValue) => v.changeTask);
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error("useChangeTask must be used within a TaskProvider");
+  }
+  return context.changeTask;
 };
 
-/** Hook to select the deleteTask function */
+/** Hook to get the deleteTask function */
 export const useDeleteTask = (): ((taskId: number) => void) => {
-  return useContextSelector(TaskContext, (v: TaskContextValue) => v.deleteTask);
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error("useDeleteTask must be used within a TaskProvider");
+  }
+  return context.deleteTask;
 };
 
-/** Hook to select the setPriority function */
+/** Hook to get the setPriority function */
 export const useSetPriority = (): ((
   taskId: number,
   priority: Task["metadata"]["priority"],
 ) => void) => {
-  return useContextSelector(
-    TaskContext,
-    (v: TaskContextValue) => v.setPriority,
-  );
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error("useSetPriority must be used within a TaskProvider");
+  }
+  return context.setPriority;
 };
 
 // Remove TaskItemProps export, it belongs in TaskItem.tsx

@@ -27,27 +27,12 @@ const ComponentDemoSlide: React.FC = () => {
           This slide demonstrates the usage and composition of various
           components created earlier.
         </Paragraph>
-
-        {/*
-          Visual Diagram (ASCII Art):
-
-          ComponentDemoSlide
-          |-- CommonCard (Loading Example)
-          |-- CommonCard (Error Example)
-          |-- CommonCard (Content Example)
-          |   |-- UserProfile (Class Component)
-          |   |-- SimpleList (Function Component)
-          |   |   `-- (List Items)
-          |   `-- HoverButton (Function Component)
-        */}
       </Card>
 
       <Divider>CommonCard Examples</Divider>
-
       <CommonCard title="Loading Card Example" isLoading={true}>
         This content won't be shown while loading.
       </CommonCard>
-
       <CommonCard
         title="Error Card Example"
         errorMessage="Failed to load content!"
@@ -57,14 +42,11 @@ const ComponentDemoSlide: React.FC = () => {
       </CommonCard>
 
       <Divider>Composition Example</Divider>
-
       <CommonCard title="Card with Nested Components">
         <Space direction="vertical" size="middle" style={{ width: "100%" }}>
           <Paragraph>This card contains other components:</Paragraph>
-          {/* Class Component Example */}
-          <UserProfile userId={1} /> {/* Pass a prop */}
+          <UserProfile userId={1} />
           <Divider dashed />
-          {/* List Component Example */}
           <SimpleList
             header={<Text strong>Demo List:</Text>}
             items={demoListData}
@@ -76,7 +58,6 @@ const ComponentDemoSlide: React.FC = () => {
             bordered
           />
           <Divider dashed />
-          {/* Button Component Example */}
           <HoverButton type="primary" hoverText="Hovering!">
             Hover Me
           </HoverButton>

@@ -41,7 +41,7 @@ ThemeContext.displayName = "ThemeContext";
  * @interface ThemeProviderProps
  * Props for the ThemeProvider component.
  * @property {ReactNode} children - The child components to wrap.
- * @property {ThemeMode} [defaultTheme='light'] - Optional default theme mode.
+ * @property {ThemeMode} [defaultTheme='dark'] - Optional default theme mode.
  */
 interface ThemeProviderProps {
   children: ReactNode;
@@ -58,7 +58,7 @@ interface ThemeProviderProps {
  */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
-  defaultTheme = "light",
+  defaultTheme = "dark",
 }) => {
   const [themeMode, setThemeMode] = useState<ThemeMode>(defaultTheme);
 

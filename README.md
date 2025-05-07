@@ -40,7 +40,7 @@ This project demonstrates various core React concepts and related libraries usin
     ```bash
     yarn dev
     ```
-    The application will be available at `http://localhost:5173` (or the next available port).
+    The application will be available at `http://localhost:7000` (or the next available port).
 
 ## Available Scripts
 
