@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: frontend-101 # You might want to change this to your actual service name on Render
+    staticPublishPath: dist
+    pullRequestPreviewsEnabled: true # Optional: Enables Render Previews for PRs
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
