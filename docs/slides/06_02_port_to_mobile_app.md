@@ -55,7 +55,7 @@ Capacitor workflow:
     
     Alternatively, to compile your app in a terminal or in CI environments, you can use the build command to build the native project, outputting a signed AAB, APK or IPA file ready for distribution to a device or end users.
     
-    ```bash
+    ```bashp
     npx cap build android
     # or npx cap build ios (requires macOS environment and Xcode tools)
     ``` 
