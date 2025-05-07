@@ -1,11 +1,15 @@
 import React from "react";
-import { Typography, Card, List, Tag, Divider, Row, Col } from "antd";
+import { Typography, Card, List, Tag, Divider, Row, Col, Tree } from "antd";
+import type { TreeProps } from "antd";
 import {
   CodeOutlined,
   LayoutOutlined,
   ShareAltOutlined,
   BranchesOutlined,
   FolderOpenOutlined,
+  FolderOutlined,
+  FileTextOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -19,42 +23,141 @@ const codeStyle: React.CSSProperties = {
 };
 
 const LayoutAndRoutingSlide: React.FC = () => {
-  const folderStructure = `
-src/
-├── App.tsx                 // Main application component, sets up router
-├── main.tsx                // Vite entry point
-│
-├── assets/                 // Static assets (images, fonts)
-│
-├── components/
-│   ├── common/             // Truly reusable UI (Button, Modal, etc.)
-│   └── features/           // Components specific to a feature/domain
-│
-├── contexts/               // React Context API providers
-│
-├── hooks/                  // Custom React hooks
-│
-├── layouts/                // ★ Common page layouts
-│   ├── MainLayout.tsx      // Example: Header, Footer, Sidebar, Outlet
-│   └── AuthLayout.tsx      // Example: Layout for login/signup pages
-│
-├── pages/ (or views/)      // ★ Route-specific components/pages
-│   ├── HomePage.tsx
-│   ├── AboutPage.tsx
-│   ├── ProductDetailsPage.tsx
-│   └── NotFoundPage.tsx
-│
-├── router/                 // ★ Routing configuration
-│   └── index.tsx           // (or AppRouter.tsx) Defines route hierarchy
-│
-├── services/ (or api/)     // API call functions, data fetching logic
-│
-├── store/                  // Global state management (Redux, Zustand)
-│
-├── styles/                 // Global styles, themes
-│
-└── utils/                  // Utility functions, helpers
-  `;
+  const projectTreeData: TreeProps["treeData"] = [
+    {
+      title: "src",
+      key: "src",
+      icon: <FolderOpenOutlined />,
+      children: [
+        {
+          title: "App.tsx",
+          key: "src-app",
+          icon: <SettingOutlined />,
+          isLeaf: true,
+        },
+        {
+          title: "main.tsx",
+          key: "src-main",
+          icon: <SettingOutlined />,
+          isLeaf: true,
+        },
+        { title: "assets", key: "src-assets", icon: <FolderOutlined /> },
+        {
+          title: "components",
+          key: "src-components",
+          icon: <FolderOutlined />,
+          children: [
+            {
+              title: "common",
+              key: "src-components-common",
+              icon: <FolderOutlined />,
+            },
+            {
+              title: "features",
+              key: "src-components-features",
+              icon: <FolderOutlined />,
+            },
+          ],
+        },
+        {
+          title: "contexts",
+          key: "src-contexts",
+          icon: <FolderOutlined />,
+          children: [
+            {
+              title: "ThemeContext.tsx",
+              key: "src-contexts-theme",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+          ],
+        },
+        {
+          title: "hooks",
+          key: "src-hooks",
+          icon: <FolderOutlined />,
+          children: [
+            {
+              title: "useCustomHook.tsx",
+              key: "src-hooks-custom",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+          ],
+        },
+        {
+          title: "layouts (★)",
+          key: "src-layouts",
+          icon: <FolderOutlined />,
+          children: [
+            {
+              title: "MainLayout.tsx",
+              key: "src-layouts-main",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+            {
+              title: "AuthLayout.tsx (Optional)",
+              key: "src-layouts-auth",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+          ],
+        },
+        {
+          title: "pages (or views) (★)",
+          key: "src-pages",
+          icon: <FolderOutlined />,
+          children: [
+            {
+              title: "HomePage.tsx",
+              key: "src-pages-home",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+            {
+              title: "AboutPage.tsx",
+              key: "src-pages-about",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+            {
+              title: "ProductDetailsPage.tsx",
+              key: "src-pages-product",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+            {
+              title: "NotFoundPage.tsx",
+              key: "src-pages-notfound",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+          ],
+        },
+        {
+          title: "router (★)",
+          key: "src-router",
+          icon: <FolderOutlined />,
+          children: [
+            {
+              title: "index.tsx (or AppRouter.tsx)",
+              key: "src-router-index",
+              icon: <FileTextOutlined />,
+              isLeaf: true,
+            },
+          ],
+        },
+        {
+          title: "services (or api)",
+          key: "src-services",
+          icon: <FolderOutlined />,
+        },
+        { title: "styles", key: "src-styles", icon: <FolderOutlined /> },
+        { title: "utils", key: "src-utils", icon: <FolderOutlined /> },
+      ],
+    },
+  ];
 
   const mainLayoutExample = `
 // src/layouts/MainLayout.tsx
@@ -178,14 +281,18 @@ export default AppRouter;
           organize a Vite + React project, emphasizing where layout and routing
           files typically reside. Key folders are marked with ★.
         </Paragraph>
-        <SyntaxHighlighter
-          language="bash"
-          style={atomDark}
-          customStyle={codeStyle}
-          showLineNumbers
-        >
-          {folderStructure.trim()}
-        </SyntaxHighlighter>
+        <Tree
+          showLine
+          defaultExpandAll
+          treeData={projectTreeData}
+          className="folder-tree"
+          style={{
+            marginTop: "16px",
+            padding: "10px",
+            border: "1px solid #f0f0f0",
+            borderRadius: "4px",
+          }}
+        />
         <Paragraph style={{ marginTop: "16px" }}>
           This organization helps in separating concerns: layouts define the
           common chrome, pages are the content for specific routes, and the

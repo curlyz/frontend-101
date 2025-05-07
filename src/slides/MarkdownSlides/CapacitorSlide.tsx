@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Typography,
   Card,
@@ -21,7 +21,17 @@ import {
   AppleOutlined,
   AndroidOutlined,
   LaptopOutlined,
+  ApiOutlined,
+  CameraOutlined,
+  EnvironmentOutlined,
+  FolderOutlined,
+  NotificationOutlined,
+  WifiOutlined,
+  AlertOutlined,
+  NodeIndexOutlined,
+  DashboardOutlined,
 } from "@ant-design/icons";
+import mermaid from "mermaid";
 
 const { Title, Paragraph, Text } = Typography;
 const { Step } = Steps;
@@ -39,7 +49,7 @@ const capacitorLogoUrl = "https://capacitorjs.com/assets/img/logo.png";
 const CapacitorSlide: React.FC = () => {
   const mainIdeas = [
     "Capacitor: Framework for porting responsive React web apps to native mobile (iOS, Android).",
-    "Approach: Cross-platform native runtime, web-focused APIs, access to native device features.",
+    "Approach: Cross-platform native runtime, web-focused APIs, access to native device features, expandable with custom native code.",
     "Workflow: Build web code -> Sync to Capacitor project -> Test on device -> Compile native binary.",
   ];
 
@@ -90,6 +100,147 @@ const CapacitorSlide: React.FC = () => {
     },
   ];
 
+  const architectureDiagram = `
+graph TD
+    A["React Web App Codebase<br>(HTML, CSS, JS/TS)"]
+
+    subgraph WEB_DEPLOYMENT [Web / PWA]
+        direction LR
+        B[Standard Browser]
+    end
+
+    subgraph MOBILE_DEPLOYMENT [Mobile via Capacitor]
+        direction TB
+        C[Capacitor Core Runtime]
+        CWV["WebView<br>(Renders Web App UI)"]
+        C --> CWV
+        
+        subgraph IOS [iOS Native Platform]
+            direction TB
+            D[iOS Native App Shell]
+            D_Plugins["Native iOS Plugins<br>(Swift/Obj-C)"]
+            D_Bridge["Capacitor Bridge (JS <-> Native)"]
+            D_APIs["Native iOS APIs<br>(Camera, GPS, etc.)"]
+            CWV <-.->|JS Calls| D_Bridge
+            D_Bridge -- Access --> D_APIs
+            D_Bridge -- Extends --> D_Plugins
+            D --> D_Bridge
+        end
+        
+        subgraph ANDROID [Android Native Platform]
+            direction TB
+            E[Android Native App Shell]
+            E_Plugins["Native Android Plugins<br>(Kotlin/Java)"]
+            E_Bridge["Capacitor Bridge (JS <-> Native)"]
+            E_APIs["Native Android APIs<br>(Camera, GPS, etc.)"]
+            CWV <-.->|JS Calls| E_Bridge
+            E_Bridge -- Access --> E_APIs
+            E_Bridge -- Extends --> E_Plugins
+            E --> E_Bridge
+        end
+
+        C -.-> D
+        C -.-> E
+    end
+
+    A --> B
+    A --> C
+
+    classDef web fill:#D6EAF8,stroke:#2E86C1,stroke-width:2px,color:#000;
+    classDef capacitor fill:#D1F2EB,stroke:#1ABC9C,stroke-width:2px,color:#000;
+    classDef native_ios fill:#FCF3CF,stroke:#F1C40F,stroke-width:2px,color:#000;
+    classDef native_android fill:#FDEDEC,stroke:#E74C3C,stroke-width:2px,color:#000;
+    classDef bridge fill:#5D6D7E,stroke:#34495E,stroke-width:2px,color:white;
+
+    class A web;
+    class B web;
+    class C capacitor;
+    class CWV capacitor;
+    class D native_ios;
+    class D_Plugins native_ios;
+    class D_APIs native_ios;
+    class D_Bridge bridge;
+    class E native_android;
+    class E_Plugins native_android;
+    class E_APIs native_android;
+    class E_Bridge bridge;
+`;
+
+  useEffect(() => {
+    mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+    const timer = setTimeout(() => {
+      try {
+        mermaid.run();
+      } catch (e) {
+        console.error("Mermaid rendering error:", e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const nativeFeatures = [
+    {
+      name: "Camera",
+      icon: <CameraOutlined />,
+      npmPackage: "@capacitor/camera",
+      description: "Capture photos/videos, access gallery.",
+    },
+    {
+      name: "Geolocation",
+      icon: <EnvironmentOutlined />,
+      npmPackage: "@capacitor/geolocation",
+      description: "Get device location (GPS, WiFi).",
+    },
+    {
+      name: "Filesystem",
+      icon: <FolderOutlined />,
+      npmPackage: "@capacitor/filesystem",
+      description: "Read/write files on device storage.",
+    },
+    {
+      name: "Push Notifications",
+      icon: <NotificationOutlined />,
+      npmPackage: "@capacitor/push-notifications",
+      description: "Receive and handle push messages.",
+    },
+    {
+      name: "Local Notifications",
+      icon: <NotificationOutlined />,
+      npmPackage: "@capacitor/local-notifications",
+      description: "Schedule notifications locally.",
+    },
+    {
+      name: "Network",
+      icon: <WifiOutlined />,
+      npmPackage: "@capacitor/network",
+      description: "Check network status and connectivity.",
+    },
+    {
+      name: "Haptics",
+      icon: <AlertOutlined />,
+      npmPackage: "@capacitor/haptics",
+      description: "Trigger vibration feedback.",
+    },
+    {
+      name: "Device Info",
+      icon: <MobileOutlined />,
+      npmPackage: "@capacitor/device",
+      description: "Get OS, model, battery status, etc.",
+    },
+    {
+      name: "Motion",
+      icon: <DashboardOutlined />,
+      npmPackage: "@capacitor/motion",
+      description: "Access device motion sensors.",
+    },
+    {
+      name: "Bluetooth LE",
+      icon: <NodeIndexOutlined />,
+      npmPackage: "Community Plugin (e.g., @capawesome/...)",
+      description: "Communicate with BLE devices.",
+    },
+  ];
+
   return (
     <div style={{ padding: "20px", maxWidth: "1000px", margin: "0 auto" }}>
       <Title level={2}>Porting to Mobile Apps with Capacitor</Title>
@@ -131,6 +282,45 @@ const CapacitorSlide: React.FC = () => {
             />
           ))}
         </Steps>
+      </Card>
+
+      <Card
+        title="Capacitor Hybrid Architecture & Deployment"
+        style={{ marginBottom: 20 }}
+      >
+        <Paragraph>
+          Capacitor enables a single web codebase to be deployed as a
+          Progressive Web App (PWA) or standard website, and also packaged into
+          native iOS and Android applications. Its hybrid architecture uses a
+          WebView to render the web application, while a powerful bridge allows
+          JavaScript to access native device features and for developers to
+          extend functionality with custom native plugins.
+        </Paragraph>
+        <div
+          className="mermaid"
+          style={{
+            textAlign: "center",
+            padding: "10px",
+            border: "1px solid #f0f0f0",
+            borderRadius: "4px",
+            marginTop: 16,
+            background: "#fff",
+          }}
+        >
+          {architectureDiagram}
+        </div>
+        <Paragraph
+          style={{
+            marginTop: "16px",
+            fontSize: "0.9em",
+            textAlign: "center",
+            color: "gray",
+          }}
+        >
+          Diagram: Single codebase deployed to Web, iOS, and Android, with
+          Capacitor bridge enabling native feature access and custom plugin
+          extension.
+        </Paragraph>
       </Card>
 
       <Card title="Content Overview" style={{ marginBottom: 20 }}>
@@ -186,6 +376,44 @@ const CapacitorSlide: React.FC = () => {
           use <Text code>npx cap build</Text> or the native IDEs (Xcode for iOS
           requires macOS).
         </Paragraph>
+      </Card>
+
+      <Card
+        title="Example Native Features via Plugins"
+        style={{ marginBottom: 20 }}
+      >
+        <Paragraph>
+          Capacitor provides a bridge to access native device capabilities
+          through a plugin system. Here are some examples of features accessible
+          via official or community plugins:
+        </Paragraph>
+        <Row gutter={[16, 16]} style={{ marginTop: "16px" }}>
+          {nativeFeatures.map((item) => (
+            <Col xs={24} sm={12} md={8} key={item.name}>
+              <Card
+                size="small"
+                title={
+                  <Space>
+                    {React.cloneElement(item.icon, {
+                      style: { fontSize: "18px" },
+                    })}{" "}
+                    {item.name}
+                  </Space>
+                }
+                headStyle={{ fontSize: "0.95em", backgroundColor: "#111" }}
+                bodyStyle={{ fontSize: "0.9em", backgroundColor: "#000" }}
+                style={{ height: "100%" }}
+              >
+                <Paragraph style={{ marginBottom: "8px" }}>
+                  {item.description}
+                </Paragraph>
+                <Text code style={{ fontSize: "0.85em" }}>
+                  {item.npmPackage}
+                </Text>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       </Card>
 
       <Card

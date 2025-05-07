@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import DatumLogo from "@/assets/logo_white.png";
 import ProLayout, { PageContainer } from "@ant-design/pro-layout";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
@@ -195,8 +196,8 @@ const MainLayout: React.FC = () => {
       }}
     >
       <ProLayout
-        title={appTitle}
-        logo={<GithubOutlined />}
+        title={""}
+        logo={<img src={DatumLogo} alt="Datum Logo" />}
         layout="mix"
         navTheme={themeMode === "light" ? "light" : "realDark"}
         fixSiderbar
