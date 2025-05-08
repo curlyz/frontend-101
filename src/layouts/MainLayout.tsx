@@ -24,6 +24,7 @@ import {
   ApiOutlined,
   LayoutOutlined,
   SecurityScanOutlined,
+  ShareAltOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -40,10 +41,16 @@ const proLayoutRoutes = {
   path: "/",
   routes: [
     {
+      path: "/developer-tools",
+      name: "Dev Tools Helpers",
+      icon: <BulbOutlined />,
+    },
+    {
       path: "/react-scan",
       name: "React Scan",
       icon: <ScanOutlined />,
     },
+
     {
       path: "/performance",
       name: "Performance Hooks",
@@ -53,6 +60,11 @@ const proLayoutRoutes = {
       path: "/state-optimization",
       name: "React Context Slide",
       icon: <ControlOutlined />,
+    },
+    {
+      path: "/state-update-batching",
+      name: "State Update Batching",
+      icon: <ReadOutlined />,
     },
     {
       path: "/redux-concepts",
@@ -65,19 +77,24 @@ const proLayoutRoutes = {
     //   icon: <InfoCircleOutlined />,
     // },
     {
-      path: "/data-fetching",
-      name: "Data Fetching",
-      icon: <CloudDownloadOutlined />,
-    },
-    {
       path: "/network-in-onclick",
       name: "Network in onClick",
       icon: <AlertOutlined />,
     },
     {
+      path: "/data-fetching",
+      name: "Data Fetching",
+      icon: <CloudDownloadOutlined />,
+    },
+    {
       path: "/layout-routing",
       name: "Layouts & Routing",
       icon: <LayoutOutlined />,
+    },
+    {
+      path: "/props-drilling",
+      name: "Props Drilling Slide",
+      icon: <ShareAltOutlined />,
     },
     {
       path: "/client-components",
@@ -88,16 +105,6 @@ const proLayoutRoutes = {
       path: "/server-components",
       name: "Server Components Slide",
       icon: <CloudDownloadOutlined />,
-    },
-    {
-      path: "/pkg-mgt-overview",
-      name: "Pkg Mgt. Overview Slide",
-      icon: <CodeSandboxOutlined />,
-    },
-    {
-      path: "/npm-vs-yarn",
-      name: "npm vs Yarn Slide",
-      icon: <SwapOutlined />,
     },
     {
       path: "/build-deploy",
@@ -123,11 +130,6 @@ const proLayoutRoutes = {
       path: "/frontend-security",
       name: "Frontend Security",
       icon: <AlertOutlined />,
-    },
-    {
-      path: "/developer-tools",
-      name: "Dev Tools Helpers",
-      icon: <BulbOutlined />,
     },
     {
       path: "/pwa",
@@ -262,7 +264,7 @@ const MainLayout: React.FC = () => {
             </Dropdown>,
             <Tooltip title="View Source on GitHub" key="github-link">
               <a
-                href="https://github.com/your-repo/frontend-101"
+                href="https://github.com/curlyz/frontend-101"
                 target="_blank"
                 rel="noopener noreferrer"
               >

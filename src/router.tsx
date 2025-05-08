@@ -28,7 +28,8 @@ import BuildDeploySlide from "./slides/MarkdownSlides/BuildDeploySlide";
 import CapacitorSlide from "./slides/MarkdownSlides/CapacitorSlide";
 import KubbSlide from "./slides/MarkdownSlides/KubbSlide";
 import LayoutAndRoutingSlide from "./slides/MarkdownSlides/LayoutAndRoutingSlide";
-
+import PropsDrillingSlide from "./slides/MarkdownSlides/PropsDrillingSlide";
+import StateUpdateBatchingSlide from "./slides/MarkdownSlides/StateUpdateBatchingSlide";
 /**
  * Defines the application's routes using React Router.
  *
@@ -120,6 +121,10 @@ export const router = createBrowserRouter([
         element: <LayoutAndRoutingSlide />,
       },
       {
+        path: "props-drilling",
+        element: <PropsDrillingSlide />,
+      },
+      {
         path: "idempotency",
         element: <IdempotencySlide />,
       },
@@ -138,6 +143,10 @@ export const router = createBrowserRouter([
       {
         path: "cors",
         element: <CORSSlide />,
+      },
+      {
+        path: "state-update-batching",
+        element: <StateUpdateBatchingSlide />,
       },
       {
         path: "*",
