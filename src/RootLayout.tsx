@@ -39,28 +39,6 @@ export default function RootLayout(): React.ReactElement {
     }
   }, [currentSlideIndex, navigate]);
 
-  /**
-   * Handles keyboard events for slide navigation (left/right arrows).
-   * @param {KeyboardEvent} event - The keyboard event.
-   */
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft") {
-        goToPrevSlide();
-      } else if (event.key === "ArrowRight") {
-        goToNextSlide();
-      }
-    },
-    [goToPrevSlide, goToNextSlide],
-  );
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [handleKeyDown]);
-
   // Styles for the navigation buttons to mimic the original Tailwind styles
   // These could also be done with CSS classes if preferred
   const navButtonStyle: React.CSSProperties = {

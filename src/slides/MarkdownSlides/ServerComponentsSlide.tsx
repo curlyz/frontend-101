@@ -610,10 +610,6 @@ export default function SharedCard({ title, children }) {
           and their code needs to be sent to the browser.
         </Paragraph>
       </Card>
-
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };

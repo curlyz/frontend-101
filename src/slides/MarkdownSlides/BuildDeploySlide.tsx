@@ -774,10 +774,6 @@ graph TD
           <Text>Rollback Strategy</Text>
         </Space>
       </Card>
-
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };

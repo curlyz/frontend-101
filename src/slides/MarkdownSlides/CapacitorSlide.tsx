@@ -338,29 +338,19 @@ npx @capacitor/cli add android`}
       <Title level={2}>Porting to Mobile Apps with Capacitor</Title>
 
       <Row gutter={[16, 16]} style={{ marginBottom: 20 }} align="middle">
-        <Col xs={24} md={6} style={{ textAlign: "center" }}>
-          <Image
-            src={capacitorLogoUrl}
-            alt="Capacitor Logo"
-            width={100}
-            preview={false}
+        <Card title="Main Ideas to Convey">
+          <List
+            dataSource={mainIdeas}
+            renderItem={(item) => (
+              <List.Item>
+                <CheckCircleOutlined
+                  style={{ color: "green", marginRight: 8 }}
+                />{" "}
+                {item}
+              </List.Item>
+            )}
           />
-        </Col>
-        <Col xs={24} md={18}>
-          <Card title="Main Ideas to Convey">
-            <List
-              dataSource={mainIdeas}
-              renderItem={(item) => (
-                <List.Item>
-                  <CheckCircleOutlined
-                    style={{ color: "green", marginRight: 8 }}
-                  />{" "}
-                  {item}
-                </List.Item>
-              )}
-            />
-          </Card>
-        </Col>
+        </Card>
       </Row>
 
       <Card title="Capacitor Workflow" style={{ marginBottom: 20 }}>
@@ -532,10 +522,6 @@ npx @capacitor/cli add android`}
           />
         </Space>
       </Card>
-
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };

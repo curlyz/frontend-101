@@ -160,9 +160,6 @@ const ClientComponentsSlide: React.FC = () => {
           <Tag color="purple">browser APIs</Tag>.
         </Paragraph>
       </Card>
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };

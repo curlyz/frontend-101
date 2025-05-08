@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import DatumLogo from "@/assets/logo_white.png";
 import ProLayout, { PageContainer } from "@ant-design/pro-layout";
 import { Link, Outlet, useLocation } from "react-router-dom";
@@ -33,6 +33,7 @@ import {
   useLogin,
   useLogout,
 } from "@/contexts/AuthContext";
+import { triggerCelebrationConfetti } from "@/utils/confetti";
 
 // Define routes for ProLayout
 const proLayoutRoutes = {
@@ -161,18 +162,40 @@ const MainLayout: React.FC = () => {
 
   // Hotkey effect to toggle theme
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleThemeKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-        event.preventDefault(); // Prevent browser shortcuts (e.g., search)
+        event.preventDefault();
         toggleTheme();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleThemeKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleThemeKeyDown);
     };
-  }, [toggleTheme]); // Re-run effect if toggleTheme changes (should be stable)
+  }, [toggleTheme]);
+
+  // Hotkey effect for confetti
+  const handleConfettiKeyDown = useCallback((event: KeyboardEvent) => {
+    console.log(
+      `[MainLayout] Confetti KeyDown: ${event.key}, Meta: ${event.metaKey}, Ctrl: ${event.ctrlKey}`,
+    );
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "i") {
+      console.log("[MainLayout] Cmd/Ctrl + I for confetti detected");
+      event.preventDefault();
+      triggerCelebrationConfetti();
+      // TODO: Add applause sound here
+      console.log("[MainLayout] Applause and Confetti! (Sound pending)");
+    }
+  }, []); // Empty dependency array as confetti trigger is self-contained
+
+  useEffect(() => {
+    console.log("[MainLayout] Confetti useEffect called");
+    window.addEventListener("keydown", handleConfettiKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleConfettiKeyDown);
+    };
+  }, [handleConfettiKeyDown]); // Re-attach if handleConfettiKeyDown changes (it won't due to useCallback([]) but good practice)
 
   const handleLogin = () => {
     login({ id: "1", name: "Demo User", email: "demo@example.com" });

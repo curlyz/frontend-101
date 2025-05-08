@@ -12,6 +12,7 @@ import {
   Spin,
   Input,
   message,
+  Flex,
 } from "antd";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -451,11 +452,11 @@ const IdempotencySlide: React.FC = () => {
 
       <Card>
         <Row gutter={24}>
-          <Col xs={24} lg={12}>
-            <Divider orientation="left">Interactive Demo</Divider>
-            <IdempotencyDemo />
-          </Col>
-          <Col xs={24} lg={12}>
+          <Divider orientation="left">Interactive Demo</Divider>
+          <IdempotencyDemo />
+        </Row>
+        <Row gutter={24}>
+          <Flex vertical>
             <Divider orientation="left">Explanation & Code</Divider>
             <Title level={4}>What is Idempotency?</Title>
             <Paragraph>
@@ -561,7 +562,7 @@ async function createItemIdempotent(itemName, idempotencyKey) {
               message="Note: The backend must be designed to handle the 'Idempotency-Key' header (or a similar mechanism) by storing request IDs and their outcomes."
               showIcon
             />
-          </Col>
+          </Flex>
         </Row>
       </Card>
     </Space>
