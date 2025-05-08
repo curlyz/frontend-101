@@ -175,9 +175,9 @@ graph TD
         Provider1 --> ConsumerB1["Consumer B (Needs Text1)"]
         Provider1 --> ConsumerC1["Consumer C (Needs Both)"]
         
-        note right of ConsumerA1 "Re-renders ❌ (Unnecessary)"
-        note right of ConsumerB1 "Re-renders ✅ (Necessary)"
-        note right of ConsumerC1 "Re-renders ✅ (Necessary)"
+        ConsumerA1 -->|"Re-renders ❌ (Unnecessary)"| ConsumerA1
+        ConsumerB1 -->|"Re-renders ✅ (Necessary)"| ConsumerB1
+        ConsumerC1 -->|"Re-renders ✅ (Necessary)"| ConsumerC1
         
         classDef rerender fill:#f9d,stroke:#e11,stroke-width:2px;
         class ConsumerA1 rerender;
@@ -190,9 +190,9 @@ graph TD
         Provider2 -- Selector: Text1 --> ConsumerB2["Consumer B (Selects Text1)"]
         Provider2 -- Selector: Both --> ConsumerC2["Consumer C (Selects Both)"]
         
-        note right of ConsumerA2 "No Re-render ✅ (Optimized)"
-        note right of ConsumerB2 "Re-renders ✅ (Necessary)"
-        note right of ConsumerC2 "Re-renders ✅ (Necessary)"
+        ConsumerA2 -->|"No Re-render ✅ (Optimized)"| ConsumerA2
+        ConsumerB2 -->|"Re-renders ✅ (Necessary)"| ConsumerB2
+        ConsumerC2 -->|"Re-renders ✅ (Necessary)"| ConsumerC2
         
         classDef noRerender fill:#dfd,stroke:#1a1,stroke-width:1px;
         class ConsumerA2 noRerender;

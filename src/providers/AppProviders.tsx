@@ -39,10 +39,9 @@ const ConfiguredApp: React.FC<AppProvidersProps> = ({ children }) => {
     token: {
       fontFamily: "Lexend, sans-serif",
       colorBgLayout: "#101a2a",
-      colorBgContainer: "#333",
+      colorBgContainer: "transparent",
       colorText: "#fff",
       colorPrimary: "#000",
-      
     },
   };
 

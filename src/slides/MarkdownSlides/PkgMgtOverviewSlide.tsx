@@ -146,26 +146,40 @@ graph TD
 
       <Card title="Content Summary">
         <Paragraph>
-          Package management is the process of handling{" "}
-          <Text strong>dependencies</Text>—libraries, tools, and frameworks—that
-          a project needs to run. In a React project, developers often rely on a
-          vast ecosystem of third-party packages to enhance functionality, speed
-          up development, or integrate tools like linters, testing libraries, or
-          UI frameworks.
+          Package management is the backbone of modern software development,
+          handling all the <Text strong>dependencies</Text> a project relies
+          on—external libraries, tools, and frameworks.
         </Paragraph>
         <Paragraph>
-          A package manager automates the tasks listed above, making development
-          smoother and more reliable.
+          These dependencies can range from small utility functions and UI
+          components to comprehensive development tools (like linters and
+          bundlers) or even entire application frameworks.
         </Paragraph>
         <Paragraph>
-          React projects typically use either <Text strong>npm</Text> or{" "}
-          <Text strong>Yarn</Text> as the package manager. (Logos would be
-          displayed here in a real presentation).
+          In React projects, effective package management is especially crucial.
+          Developers leverage a vast ecosystem of third-party packages to
+          accelerate development, add powerful features, and integrate essential
+          tools.
+        </Paragraph>
+        <Paragraph>
+          A package manager automates the critical tasks involved in handling
+          these dependencies (as listed in the card above), making the
+          development process smoother, more reliable, and reproducible across
+          different environments.
+        </Paragraph>
+        <Paragraph>
+          The two most prevalent package managers in the JavaScript and React
+          ecosystem are{" "}
+          <Tag color="red" icon={<CodeSandboxOutlined />}>
+            npm
+          </Tag>{" "}
+          (Node Package Manager), which comes bundled with Node.js, and{" "}
+          <Tag color="geekblue" icon={<CodeSandboxOutlined />}>
+            Yarn
+          </Tag>
+          , developed by Facebook (now Meta).
         </Paragraph>
       </Card>
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };

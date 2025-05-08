@@ -89,27 +89,54 @@ const BuildDeploySlide: React.FC = () => {
             S3). Use a Content Delivery Network (CDN) like AWS CloudFront for
             global distribution, caching, and HTTPS.
           </Paragraph>
+
+          <Title level={5} style={{ marginTop: "16px" }}>
+            <SecurityScanOutlined /> Origin Access Control (OAC/OAI)
+          </Title>
           <Paragraph>
-            <SecurityScanOutlined />{" "}
-            <strong>Origin Access Control (OAC):</strong> Secure your S3 bucket
-            by allowing access only from CloudFront using OAC (newer) or OAI
-            (older). This prevents direct public access to the bucket.
+            Secure your S3 bucket by allowing access only from CloudFront using
+            OAC (newer) or OAI (older). This prevents direct public access to
+            the bucket.
           </Paragraph>
+
+          <Title level={5} style={{ marginTop: "16px" }}>
+            <RetweetOutlined /> SPA Rewrite Rules (for Client-Side Routing)
+          </Title>
           <Paragraph>
-            <RetweetOutlined /> <strong>SPA Rewrite Rules:</strong> Configure
-            CloudFront Custom Error Responses. When S3 returns a 403 (Forbidden,
-            due to OAC) or 404 (Not Found) for a route like "/about", CloudFront
-            intercepts it and serves "/index.html" with a 200 OK status instead.
-            This allows React Router to handle the routing client-side.
+            Configure CloudFront Custom Error Responses. When S3 returns a 403
+            (Forbidden, due to OAC) or 404 (Not Found) for a route like
+            "/about", CloudFront intercepts it and serves "/index.html" with a
+            200 OK status instead. This allows React Router to handle the
+            routing client-side.
           </Paragraph>
-          <Paragraph>
-            <strong>Pros:</strong> Highly scalable, cost-effective, fine-grained
-            control, leverages robust cloud infrastructure.
-          </Paragraph>
-          <Paragraph>
-            <strong>Cons:</strong> More configuration steps involved compared to
-            dedicated platforms.
-          </Paragraph>
+
+          <Title level={5} style={{ marginTop: "16px" }}>
+            Advantages:
+          </Title>
+          <List size="small" style={{ marginLeft: "15px" }}>
+            <List.Item>Highly scalable and reliable.</List.Item>
+            <List.Item>Cost-effective (pay-as-you-go).</List.Item>
+            <List.Item>
+              Fine-grained control over caching, security, etc.
+            </List.Item>
+            <List.Item>
+              Leverages robust global cloud infrastructure (CDN).
+            </List.Item>
+          </List>
+
+          <Title level={5} style={{ marginTop: "16px" }}>
+            Considerations:
+          </Title>
+          <List size="small" style={{ marginLeft: "15px" }}>
+            <List.Item>
+              More configuration steps involved compared to dedicated PaaS
+              platforms.
+            </List.Item>
+            <List.Item>
+              Requires understanding of S3, CloudFront, and potentially IAM
+              permissions.
+            </List.Item>
+          </List>
         </>
       ),
       icon: <CloudUploadOutlined />,
@@ -140,46 +167,14 @@ const BuildDeploySlide: React.FC = () => {
     },
   ];
 
-  const spaRewriteDiagram = `
-graph TD
-    subgraph UserAction["User Navigates/Refreshes"]
-        U[User Requests /about]
-    end
-
-    subgraph CloudFrontProcessing[CloudFront Distribution]
-        CF[CloudFront Edge]
-        subgraph ErrorHandling["Custom Error Response (403/404)"]
-            direction LR
-            ERR["Return /index.html (Status 200)"]
-        end
-        CF -- Request Origin --> S3
-        S3 -- Asset Found? --> Found{File Exists?}
-        Found -- No (403/404 Error) --> ERR
-        Found -- Yes --> Asset
-        ERR --> CF
-        Asset --> CF
-    end
-
-    subgraph S3Origin["S3 Bucket (Origin)"]
-        S3[/index.html, /assets/*, ...]
-    end
-    
-    subgraph BrowserClient[Browser]
-        B[Receives Response]
-        RTR{React Router Handles /about}
-        B -- Loads index.html --> RTR
-    end
-    
-    U --> CF
-    CF --> B
-
-    classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
-    class ERR highlight;
-`;
-
   const deploymentWorkflowDiagram = `
 graph LR
-  A[1. React Code] --> B(2. npm run build);\n  B --> C{3. dist/ Folder};\n  C --> D[4. Upload to S3 Bucket];\n  D -- Origin --> E[5. CloudFront Distribution];\n  E -- OAC/OAI & Rewrites --> F[6. Deployed SPA];\n  F --> G(7. User Access via CF URL);\n
+  A[1. React Code] --> B(2. npm run build);
+  B --> C{3. dist/ Folder};
+  C --> D[4. Upload to S3 Bucket];
+  D -- Origin --> E[5. CloudFront Distribution];
+  E -- OAC/OAI & Rewrites --> F[6. Deployed SPA];
+  F --> G(7. User Access via CF URL);
   classDef step fill:#f9f,stroke:#333,stroke-width:2px;
   class A,B,C,D,E,F,G step;
 `;
@@ -189,57 +184,115 @@ graph LR
       title: "Build Your Application",
       icon: <CodeOutlined />,
       description: (
-        <Text>
-          Run <Text code>npm run build</Text> (or <Text code>yarn build</Text>)
-          to generate the optimized static assets in the <Text code>dist</Text>{" "}
-          folder.
-        </Text>
+        <>
+          <Paragraph>
+            Run <Text code>npm run build</Text> (or <Text code>yarn build</Text>
+            ) to generate the optimized static assets in the{" "}
+            <Text code>dist</Text> folder.
+          </Paragraph>
+        </>
       ),
     },
     {
       title: "Configure S3 Bucket",
       icon: <SettingOutlined />,
       description: (
-        <Text>
-          Create an S3 bucket. <strong>Important:</strong> Keep it private - do
-          NOT enable static website hosting if using OAC/OAI. Configure
-          permissions (e.g., Bucket Policy) later to allow CloudFront access via
-          OAC.
-        </Text>
+        <>
+          <Paragraph>Create an S3 bucket for your static assets.</Paragraph>
+          <Alert
+            message="Important: Bucket Privacy & OAC/OAI"
+            description="Keep the S3 bucket private. Do NOT enable 'Static website hosting' on the S3 bucket itself if you plan to use CloudFront with Origin Access Control (OAC) or Origin Access Identity (OAI). Access will be granted to CloudFront only."
+            type="warning"
+            showIcon
+            style={{ margin: "8px 0" }}
+          />
+          <Paragraph>
+            Bucket permissions (e.g., a Bucket Policy) will be configured later,
+            often automatically by CloudFront when setting up OAC, to allow
+            CloudFront to read objects.
+          </Paragraph>
+        </>
       ),
     },
     {
       title: "Upload Assets to S3",
       icon: <UploadOutlined />,
       description: (
-        <Text>
-          Upload the <strong>contents</strong> of your local{" "}
-          <Text code>dist</Text> folder to the root of your S3 bucket.
-        </Text>
+        <>
+          <Paragraph>
+            Upload the <strong>contents</strong> of your local{" "}
+            <Text code>dist</Text> folder (not the folder itself) to the root of
+            your S3 bucket.
+          </Paragraph>
+          <Paragraph>
+            Tools: AWS CLI (
+            <Text code>aws s3 sync ./dist s3://your-bucket-name --delete</Text>
+            ), AWS Management Console, or CI/CD scripts.
+          </Paragraph>
+        </>
       ),
     },
     {
       title: "Create CloudFront Distribution",
       icon: <GlobalOutlined />,
       description: (
-        <Text>
-          Create a CloudFront distribution. Select your S3 bucket as the Origin.
-          For "Origin access", choose "Origin access control settings" and
-          create/select a Control setting (OAC). CloudFront will provide a
-          bucket policy to apply to S3.
-        </Text>
+        <>
+          <Paragraph>
+            In AWS Management Console, create a new CloudFront distribution.
+          </Paragraph>
+          <List size="small" style={{ marginLeft: "15px" }}>
+            <List.Item>
+              <Text strong>Origin Domain:</Text> Select your S3 bucket.
+              CloudFront might auto-fill the bucket website endpoint; ensure it
+              is the REST API endpoint (e.g.,{" "}
+              <Text code>your-bucket-name.s3.your-region.amazonaws.com</Text>).
+            </List.Item>
+            <List.Item>
+              <Text strong>Origin Access:</Text> Choose "Origin access control
+              settings (recommended)". Create a new OAC or select an existing
+              one. CloudFront will provide a statement to add to your S3 bucket
+              policy – copy it.
+            </List.Item>
+          </List>
+          <Alert
+            message="S3 Bucket Policy Update"
+            description="After creating the OAC, CloudFront will show a policy statement. You MUST add this to your S3 bucket's permissions (under Bucket Policy) to grant CloudFront access."
+            type="info"
+            showIcon
+            style={{ margin: "8px 0" }}
+          />
+        </>
       ),
     },
     {
       title: "Configure CloudFront Settings",
       icon: <SettingOutlined />,
       description: (
-        <Text>
-          Set "Default root object" to <Text code>index.html</Text>. Configure
-          Viewer Protocol Policy (Redirect HTTP to HTTPS is recommended). Set up
-          other options like Caching, TLS certificate (ACM), and Custom Domain
-          (Route 53) as needed.
-        </Text>
+        <>
+          <Paragraph>
+            <Text strong>Default Root Object:</Text> Set to{" "}
+            <Text code>index.html</Text>.
+          </Paragraph>
+          <Paragraph>
+            <Text strong>Viewer Protocol Policy:</Text> Recommended: "Redirect
+            HTTP to HTTPS".
+          </Paragraph>
+          <Paragraph>
+            <Text strong>Caching:</Text> Configure cache policies (e.g., use
+            "CachingOptimized" for most static assets, or create custom
+            policies). Consider cache invalidation strategies upon new
+            deployments.
+          </Paragraph>
+          <Paragraph>
+            <Text strong>TLS Certificate:</Text> Use AWS Certificate Manager
+            (ACM) for a free SSL/TLS certificate if using a custom domain.
+          </Paragraph>
+          <Paragraph>
+            <Text strong>Custom Domain (Optional):</Text> Add Alternate Domain
+            Names (CNAMEs) and point your domain (e.g., via Route 53) to the
+            CloudFront distribution domain name.
+          </Paragraph>
+        </>
       ),
     },
     {
@@ -342,10 +395,10 @@ graph TD
         U[User Requests /some/path]
         Browser[Browser]
         DNS[DNS Resolution]
-        CDN["CDN (e.g., Cloudflare, Netlify Edge)"]
-        Origin["Origin Server (e.g., Vercel, Netlify, Custom Server)"]
-        BuildAssetsNode["Build Assets (Static HTML, CSS, JS)"]
-        CDN_Err["Custom Error Response (403/404)"]
+        CDN["CDN e.g. Cloudflare, Netlify Edge"]
+        Origin["Origin Server e.g. Vercel, Netlify, Custom Server"]
+        BuildAssetsNode["Build Assets Static HTML, CSS, JS"]
+        CDN_Err["Custom Error Response 403/404"]
     end
 
     subgraph BuildProcess["Build & Deploy Process"]
@@ -577,20 +630,6 @@ graph TD
           involves hosting static files privately in S3 and using CloudFront as
           a secure, fast CDN layer that also handles routing.
         </Paragraph>
-        <Title level={5}>High-Level Flow:</Title>
-        <div
-          className="mermaid"
-          style={{
-            textAlign: "center",
-            padding: "10px",
-            border: "1px solid #f0f0f0",
-            borderRadius: "4px",
-            marginBottom: 16,
-            background: "#fff",
-          }}
-        >
-          {deploymentWorkflowDiagram}
-        </div>
         <Divider>Step-by-Step Deployment Actions</Divider>
         <Steps direction="vertical" current={-1} size="small">
           {deploymentSteps.map((step, index) => (
@@ -654,19 +693,6 @@ graph TD
           JavaScript loaded from <Text code>index.html</Text> to correctly
           display the <Text code>/about</Text> page content.
         </Paragraph>
-        <div
-          className="mermaid"
-          style={{
-            textAlign: "center",
-            padding: "10px",
-            border: "1px solid #f0f0f0",
-            borderRadius: "4px",
-            marginTop: 16,
-            background: "#fff",
-          }}
-        >
-          {spaRewriteDiagram}
-        </div>
       </Card>
 
       <Card

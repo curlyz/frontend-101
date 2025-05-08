@@ -83,26 +83,38 @@ const ReduxConceptsSlide: React.FC = () => {
               <List.Item>Makes it easy to organize state by feature.</List.Item>
             </List>
           </Paragraph>
+
+          <Divider dashed style={{ margin: "16px 0" }} />
+
+          <Title level={5} style={{ marginBottom: "8px" }}>
+            <SafetyOutlined style={{ marginRight: "8px" }} />
+            Reducer Purity Principles
+          </Title>
           <Paragraph>
-            <Text strong>Reducer Purity:</Text> Reducers{" "}
-            <Text strong>must</Text> be <Text strong>pure functions</Text>. This
-            means:
-            <List size="small">
-              <List.Item>
-                Given the same <Text code>state</Text> and{" "}
-                <Text code>action</Text> arguments, they must always calculate
-                and return the exact same new <Text code>state</Text> value.
-              </List.Item>
-              <List.Item>
-                They must not cause any side effects (e.g., no API calls, no
-                mutating variables outside their own scope, no `Math.random()`,
-                no `Date.now()`).
-              </List.Item>
-              <List.Item>
-                They should only depend on their <Text code>state</Text> and{" "}
-                <Text code>action</Text> arguments.
-              </List.Item>
-            </List>
+            Reducers <Text strong>must</Text> be{" "}
+            <Text strong>pure functions</Text>. This is a fundamental concept in
+            Redux, ensuring predictable state updates. Pure functions have two
+            main characteristics:
+          </Paragraph>
+          <List size="small" style={{ marginLeft: "15px" }}>
+            <List.Item>
+              <Text strong>Deterministic:</Text> Given the same{" "}
+              <Text code>state</Text> and <Text code>action</Text> arguments,
+              they must always calculate and return the exact same new{" "}
+              <Text code>state</Text> value.
+            </List.Item>
+            <List.Item>
+              <Text strong>No Side Effects:</Text> They must not cause any side
+              effects (e.g., no API calls, no mutating variables outside their
+              own scope, no <Text code>Math.random()</Text>, no{" "}
+              <Text code>Date.now()</Text>).
+            </List.Item>
+            <List.Item>
+              They should <Text strong>only</Text> depend on their{" "}
+              <Text code>state</Text> and <Text code>action</Text> arguments.
+            </List.Item>
+          </List>
+          <Paragraph style={{ marginTop: "8px" }}>
             Immer helps maintain purity by allowing you to write simpler
             "mutation" code inside the reducer; it takes care of producing the
             immutable result. You are "mutating" a draft state provided by

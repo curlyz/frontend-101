@@ -32,11 +32,23 @@ import {
   DashboardOutlined,
 } from "@ant-design/icons";
 import mermaid from "mermaid";
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const { Title, Paragraph, Text } = Typography;
 const { Step } = Steps;
 
 const capacitorLogoUrl = "https://capacitorjs.com/assets/img/logo.png";
+
+const codeBlockStyle: React.CSSProperties = {
+  borderRadius: "4px",
+  fontSize: "0.85em",
+  marginBottom: "16px",
+  padding: "10px",
+  whiteSpace: "pre",
+  overflow: "auto",
+  maxHeight: "300px",
+};
 
 /**
  * @function CapacitorSlide
@@ -238,6 +250,86 @@ graph TD
       icon: <NodeIndexOutlined />,
       npmPackage: "Community Plugin (e.g., @capawesome/...)",
       description: "Communicate with BLE devices.",
+    },
+  ];
+
+  const installationAndSetupSteps = [
+    {
+      title: "1. Install Capacitor CLI",
+      icon: <ToolOutlined />,
+      description: (
+        <>
+          <Paragraph>
+            Install Capacitor CLI globally (recommended) or use{" "}
+            <Text code>npx</Text> for each command:
+          </Paragraph>
+          <SyntaxHighlighter
+            language="bash"
+            style={atomDark}
+            customStyle={codeBlockStyle}
+          >
+            {`# Install globally
+npm install -g @capacitor/cli
+# OR
+yarn global add @capacitor/cli
+
+# If not installing globally, prefix commands with npx, e.g.:
+# npx @capacitor/cli ...`}
+          </SyntaxHighlighter>
+        </>
+      ),
+    },
+    {
+      title: "2. Initialize Capacitor in Your Web Project",
+      icon: <CodeOutlined />,
+      description: (
+        <>
+          <Paragraph>
+            Navigate to your existing React project directory and run:
+          </Paragraph>
+          <SyntaxHighlighter
+            language="bash"
+            style={atomDark}
+            customStyle={codeBlockStyle}
+          >
+            {`# Replace [appName] and [appId] accordingly
+# --web-dir should point to your build output (e.g., dist, build)
+npx @capacitor/cli init [appName] [appId] --web-dir=dist`}
+          </SyntaxHighlighter>
+          <Paragraph style={{ fontSize: "0.9em", marginTop: "8px" }}>
+            Example:{" "}
+            <Text code>
+              npx @capacitor/cli init "My App" "com.example.myapp"
+              --web-dir=dist
+            </Text>
+          </Paragraph>
+        </>
+      ),
+    },
+    {
+      title: "3. Install Native Platforms",
+      icon: (
+        <Space>
+          <AppleOutlined />
+          <AndroidOutlined />
+        </Space>
+      ),
+      description: (
+        <>
+          <Paragraph>Add the desired native platforms:</Paragraph>
+          <SyntaxHighlighter
+            language="bash"
+            style={atomDark}
+            customStyle={codeBlockStyle}
+          >
+            {`# For iOS (requires macOS and Xcode)
+npx @capacitor/cli add ios
+
+# For Android (requires Android Studio and SDK)
+npx @capacitor/cli add android`}
+          </SyntaxHighlighter>
+        </>
+      ),
     },
   ];
 

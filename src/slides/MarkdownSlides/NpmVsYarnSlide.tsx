@@ -147,11 +147,9 @@ const NpmVsYarnSlide: React.FC = () => {
               efficiently.
             </Paragraph>
             <div style={{ textAlign: "center" }}>
-              {/* Placeholder for npm logo - actual logo should be used in a real app */}
               <CodeSandboxOutlined
                 style={{ fontSize: "48px", color: "#CB3837" }}
               />
-              <Paragraph type="secondary">npm Logo</Paragraph>
             </div>
           </Card>
         </Col>
@@ -164,11 +162,9 @@ const NpmVsYarnSlide: React.FC = () => {
               npm.
             </Paragraph>
             <div style={{ textAlign: "center" }}>
-              {/* Placeholder for Yarn logo */}
               <CodeSandboxOutlined
                 style={{ fontSize: "48px", color: "#2C8EBB" }}
               />
-              <Paragraph type="secondary">Yarn Logo</Paragraph>
             </div>
           </Card>
         </Col>
@@ -198,9 +194,6 @@ const NpmVsYarnSlide: React.FC = () => {
           showIcon
         />
       </Card>
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };

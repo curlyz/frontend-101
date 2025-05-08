@@ -1,6 +1,16 @@
 import React from "react";
-import { Typography, Card, List, Tag, Divider, Row, Col, Tree } from "antd";
-import type { TreeProps } from "antd";
+import {
+  Typography,
+  Card,
+  List,
+  Tag,
+  Divider,
+  Row,
+  Col,
+  Tree,
+  Table,
+} from "antd";
+import type { TreeProps, TableProps } from "antd";
 import {
   CodeOutlined,
   LayoutOutlined,
@@ -10,6 +20,7 @@ import {
   FolderOutlined,
   FileTextOutlined,
   SettingOutlined,
+  ToolOutlined,
 } from "@ant-design/icons";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -273,35 +284,6 @@ export default AppRouter;
 
       <Card style={{ marginBottom: "32px" }}>
         <Title level={3}>
-          <FolderOpenOutlined style={{ marginRight: "8px" }} />
-          Typical Project Folder Structure
-        </Title>
-        <Paragraph>
-          While structures can vary, here's a common and effective way to
-          organize a Vite + React project, emphasizing where layout and routing
-          files typically reside. Key folders are marked with ★.
-        </Paragraph>
-        <Tree
-          showLine
-          defaultExpandAll
-          treeData={projectTreeData}
-          className="folder-tree"
-          style={{
-            marginTop: "16px",
-            padding: "10px",
-            border: "1px solid #f0f0f0",
-            borderRadius: "4px",
-          }}
-        />
-        <Paragraph style={{ marginTop: "16px" }}>
-          This organization helps in separating concerns: layouts define the
-          common chrome, pages are the content for specific routes, and the
-          router ties them together.
-        </Paragraph>
-      </Card>
-
-      <Card style={{ marginBottom: "32px" }}>
-        <Title level={3}>
           <ShareAltOutlined style={{ marginRight: "8px" }} />
           React Router DOM: Core Concepts
         </Title>
@@ -381,20 +363,35 @@ export default AppRouter;
 
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
-          <Card style={{ height: "100%" }}>
-            <Title level={3}>
-              <LayoutOutlined style={{ marginRight: "8px" }} />
-              The Common Layout Pattern with <Tag>{"<Outlet />"}</Tag>
-            </Title>
+          <Card title="Layout Components" style={{ marginBottom: 20 }}>
             <Paragraph>
-              A very common pattern is to have a main layout component (e.g.,{" "}
-              <code>MainLayout.tsx</code>) that defines the shared structure of
-              most pages (header, footer, navigation).
+              Layout components act as reusable wrappers for different sections
+              of your application.
             </Paragraph>
+            <List size="small" style={{ marginBottom: "16px" }}>
+              <List.Item>
+                <LayoutOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Purpose:</Text> Define the common UI structure
+                (header, footer, sidebar, navigation) shared across multiple
+                pages.
+              </List.Item>
+              <List.Item>
+                <CodeOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Dynamic Content:</Text> Use the{" "}
+                <Text code>{`<Outlet />`}</Text> component (from{" "}
+                <Text code>react-router-dom</Text>) as a placeholder where the
+                content of the currently matched child route will be rendered.
+              </List.Item>
+              <List.Item>
+                <BranchesOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Application:</Text> You can have multiple layouts
+                (e.g., one for main app sections, another for authentication
+                pages).
+              </List.Item>
+            </List>
             <Paragraph>
-              This layout component then uses the <code>{"<Outlet />"}</code>{" "}
-              component from React Router DOM at the position where the specific
-              page content should be rendered.
+              Below is an example of a <Text code>MainLayout.tsx</Text> using
+              Ant Design components:
             </Paragraph>
             <SyntaxHighlighter
               language="tsx"
@@ -407,16 +404,46 @@ export default AppRouter;
           </Card>
         </Col>
         <Col xs={24} md={12}>
-          <Card style={{ height: "100%" }}>
-            <Title level={3}>
-              <BranchesOutlined style={{ marginRight: "8px" }} />
-              Router Configuration with Layouts
-            </Title>
+          <Card title="Routing Configuration" style={{ marginBottom: 20 }}>
             <Paragraph>
-              In your router setup, you define a route for the layout component.
-              Child routes are then nested within this layout route. When a
-              child route is active, its component is rendered by the{" "}
-              <code>{"<Outlet />"}</code> in the parent layout.
+              The router configuration maps URL paths to your page components,
+              often integrating layout components to structure the application.
+            </Paragraph>
+            <List size="small" style={{ marginBottom: "16px" }}>
+              <List.Item>
+                <ToolOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Library:</Text> Commonly implemented using{" "}
+                <Text code>react-router-dom</Text> (v6+ shown here with data
+                routers like <Text code>createBrowserRouter</Text>).
+              </List.Item>
+              <List.Item>
+                <ShareAltOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Mapping:</Text> Defines route objects, associating
+                a URL <Text code>path</Text> with a React{" "}
+                <Text code>element</Text> (often a page component).
+              </List.Item>
+              <List.Item>
+                <LayoutOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Layout Integration:</Text> Parent routes can
+                specify a layout component. Child routes defined within its{" "}
+                <Text code>children</Text> array will render inside that
+                layout\'s <Text code>{`<Outlet />`}</Text>.
+              </List.Item>
+              <List.Item>
+                <BranchesOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Nesting:</Text> Supports defining child routes for
+                hierarchical UIs.
+              </List.Item>
+              <List.Item>
+                <SettingOutlined style={{ marginRight: 8 }} />{" "}
+                <Text strong>Features:</Text> Handles dynamic path segments
+                (e.g., <Text code>path: \':productId\'</Text>), index routes
+                (defaults for parent paths), error elements, and more.
+              </List.Item>
+            </List>
+            <Paragraph>
+              Here's an example configuration using{" "}
+              <Text code>createBrowserRouter</Text>:
             </Paragraph>
             <SyntaxHighlighter
               language="tsx"
@@ -437,8 +464,28 @@ export default AppRouter;
         </Col>
       </Row>
 
+      {/* --- NEW COMPARISON SECTION --- */}
+      <Divider style={{ margin: "32px 0" }} />
+
+      <Card style={{ marginBottom: "32px" }}>
+        <Title level={3}>
+          <BranchesOutlined style={{ marginRight: "8px" }} />
+          Comparison: React Router DOM vs. Next.js App Router
+        </Title>
+        <Paragraph>
+          While this slide focuses on <Text code>react-router-dom</Text> for
+          client-side routing in a Vite/SPA context, it's useful to understand
+          how its approach compares to the routing paradigm in a full-stack
+          framework like Next.js (specifically its App Router).
+        </Paragraph>
+        <ComparisonTable />
+      </Card>
+      {/* --- END NEW COMPARISON SECTION --- */}
+
       <Card style={{ marginTop: "32px" }}>
-        <Title level={3}>Benefits</Title>
+        <Title level={3}>
+          Benefits of This Approach (with React Router DOM)
+        </Title>
         <List
           dataSource={[
             "DRY (Don't Repeat Yourself): Common UI elements are defined once in the layout.",
@@ -457,5 +504,184 @@ export default AppRouter;
     </div>
   );
 };
+
+// --- Comparison Table Component and Data ---
+interface ComparisonDataType {
+  key: string;
+  feature: string;
+  reactRouterDom: React.ReactNode;
+  nextJsAppRouter: React.ReactNode;
+}
+
+const comparisonColumns: TableProps<ComparisonDataType>["columns"] = [
+  {
+    title: "Feature",
+    dataIndex: "feature",
+    key: "feature",
+    render: (text) => <Text strong>{text}</Text>,
+    width: "25%",
+  },
+  {
+    title: "React Router DOM (v6 Data Routers)",
+    dataIndex: "reactRouterDom",
+    key: "reactRouterDom",
+    width: "37.5%",
+  },
+  {
+    title: "Next.js App Router",
+    dataIndex: "nextJsAppRouter",
+    key: "nextJsAppRouter",
+    width: "37.5%",
+  },
+];
+
+const comparisonData: ComparisonDataType[] = [
+  {
+    key: "1",
+    feature: "Routing Paradigm",
+    reactRouterDom: (
+      <>
+        <Paragraph>
+          Configuration-based (JavaScript/TypeScript objects or JSX routes).
+        </Paragraph>
+        <Paragraph>
+          <Text code>createBrowserRouter</Text> or{" "}
+          <Text code>&lt;BrowserRouter&gt;</Text> with{" "}
+          <Text code>&lt;Routes&gt;</Text> and <Text code>&lt;Route&gt;</Text>{" "}
+          components.
+        </Paragraph>
+      </>
+    ),
+    nextJsAppRouter: (
+      <>
+        <Paragraph>
+          File-system based routing. Folders and special files (
+          <Text code>page.tsx</Text>, <Text code>layout.tsx</Text>,{" "}
+          <Text code>route.ts</Text>) define routes.
+        </Paragraph>
+        <Paragraph>Convention over configuration.</Paragraph>
+      </>
+    ),
+  },
+  {
+    key: "2",
+    feature: "Layouts",
+    reactRouterDom: (
+      <>
+        <Paragraph>
+          Nested routes with parent routes acting as layouts, using the{" "}
+          <Text code>&lt;Outlet /&gt;</Text> component to render children.
+        </Paragraph>
+        <Paragraph>Explicitly defined in the route configuration.</Paragraph>
+      </>
+    ),
+    nextJsAppRouter: (
+      <>
+        <Paragraph>
+          Special <Text code>layout.tsx</Text> files in directories apply to
+          segments and their children.
+        </Paragraph>
+        <Paragraph>
+          Layouts automatically wrap <Text code>page.tsx</Text> and child
+          layouts. Supports Route Groups for organizing layouts without
+          affecting URL paths.
+        </Paragraph>
+      </>
+    ),
+  },
+  {
+    key: "3",
+    feature: "Data Fetching",
+    reactRouterDom: (
+      <>
+        <Paragraph>
+          Client-side focus: <Text code>useEffect</Text>, custom hooks, or
+          integrated libraries (SWR, React Query).
+        </Paragraph>
+        <Paragraph>
+          Data Routers introduce <Text code>loader</Text> functions for
+          route-level data fetching (can run server-side in SSR environments).
+        </Paragraph>
+      </>
+    ),
+    nextJsAppRouter: (
+      <>
+        <Paragraph>
+          Server-centric by default, especially with Server Components. Data
+          fetched directly in Server Components (async/await).
+        </Paragraph>
+        <Paragraph>
+          Client Components can fetch data traditionally. Route Handlers (
+          <Text code>route.ts</Text>) for API endpoints.
+        </Paragraph>
+      </>
+    ),
+  },
+  {
+    key: "4",
+    feature: "Server Components",
+    reactRouterDom: (
+      <>
+        <Paragraph>
+          Primarily for Client Components. RSCs are not a built-in concept.
+        </Paragraph>
+        <Paragraph>
+          Can be integrated with manual SSR setup or frameworks that support
+          RSCs alongside <Text code>react-router-dom</Text>.
+        </Paragraph>
+      </>
+    ),
+    nextJsAppRouter: (
+      <>
+        <Paragraph>
+          Built around React Server Components by default. Pages and layouts are
+          RSCs unless opted into Client Components with{" "}
+          <Text code>{"use client"}</Text>.
+        </Paragraph>
+        <Paragraph>
+          Enables server-side rendering of components without shipping their JS
+          to the client.
+        </Paragraph>
+      </>
+    ),
+  },
+  {
+    key: "5",
+    feature: "Primary Use Case",
+    reactRouterDom: (
+      <>
+        <Paragraph>
+          Client-Side Rendered (CSR) Single Page Applications (SPAs).
+        </Paragraph>
+        <Paragraph>
+          Can be used in Server-Side Rendered (SSR) apps when integrated with a
+          Node.js backend or meta-framework.
+        </Paragraph>
+      </>
+    ),
+    nextJsAppRouter: (
+      <>
+        <Paragraph>
+          Full-stack React applications with integrated SSR, SSG, ISR, and API
+          routes.
+        </Paragraph>
+        <Paragraph>
+          Optimized for performance, SEO, and developer experience with a rich
+          feature set.
+        </Paragraph>
+      </>
+    ),
+  },
+];
+
+const ComparisonTable: React.FC = () => (
+  <Table
+    columns={comparisonColumns}
+    dataSource={comparisonData}
+    pagination={false}
+    bordered
+    size="small"
+  />
+);
 
 export default LayoutAndRoutingSlide;

@@ -208,15 +208,21 @@ const KubbSlide: React.FC = () => {
       <Paragraph
         style={{ textAlign: "center", fontSize: "1.1em", marginBottom: "32px" }}
       >
-        Streamline your development workflow by generating type-safe clients,
-        hooks, and schemas directly from your API specification.
+        Tired of manually writing client-side code to interact with your backend
+        API? Kubb automates this process, transforming your OpenAPI
+        specification into a suite of production-ready frontend tools. Imagine
+        having fully type-safe API clients, data-fetching hooks, and validation
+        schemas generated for you, perfectly synchronized with your API. This
+        not only accelerates development but also drastically reduces common
+        runtime errors and makes maintaining your API integrations a breeze.
+        Let's explore how Kubb can revolutionize your frontend workflow.
       </Paragraph>
 
       {coreKubbWorkflowCard}
 
       <Card style={{ marginBottom: "32px" }}>
         <Row gutter={[32, 24]} align="middle">
-          <Col xs={24} md={10}>
+          <Col xs={24} md={24}>
             <Title level={3} style={{ marginTop: 0 }}>
               What is Kubb?
             </Title>
@@ -247,9 +253,6 @@ const KubbSlide: React.FC = () => {
               manual effort, and keeps your frontend perfectly synchronized with
               your API contract.
             </Paragraph>
-          </Col>
-          <Col xs={24} md={14}>
-            {/* The Core Kubb Workflow card was here, now moved to the top */}
           </Col>
         </Row>
       </Card>
@@ -354,14 +357,34 @@ export default defineConfig(async () => {
   };
 });`}
         </SyntaxHighlighter>
-        <Paragraph>
-          Run Kubb via <Tag>npx kubb</Tag> or a script in your{" "}
-          <Tag>package.json</Tag> (e.g.,{" "}
-          <Text code>"generate:client": "kubb"</Text>). It processes the{" "}
-          <Text code>input</Text>, applies the configured{" "}
-          <Text code>plugins</Text>, and writes the generated code to the{" "}
-          <Text code>output.path</Text>.
-        </Paragraph>
+        <Title level={5} style={{ marginTop: "20px", marginBottom: "10px" }}>
+          How it Works:
+        </Title>
+        <List size="small" bordered>
+          <List.Item>
+            <Text>
+              <strong>Execution:</strong> Run Kubb via <Tag>npx kubb</Tag> or a
+              script in your <Tag>package.json</Tag> (e.g.,{" "}
+              <Text code>"generate:client": "kubb"</Text>).
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text>
+              <strong>Process Flow:</strong>
+            </Text>
+            <List size="small" style={{ marginLeft: "20px", marginTop: "5px" }}>
+              <List.Item>
+                1. Reads the <Text code>input</Text> (OpenAPI spec).
+              </List.Item>
+              <List.Item>
+                2. Applies configured <Text code>plugins</Text>.
+              </List.Item>
+              <List.Item>
+                3. Writes generated code to <Text code>output.path</Text>.
+              </List.Item>
+            </List>
+          </List.Item>
+        </List>
       </Card>
 
       <Title

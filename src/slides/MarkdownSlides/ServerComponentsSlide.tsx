@@ -47,15 +47,15 @@ graph TD
     end
 
     subgraph Server
-        S1[Receives Request] --> S2{React Server (e.g., Next.js)}
-        S2 --> S3[Execute Server Components (.tsx/.jsx)]
+        S1[Receives Request] --> S2{React Server e.g. Next.js}
+        S2 --> S3[Execute Server Components .tsx/.jsx]
         S3 -- Direct Data Access --> S_DB[(Database/APIs/File System)]
-        S3 --> S4[Generate RSC Payload (Stream)]
+        S3 --> S4[Generate RSC Payload Stream]
         S2 -. Streams Payload .-> B2
     end
 
     B1 -. HTTP Request .-> S1
-    S4 -. RSC Payload (Special Format) .-> B2
+    S4 -. RSC Payload Special Format .-> B2
 
     style S3 fill:#ccf,stroke:#333,stroke-width:2px
     style B5 fill:#cff,stroke:#333,stroke-width:2px
@@ -287,7 +287,7 @@ const ServerComponentsSlide: React.FC = () => {
               <Text strong>Page Layout</Text>
               <div
                 style={{
-                  background: "#f0f2f5",
+                  background: "#000",
                   padding: "10px",
                   margin: "10px 0",
                   borderRadius: "4px",
@@ -299,7 +299,7 @@ const ServerComponentsSlide: React.FC = () => {
                 <Col span={16}>
                   <div
                     style={{
-                      background: "#e6f7ff",
+                      background: "#000",
                       padding: "10px",
                       borderRadius: "4px",
                     }}
@@ -308,7 +308,7 @@ const ServerComponentsSlide: React.FC = () => {
                     <Paragraph>Static text, product info, etc.</Paragraph>
                     <div
                       style={{
-                        background: "#fffbe6",
+                        background: "#000",
                         padding: "8px",
                         margin: "8px 0",
                         borderRadius: "4px",
@@ -324,7 +324,7 @@ const ServerComponentsSlide: React.FC = () => {
                 <Col span={8}>
                   <div
                     style={{
-                      background: "#f6ffed",
+                      background: "#000",
                       padding: "10px",
                       borderRadius: "4px",
                     }}
@@ -335,7 +335,7 @@ const ServerComponentsSlide: React.FC = () => {
               </Row>
               <div
                 style={{
-                  background: "#f0f2f5",
+                  background: "#000",
                   padding: "10px",
                   margin: "10px 0",
                   borderRadius: "4px",
@@ -457,9 +457,9 @@ export default async function ServerMessage() {
         </Title>
         <Paragraph>
           Client Components are the traditional React components we are familiar
-          with. They are marked with the <code>'use client'</code> directive at
-          the top of the file. They run on the client, can use state, effects,
-          and handle browser events.
+          with. They are marked with the <Text code>{"use client"}</Text>{" "}
+          directive at the top of the file. They run on the client, can use
+          state, effects, and handle browser events.
         </Paragraph>
         <SyntaxHighlighter
           language="tsx"
@@ -571,6 +571,44 @@ export default function SharedCard({ title, children }) {
   );
 }`}
         </SyntaxHighlighter>
+      </Card>
+
+      <Card
+        title="Important Considerations / Trade-offs"
+        style={{ marginBottom: 20 }}
+      >
+        <List size="small" style={{ marginTop: "8px" }}>
+          <List.Item>
+            ✅ <Text strong>Server Components can import and render:</Text>{" "}
+            Other Server Components, Client Components, and traditional React
+            components (that don't use client-only features).
+          </List.Item>
+          <List.Item>
+            ✅{" "}
+            <Text strong>
+              Client Components (<Text code>{"use client"}</Text>) can import
+              and render:
+            </Text>{" "}
+            Other Client Components and traditional React components.
+          </List.Item>
+          <List.Item>
+            ❌{" "}
+            <Text strong>
+              Client Components <Text strong>cannot directly import</Text>{" "}
+              Server Components.
+            </Text>{" "}
+            Server Components are executed on the server; their "code" doesn't
+            exist on the client in an importable module form. They render to a
+            description of the UI that is sent to the client.
+          </List.Item>
+        </List>
+        <Paragraph>
+          To make this work, Client Components are marked with a{" "}
+          <Text code>{"use client"}</Text> directive at the top of their file.
+          This tells the bundler that this component (and any components it
+          imports that are not Server Components) have client-side interactivity
+          and their code needs to be sent to the browser.
+        </Paragraph>
       </Card>
 
       <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>

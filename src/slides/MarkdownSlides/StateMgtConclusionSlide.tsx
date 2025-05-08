@@ -196,11 +196,49 @@ graph LR
           </List.Item>
         </List>
         <Paragraph style={{ marginTop: 16 }}>
-          The right choice always depends on your application's specific
-          requirements, its complexity, your team's familiarity with the tools,
-          and performance considerations. Understanding these options allows you
-          to make informed decisions for building maintainable and scalable
-          React applications.
+          Ultimately, the optimal state management solution hinges on several
+          factors:
+        </Paragraph>
+        <List
+          size="small"
+          style={{ marginLeft: "15px", marginBottom: "16px" }}
+          bordered
+        >
+          <List.Item>
+            <Text>
+              <Text strong>Application Requirements:</Text> What specific
+              problems are you trying to solve with state management?
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text>
+              <Text strong>Scale & Complexity:</Text> How intricate is the
+              state, how frequent are updates, and how many components interact
+              with it?
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text>
+              <Text strong>Team Familiarity:</Text> What tools is your team
+              comfortable and productive with? What is the learning curve?
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text>
+              <Text strong>Performance Needs:</Text> Are there critical
+              performance considerations for state updates and re-renders?
+            </Text>
+          </List.Item>
+          <List.Item>
+            <Text>
+              <Text strong>Ecosystem & Tooling:</Text> Consider middleware,
+              devtools, and community support if advanced features are needed.
+            </Text>
+          </List.Item>
+        </List>
+        <Paragraph>
+          Understanding these tools and trade-offs empowers you to build robust,
+          maintainable, and scalable React applications.
         </Paragraph>
         <Alert
           message="Next Chapter"
@@ -211,9 +249,6 @@ graph LR
           style={{ marginTop: 20 }}
         />
       </Card>
-      <Paragraph style={{ marginTop: 20, textAlign: "center", color: "grey" }}>
-        Presentation Status: Ready for Review
-      </Paragraph>
     </div>
   );
 };
