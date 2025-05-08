@@ -49,30 +49,9 @@ const proLayoutRoutes = {
     },
     {
       path: "/state-optimization",
-      name: "State Optimization",
+      name: "React Context Slide",
       icon: <ControlOutlined />,
     },
-    {
-      path: "/data-fetching",
-      name: "Data Fetching",
-      icon: <CloudDownloadOutlined />,
-    },
-    {
-      path: "/redux-demo",
-      name: "Redux Demo",
-      icon: <ControlOutlined />,
-    },
-    {
-      path: "/package-managers",
-      name: "Package Managers",
-      icon: <CodeSandboxOutlined />,
-    },
-    {
-      path: "/network-in-onclick",
-      name: "Network in onClick",
-      icon: <AlertOutlined />,
-    },
-    // Flattened Slide Routes
     {
       path: "/redux-concepts",
       name: "Redux Concepts Slide",
@@ -82,6 +61,21 @@ const proLayoutRoutes = {
       path: "/state-mgt-conclusion",
       name: "State Mgt. Conclusion Slide",
       icon: <InfoCircleOutlined />,
+    },
+    {
+      path: "/data-fetching",
+      name: "Data Fetching",
+      icon: <CloudDownloadOutlined />,
+    },
+    {
+      path: "/network-in-onclick",
+      name: "Network in onClick",
+      icon: <AlertOutlined />,
+    },
+    {
+      path: "/layout-routing",
+      name: "Layouts & Routing",
+      icon: <LayoutOutlined />,
     },
     {
       path: "/client-components",
@@ -117,11 +111,6 @@ const proLayoutRoutes = {
       path: "/kubb",
       name: "Kubb OpenAPI Slide",
       icon: <ApiOutlined />,
-    },
-    {
-      path: "/layout-routing",
-      name: "Layouts & Routing",
-      icon: <LayoutOutlined />,
     },
   ],
 };
