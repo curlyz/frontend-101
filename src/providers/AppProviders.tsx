@@ -1,7 +1,11 @@
 import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ConfigProvider, theme as antdTheme } from "antd";
+import {
+  ConfigProvider,
+  theme as antdTheme,
+  type ConfigProviderProps,
+} from "antd";
 import enUS from "antd/locale/en_US";
 import { AuthProvider } from "../contexts/AuthContext";
 import { ThemeProvider, useThemeMode } from "../contexts/ThemeContext";
@@ -24,16 +28,21 @@ const ConfiguredApp: React.FC<AppProvidersProps> = ({ children }) => {
   const customLightTheme = {
     algorithm: antdTheme.defaultAlgorithm,
     token: {
+      fontFamily: "Lexend, sans-serif",
       colorBgLayout: "#f0f2f5",
-      colorBgContainer: "#ffffff",
+      colorBgContainer: "#ddd",
     },
   };
 
-  const customDarkTheme = {
+  const customDarkTheme: ConfigProviderProps["theme"] = {
     algorithm: antdTheme.darkAlgorithm,
     token: {
+      fontFamily: "Lexend, sans-serif",
       colorBgLayout: "#101a2a",
-      colorBgContainer: "#1c283a",
+      colorBgContainer: "#333",
+      colorText: "#fff",
+      colorPrimary: "#000",
+      
     },
   };
 

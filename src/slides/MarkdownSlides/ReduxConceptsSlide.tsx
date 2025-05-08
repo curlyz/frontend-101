@@ -63,7 +63,7 @@ const ReduxConceptsSlide: React.FC = () => {
           </Paragraph>
           <Paragraph>
             It requires a <Tag>name</Tag> (used to prefix generated action
-            types, e.g., <Text code>\'theme/setTheme\'</Text>), an{" "}
+            types, e.g., <Text code>'theme/setTheme'</Text>), an{" "}
             <Tag>initialState</Tag> value for the slice, and a{" "}
             <Tag>reducers</Tag> object where keys are action names and values
             are reducer functions.
@@ -196,7 +196,7 @@ export default themeSlice.reducer;`}
                 Automatically enables Redux DevTools Extension integration (can
                 be configured via the <Text code>devTools</Text> option, e.g.,{" "}
                 <Text code>
-                  devTools: process.env.NODE_ENV !== \'production\'
+                  devTools: process.env.NODE_ENV !== 'production'
                 </Text>
                 ).
               </List.Item>
@@ -390,11 +390,11 @@ export const fetchPosts = createAsyncThunk(
   async (userId, thunkAPI) => { // userId is an example argument passed when dispatching
     // thunkAPI object contains { dispatch, getState, extra, requestId, signal, rejectWithValue }
     try {
-      const response = await client.get(\`/fakeApi/users/\${userId}/posts\`);
+      const response = await client.get('/fakeApi/users/' + userId + '/posts');
       return response.data; // This becomes the 'fulfilled' action's payload
     } catch (error) {
       // To pass a custom error payload for the rejected action:
-      return thunkAPI.rejectWithValue(error.response.data || error.message);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -490,7 +490,8 @@ export default postsSlice.reducer;
           <Tag color="blue">UI Event</Tag> (e.g., button click) →{" "}
           <Tag color="purple">dispatch(action)</Tag> (e.g.,{" "}
           <Text code>
-            dispatch({"{"} type: \'INCREMENT\' {"}"})
+            dispatch({"{"}
+            type: 'INCREMENT' {"}"})
           </Text>
           ) → <Tag color="green">Reducer</Tag> (pure function:{" "}
           <Text code>{`(state, action) => newState</Text>) →{" "}`}</Text>
@@ -829,9 +830,14 @@ export const store = configureStore({
             </List>
             Example:{" "}
             <Text code>
-              {
-                "{ posts: { ids: ['id1', 'id2'], entities: { 'id1': {...}, 'id2': {...} } } }"
-              }
+              {"{"} posts: {"{"}
+              ids: ['id1', 'id2'], entities: {"{"}
+              'id1': {"{"}
+              ...{"}"}, 'id2': {"{"}
+              ...{"}"}
+              {"}"}
+              {"}"}
+              {"}"}
             </Text>
             .
             <br />

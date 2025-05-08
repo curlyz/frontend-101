@@ -13,6 +13,9 @@ import NetworkRequestInOnClickSlide from "./slides/NetworkRequestInOnClick/Netwo
 import NotFoundSlide from "./slides/NotFoundSlide";
 import IdempotencySlide from "./slides/IdempotencySlide";
 import FrontendSecuritySlide from "./slides/FrontendSecuritySlide";
+import PWASlide from "./slides/PWASlide";
+import DeveloperToolsSlide from "./slides/DeveloperToolsSlide";
+import CORSSlide from "./slides/CORSSlide";
 
 // Import newly created placeholder slide components
 import ReduxConceptsSlide from "./slides/MarkdownSlides/ReduxConceptsSlide";
@@ -123,6 +126,18 @@ export const router = createBrowserRouter([
       {
         path: "frontend-security",
         element: <FrontendSecuritySlide />,
+      },
+      {
+        path: "pwa",
+        element: <PWASlide />,
+      },
+      {
+        path: "developer-tools",
+        element: <DeveloperToolsSlide />,
+      },
+      {
+        path: "cors",
+        element: <CORSSlide />,
       },
       {
         path: "*",

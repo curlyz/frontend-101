@@ -23,6 +23,7 @@ import {
   MobileOutlined,
   ApiOutlined,
   LayoutOutlined,
+  SecurityScanOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -122,6 +123,21 @@ const proLayoutRoutes = {
       name: "Frontend Security",
       icon: <AlertOutlined />,
     },
+    {
+      path: "/developer-tools",
+      name: "Dev Tools Helpers",
+      icon: <BulbOutlined />,
+    },
+    {
+      path: "/pwa",
+      name: "PWA Example",
+      icon: <MobileOutlined />,
+    },
+    {
+      path: "/cors",
+      name: "CORS Scenarios",
+      icon: <SecurityScanOutlined />,
+    },
   ],
 };
 
@@ -192,6 +208,7 @@ const MainLayout: React.FC = () => {
       style={{
         height: "100vh",
         overflow: "auto",
+        width: "100vw",
       }}
     >
       <ProLayout
