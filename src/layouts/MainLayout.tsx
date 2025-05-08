@@ -57,11 +57,11 @@ const proLayoutRoutes = {
       name: "Redux Concepts Slide",
       icon: <ReadOutlined />,
     },
-    {
-      path: "/state-mgt-conclusion",
-      name: "State Mgt. Conclusion Slide",
-      icon: <InfoCircleOutlined />,
-    },
+    // {
+    //   path: "/state-mgt-conclusion",
+    //   name: "State Mgt. Conclusion Slide",
+    //   icon: <InfoCircleOutlined />,
+    // },
     {
       path: "/data-fetching",
       name: "Data Fetching",

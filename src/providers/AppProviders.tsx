@@ -2,6 +2,7 @@ import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ConfigProvider, theme as antdTheme } from "antd";
+import enUS from "antd/locale/en_US";
 import { AuthProvider } from "../contexts/AuthContext";
 import { ThemeProvider, useThemeMode } from "../contexts/ThemeContext";
 import { store } from "../store";
@@ -39,6 +40,7 @@ const ConfiguredApp: React.FC<AppProvidersProps> = ({ children }) => {
   return (
     <ConfigProvider
       theme={themeMode === "light" ? customLightTheme : customDarkTheme}
+      locale={enUS}
     >
       <ErrorBoundary>{children}</ErrorBoundary>
     </ConfigProvider>

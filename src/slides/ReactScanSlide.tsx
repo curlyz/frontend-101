@@ -1,15 +1,67 @@
-import React from "react";
-import { Card, Typography, List } from "antd";
+import React, { useEffect } from "react";
+import { Card, Typography, List, Divider } from "antd";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import mermaid from "mermaid";
 
 const { Title, Paragraph, Text } = Typography;
 
+const reactScanWorkflowDiagram = `
+graph LR
+    A[Developer Codes Component] --> B{React App Running in Browser};
+    B -- Vite Plugin --> C(React Scan Tool Active);
+    C -- Monitors Re-renders --> D((!));
+    D -- Highlights Problematic Component --> B;
+    B -- Visual Feedback --> A;
+    A -- Investigates & Optimizes --> A;
+    
+    style D fill:#f00,stroke:#333,stroke-width:2px,color:#fff,font-weight:bold;
+    note right of C : Identifies unnecessary re-renders
+`;
+
+const viteConfigSnippet = `
+// vite.config.ts (Example)
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import reactScan from '@react-scan/vite-plugin-react-scan';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    reactScan(),
+  ],
+  // ... other Vite config
+});
+`;
+
+const codeSnippetStyle: React.CSSProperties = {
+  borderRadius: "4px",
+  fontSize: "0.85em",
+  marginBottom: "16px",
+  maxHeight: "300px",
+  overflow: "auto",
+};
+
 /**
- * Renders a presentation slide explaining the React Scan tool.
+ * Renders a presentation slide explaining the React Scan tool,
+ * with a diagram and configuration example.
  * Uses Ant Design components for styling.
  *
  * @returns {JSX.Element} The React Scan slide component.
  */
 const ReactScanSlide: React.FC = () => {
+  useEffect(() => {
+    mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+    const timer = setTimeout(() => {
+      try {
+        mermaid.run();
+      } catch (e) {
+        console.error("Mermaid rendering error:", e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   const benefits = [
     "Requires no code changes - just install the plugin.",
     "Visually highlights components that re-render unnecessarily.",
@@ -29,6 +81,27 @@ const ReactScanSlide: React.FC = () => {
         automatically detect and highlight performance issues in your React
         applications directly in the browser during development.
       </Paragraph>
+      <Title level={4} style={{ marginTop: 20 }}>
+        How it Helps
+      </Title>
+      <Paragraph>
+        The diagram below illustrates the typical workflow where React Scan
+        assists in identifying performance issues.
+      </Paragraph>
+      {/* <div
+        className="mermaid"
+        style={{
+          textAlign: "center",
+          padding: "10px",
+          border: "1px solid #f0f0f0",
+          borderRadius: "4px",
+          marginTop: "10px",
+          marginBottom: "20px",
+          background: "#fff",
+        }}
+      >
+        {reactScanWorkflowDiagram}
+      </div> */}
       <Title level={4}>Why Use React Scan?</Title>
       <Paragraph>
         Optimizing React applications can be challenging. Unnecessary re-renders
@@ -52,6 +125,20 @@ const ReactScanSlide: React.FC = () => {
         our Vite setup, we get real-time feedback on component rendering
         behavior, allowing us to proactively address performance bottlenecks.
       </Paragraph>
+      <Title level={4} style={{ marginTop: 20 }}>
+        Example Configuration (Vite)
+      </Title>
+      <Paragraph>
+        Adding React Scan to a Vite project is straightforward:
+      </Paragraph>
+      <SyntaxHighlighter
+        language="typescript"
+        style={atomDark}
+        customStyle={codeSnippetStyle}
+        showLineNumbers
+      >
+        {viteConfigSnippet.trim()}
+      </SyntaxHighlighter>
     </Card>
   );
 };

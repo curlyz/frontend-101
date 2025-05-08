@@ -142,15 +142,15 @@ const BuildDeploySlide: React.FC = () => {
 
   const spaRewriteDiagram = `
 graph TD
-    subgraph UserAction[User Navigates/Refreshes]
+    subgraph UserAction["User Navigates/Refreshes"]
         U[User Requests /about]
     end
 
     subgraph CloudFrontProcessing[CloudFront Distribution]
         CF[CloudFront Edge]
-        subgraph ErrorHandling[Custom Error Response (403/404)]
+        subgraph ErrorHandling["Custom Error Response (403/404)"]
             direction LR
-            ERR[Return /index.html (Status 200)]
+            ERR["Return /index.html (Status 200)"]
         end
         CF -- Request Origin --> S3
         S3 -- Asset Found? --> Found{File Exists?}
@@ -160,7 +160,7 @@ graph TD
         Asset --> CF
     end
 
-    subgraph S3Origin[S3 Bucket (Origin)]
+    subgraph S3Origin["S3 Bucket (Origin)"]
         S3[/index.html, /assets/*, ...]
     end
     
@@ -335,6 +335,62 @@ graph LR
       ssr: "Dynamic content, e-com",
     },
   ];
+
+  const deploymentDiagram = `
+graph TD
+    subgraph UserRequest["User Request Flow"]
+        U[User Requests /some/path]
+        Browser[Browser]
+        DNS[DNS Resolution]
+        CDN["CDN (e.g., Cloudflare, Netlify Edge)"]
+        Origin["Origin Server (e.g., Vercel, Netlify, Custom Server)"]
+        BuildAssetsNode["Build Assets (Static HTML, CSS, JS)"]
+        CDN_Err["Custom Error Response (403/404)"]
+    end
+
+    subgraph BuildProcess["Build & Deploy Process"]
+        Dev[Developer]
+        BuildSystem["Build System (Vite, Webpack)"]
+        Deploy[Deployment]
+        Deploy --> CDN
+        Deploy --> Origin
+        Deploy --> BuildSystem
+        BuildSystem --> CDN
+        BuildSystem --> Origin
+        BuildSystem --> Dev
+    end
+
+    subgraph CDNProcessing["CDN Processing"]
+        CDN --> Browser
+        CDN --> CDN_Err
+    end
+
+    classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
+    class ERR highlight;
+`;
+
+  const ciCdPipelineDiagram = `
+graph TD
+    A[Developer Commits Code] --> B{Version Control};
+    B -- Push/Merge Trigger --> C["CI Server (GitHub Actions, Jenkins)"];
+    subgraph CICDProcess["CI/CD Pipeline Stages"]
+        direction LR
+        C --> D[Run Automated Tests];
+        D -- Tests Pass --> E[Build Application];
+        E --> F["Build Artifacts (Static Files, Docker Image)"];
+        F --> G[Deploy to Staging];
+        G --> H["Staging Environment (Test/QA)"];
+        H -- Manual/Automated Approval --> I[Deploy to Production];
+        I --> J["Production Environment (Live Users)"];
+    end
+    J --> K[Monitor & Log];
+    A -.->|Feedback Loop| K;
+
+    classDef trigger fill:#ece,stroke:#333,stroke-width:1px;
+    class B,C trigger;
+    classDef env fill:#e6ffed,stroke:#333,stroke-width:1px;
+    class H,J env
+`;
 
   useEffect(() => {
     mermaid.initialize({ startOnLoad: false, theme: "neutral" });

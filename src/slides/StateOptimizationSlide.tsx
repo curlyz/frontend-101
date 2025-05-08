@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Row, Col, Divider, List, Card, Space } from "antd";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -11,6 +11,7 @@ import {
 import ControlPanel from "@/components/features/state-optimization/ControlPanel";
 import StandardContextDemo from "@/components/features/state-optimization/standard/StandardContextDemo";
 import OptimizedContextDemo from "@/components/features/state-optimization/optimized/OptimizedContextDemo";
+import mermaid from "mermaid";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -164,6 +165,41 @@ export const MemoizedOptimizedDisplayCounter1 = React.memo(OptimizedDisplayCount
 export const MemoizedOptimizedDisplayText1 = React.memo(OptimizedDisplayText1);
 `;
 
+// Added Mermaid diagram definition
+const contextRerenderDiagram = `
+graph TD
+    subgraph StandardContext ["Standard Context Update (e.g., Update Text1)"]
+        direction TB
+        Update1["Update Context Value (Text1)"] --> Provider1[Standard Provider]
+        Provider1 --> ConsumerA1["Consumer A (Needs Counter1)"]
+        Provider1 --> ConsumerB1["Consumer B (Needs Text1)"]
+        Provider1 --> ConsumerC1["Consumer C (Needs Both)"]
+        
+        note right of ConsumerA1 "Re-renders ❌ (Unnecessary)"
+        note right of ConsumerB1 "Re-renders ✅ (Necessary)"
+        note right of ConsumerC1 "Re-renders ✅ (Necessary)"
+        
+        classDef rerender fill:#f9d,stroke:#e11,stroke-width:2px;
+        class ConsumerA1 rerender;
+    end
+    
+    subgraph OptimizedContext ["use-context-selector Update (e.g., Update Text1)"]
+        direction TB
+        Update2["Update Context Value (Text1)"] --> Provider2[Optimized Provider]
+        Provider2 -- Selector: Counter1 --> ConsumerA2["Consumer A (Selects Counter1)"]
+        Provider2 -- Selector: Text1 --> ConsumerB2["Consumer B (Selects Text1)"]
+        Provider2 -- Selector: Both --> ConsumerC2["Consumer C (Selects Both)"]
+        
+        note right of ConsumerA2 "No Re-render ✅ (Optimized)"
+        note right of ConsumerB2 "Re-renders ✅ (Necessary)"
+        note right of ConsumerC2 "Re-renders ✅ (Necessary)"
+        
+        classDef noRerender fill:#dfd,stroke:#1a1,stroke-width:1px;
+        class ConsumerA2 noRerender;
+    end
+
+`;
+
 /**
  * A presentation slide demonstrating React context performance optimization techniques.
  * It compares standard React context with the `use-context-selector` library,
@@ -171,6 +207,19 @@ export const MemoizedOptimizedDisplayText1 = React.memo(OptimizedDisplayText1);
  * Includes code snippets to illustrate implementation differences.
  */
 const StateOptimizationSlide: React.FC = () => {
+  // Added useEffect for Mermaid initialization
+  useEffect(() => {
+    mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+    const timer = setTimeout(() => {
+      try {
+        mermaid.run(); // Renders all elements with class="mermaid"
+      } catch (e) {
+        console.error("Mermaid rendering error:", e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div style={{ padding: "20px" }}>
       <Title level={2} style={{ marginBottom: "20px" }}>
@@ -183,9 +232,32 @@ const StateOptimizationSlide: React.FC = () => {
         <code>use-context-selector</code> library. Each demo now runs with its
         own isolated state and controls. Pay attention to the component
         highlights (via react-scan) and render counts when interacting with the
-        controls for each section independently. The code snippets below
-        illustrate the key implementation differences.
+        controls for each section independently. The diagram below visually
+        contrasts the re-render behavior.
       </Paragraph>
+
+      {/* Added Mermaid Diagram Section */}
+      <Card title="Re-Render Behavior Comparison" style={{ marginBottom: 24 }}>
+        <Paragraph>
+          When a value in the standard context changes, all consumers re-render.
+          With <code>use-context-selector</code>, only components selecting the
+          changed value re-render.
+        </Paragraph>
+        <div
+          className="mermaid"
+          style={{
+            textAlign: "center",
+            padding: "10px",
+            border: "1px solid #f0f0f0",
+            borderRadius: "4px",
+            marginTop: "10px",
+            marginBottom: "10px",
+            background: "#fff",
+          }}
+        >
+          {contextRerenderDiagram}
+        </div>
+      </Card>
 
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={12}>

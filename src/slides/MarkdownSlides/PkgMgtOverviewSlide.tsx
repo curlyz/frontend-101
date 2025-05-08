@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Card, List, Row, Col, Tag, Space } from "antd";
 import {
   CodeSandboxOutlined,
@@ -9,6 +9,7 @@ import {
   PlaySquareOutlined,
   CheckCircleOutlined,
 } from "@ant-design/icons";
+import mermaid from "mermaid";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -37,6 +38,46 @@ const PkgMgtOverviewSlide: React.FC = () => {
     { icon: <PlaySquareOutlined />, text: "Running scripts (build, test)" },
   ];
 
+  const dependencyWebDiagram = `
+graph TD
+    MyProject["My Project"]
+    React["React (Package)"]
+    Lodash["Lodash (Package)"]
+    Axios["Axios (Package)"]
+    ESLint["ESLint (Dev Package)"]
+
+    MyProject --> React
+    MyProject --> Lodash
+    MyProject --> Axios
+    MyProject --> ESLint
+
+    React --> PropTypes["prop-types (Sub-dependency)"]
+    React --> LooseEnvify["loose-envify (Sub-dependency)"]
+    Axios --> FollowRedirects["follow-redirects (Sub-dependency)"]
+
+    classDef project fill:#D6EAF8,stroke:#2E86C1,stroke-width:2px;
+    classDef package fill:#D1F2EB,stroke:#1ABC9C,stroke-width:2px;
+    classDef devPackage fill:#FCF3CF,stroke:#F1C40F,stroke-width:2px;
+    classDef subDependency fill:#FDEDEC,stroke:#E74C3C,stroke-width:1px,color:#333;
+
+    class MyProject project;
+    class React,Lodash,Axios package;
+    class ESLint devPackage;
+    class PropTypes,LooseEnvify,FollowRedirects subDependency;
+  `;
+
+  useEffect(() => {
+    mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+    const timer = setTimeout(() => {
+      try {
+        mermaid.run();
+      } catch (e) {
+        console.error("Mermaid rendering error:", e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div style={{ padding: "20px", maxWidth: "1000px", margin: "0 auto" }}>
       <Title level={2}>Package Management - Overview</Title>
@@ -57,21 +98,28 @@ const PkgMgtOverviewSlide: React.FC = () => {
         <Col xs={24} md={12}>
           <Card title="Visual Idea: Dependency Web" style={{ height: "100%" }}>
             <Paragraph>
-              Imagine a central <Tag color="blue">My Project</Tag> node
-              connected to various package nodes like
-              <Tag>React</Tag>, <Tag>Lodash</Tag>, <Tag>Axios</Tag>,{" "}
-              <Tag>ESLint</Tag>. These packages themselves might have
-              sub-dependencies, illustrating the complex web managed by package
-              managers.
+              A package manager helps manage a project's direct dependencies
+              (like React, Lodash) and also their sub-dependencies, forming a
+              complex web.
             </Paragraph>
-            <div style={{ textAlign: "center", marginTop: "10px" }}>
-              <CodeSandboxOutlined
-                style={{ fontSize: "48px", color: "#1890ff" }}
-              />
-              <Paragraph type="secondary">
-                Illustrative Icon for Dependency Web
-              </Paragraph>
+            <div
+              className="mermaid"
+              style={{
+                textAlign: "center",
+                padding: "10px",
+                border: "1px solid #f0f0f0",
+                borderRadius: "4px",
+                marginTop: "10px",
+                marginBottom: "10px",
+                background: "#fff",
+              }}
+            >
+              {dependencyWebDiagram}
             </div>
+            <Paragraph type="secondary">
+              This diagram illustrates how a project relies on various packages,
+              which in turn may rely on other packages.
+            </Paragraph>
           </Card>
         </Col>
         <Col xs={24} md={12}>

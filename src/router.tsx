@@ -80,10 +80,10 @@ export const router = createBrowserRouter([
         path: "redux-concepts",
         element: <ReduxConceptsSlide />,
       },
-      {
-        path: "state-mgt-conclusion",
-        element: <StateMgtConclusionSlide />,
-      },
+      // {
+      //   path: "state-mgt-conclusion",
+      //   element: <StateMgtConclusionSlide />,
+      // },
       {
         path: "client-components",
         element: <ClientComponentsSlide />,

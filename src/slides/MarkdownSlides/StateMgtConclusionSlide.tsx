@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Card, List, Row, Col, Space, Alert } from "antd";
 import {
   CheckCircleOutlined,
@@ -7,6 +7,7 @@ import {
   TeamOutlined,
   RocketOutlined,
 } from "@ant-design/icons";
+import mermaid from "mermaid";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -41,6 +42,64 @@ const StateMgtConclusionSlide: React.FC = () => {
     "Place Redux logo towards the complex end.",
   ];
 
+  // Added Mermaid Diagram Definitions
+  const decisionTreeDiagram = `
+graph TD
+    Start["Need to Share State?"] --> IsLocal{"Component State (useState/useReducer) Sufficient?"};
+    IsLocal -- "Yes" --> EndLocal[Component State];
+    IsLocal -- "No" --> IsPropDrilling{"Prop Drilling Becoming Complex?"};
+    
+    IsPropDrilling -- "No" --> ConsiderContext{"Consider React Context"};
+    IsPropDrilling -- "Yes" --> IsComplexState{"Complex State / Logic / Middleware Needed?"};
+    
+    ConsiderContext --> AssessContextPerformance{"Performance Issues with Context?"};
+    AssessContextPerformance -- "Yes" --> ContextSelector[Use Context Selector Pattern / Library];
+    AssessContextPerformance -- "No" --> EndContext[React Context];
+
+    IsComplexState -- "Yes" --> EndRedux[Consider Redux / Zustand / Jotai etc.];
+    IsComplexState -- "No" --> ConsiderContext;
+
+    classDef decision fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef solution fill:#9cf,stroke:#333,stroke-width:2px;
+    class Start, IsLocal, IsPropDrilling, IsComplexState, AssessContextPerformance decision;
+    class EndLocal, ConsiderContext, EndContext, EndRedux, ContextSelector solution;
+  `;
+
+  const complexityScaleDiagram = `
+graph LR
+    subgraph ComplexityScale ["Application Complexity Scale"]
+        direction LR
+        Low["Low<br>(Simple UI State, <br>Minimal Sharing)"] --> Medium["Medium<br>(Prop Drilling Issues, <br>Theming, Auth State)"] --> High["High<br>(Complex Interactions, <br>Middleware, Caching, <br>Large Team)"];
+    end
+    
+    subgraph ToolSuitability ["Suitable Tools"]
+        direction TB
+        CompState["Component State<br>(useState, useReducer)"] --> ContextAPI["React Context API<br>(+ Selectors)"] --> GlobalLibs["Global State Libraries<br>(Redux, Zustand, Jotai, etc.)"];
+    end
+
+    Low -.-> CompState;
+    Medium -.-> ContextAPI;
+    High -.-> GlobalLibs;
+    
+    classDef scaleNode fill:#eee,stroke:#333;
+    classDef toolNode fill:#D1F2EB,stroke:#1ABC9C;
+    class Low,Medium,High scaleNode;
+    class CompState,ContextAPI,GlobalLibs toolNode;
+`;
+
+  // Added useEffect for Mermaid Initialization
+  useEffect(() => {
+    mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+    const timer = setTimeout(() => {
+      try {
+        mermaid.run(); // Renders all elements with class="mermaid"
+      } catch (e) {
+        console.error("Mermaid rendering error:", e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div style={{ padding: "20px", maxWidth: "1000px", margin: "0 auto" }}>
       <Title level={2}>React State Management - Conclusion</Title>
@@ -61,20 +120,41 @@ const StateMgtConclusionSlide: React.FC = () => {
         <Row gutter={[16, 16]}>
           <Col xs={24} md={12}>
             <Card type="inner" title="Decision Tree/Flowchart">
-              <List
-                dataSource={visualIdeasDecisionTree}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-                size="small"
-              />
+              <div
+                className="mermaid"
+                style={{
+                  textAlign: "center",
+                  background: "#fff",
+                  padding: "10px",
+                  border: "1px solid #f0f0f0",
+                  borderRadius: "4px",
+                }}
+              >
+                {decisionTreeDiagram}
+              </div>
+              <Paragraph type="secondary" style={{ marginTop: "10px" }}>
+                Simplified decision flow for choosing a state management
+                approach.
+              </Paragraph>
             </Card>
           </Col>
           <Col xs={24} md={12}>
             <Card type="inner" title="Scale/Complexity Meter">
-              <List
-                dataSource={visualIdeasScaleMeter}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-                size="small"
-              />
+              <div
+                className="mermaid"
+                style={{
+                  textAlign: "center",
+                  background: "#fff",
+                  padding: "10px",
+                  border: "1px solid #f0f0f0",
+                  borderRadius: "4px",
+                }}
+              >
+                {complexityScaleDiagram}
+              </div>
+              <Paragraph type="secondary" style={{ marginTop: "10px" }}>
+                General suitability of tools based on application complexity.
+              </Paragraph>
             </Card>
           </Col>
         </Row>
