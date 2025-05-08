@@ -180,39 +180,6 @@ const ListVirtualizationDemo: React.FC = () => {
         style={{ marginBottom: 16 }}
       />
 
-      <Row gutter={16} style={{ marginBottom: 24 }}>
-        <Col span={12}>
-          <Title level={5}>Standard List Rendering</Title>
-          <div
-            className="mermaid"
-            style={{
-              textAlign: "center",
-              padding: "10px",
-              border: "1px solid #f0f0f0",
-              borderRadius: "4px",
-              backgroundColor: "#999",
-            }}
-          >
-            {standardListDiagram}
-          </div>
-        </Col>
-        <Col span={12}>
-          <Title level={5}>Virtualized List Rendering</Title>
-          <div
-            className="mermaid"
-            style={{
-              textAlign: "center",
-              padding: "10px",
-              border: "1px solid #f0f0f0",
-              borderRadius: "4px",
-              backgroundColor: "#999",
-            }}
-          >
-            {virtualizedListDiagram}
-          </div>
-        </Col>
-      </Row>
-
       <Row gutter={16}>
         <Col span={24}>
           {showVirtualized ? <VirtualizedList /> : <StandardList />}

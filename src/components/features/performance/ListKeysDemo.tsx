@@ -160,7 +160,7 @@ const ListKeysDemo: React.FC = () => {
         and preserve component state.
       </Paragraph>
 
-      <div
+      {/* <div
         className="mermaid"
         style={{
           textAlign: "center",
@@ -171,7 +171,7 @@ const ListKeysDemo: React.FC = () => {
         }}
       >
         {listKeysDiagram}
-      </div>
+      </div> */}
 
       <Paragraph>
         Interact with the lists below. Type something into the input fields of

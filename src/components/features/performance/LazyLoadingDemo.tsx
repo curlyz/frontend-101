@@ -68,20 +68,6 @@ const LazyLoadingDemo: React.FC = () => {
         application.
       </Paragraph>
 
-      <div
-        className="mermaid"
-        style={{
-          textAlign: "center",
-          padding: "10px",
-          border: "1px solid #f0f0f0",
-          borderRadius: "4px",
-          marginBottom: 16,
-          backgroundColor: "#999",
-        }}
-      >
-        {lazyLoadingDiagram}
-      </div>
-
       <Paragraph>
         Click the button below to load and display the \"Heavy Component\".
         Notice the fallback UI (spinner) while it loads. In a real application,

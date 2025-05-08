@@ -11,6 +11,8 @@ import StateOptimizationSlide from "./slides/StateOptimizationSlide";
 import PackageManagerSlide from "./slides/PackageManagerSlide/PackageManagerSlide";
 import NetworkRequestInOnClickSlide from "./slides/NetworkRequestInOnClick/NetworkRequestInOnClickSlide";
 import NotFoundSlide from "./slides/NotFoundSlide";
+import IdempotencySlide from "./slides/IdempotencySlide";
+import FrontendSecuritySlide from "./slides/FrontendSecuritySlide";
 
 // Import newly created placeholder slide components
 import ReduxConceptsSlide from "./slides/MarkdownSlides/ReduxConceptsSlide";
@@ -113,6 +115,14 @@ export const router = createBrowserRouter([
       {
         path: "layout-routing",
         element: <LayoutAndRoutingSlide />,
+      },
+      {
+        path: "idempotency",
+        element: <IdempotencySlide />,
+      },
+      {
+        path: "frontend-security",
+        element: <FrontendSecuritySlide />,
       },
       {
         path: "*",

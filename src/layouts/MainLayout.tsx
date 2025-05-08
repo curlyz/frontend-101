@@ -112,6 +112,16 @@ const proLayoutRoutes = {
       name: "Kubb OpenAPI Slide",
       icon: <ApiOutlined />,
     },
+    {
+      path: "/idempotency",
+      name: "Idempotency Slide",
+      icon: <ApiOutlined />,
+    },
+    {
+      path: "/frontend-security",
+      name: "Frontend Security",
+      icon: <AlertOutlined />,
+    },
   ],
 };
 

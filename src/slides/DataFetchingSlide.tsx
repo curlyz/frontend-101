@@ -571,7 +571,7 @@ const DataFetchingSlide: React.FC = () => {
         className="mermaid"
         style={{
           textAlign: "center",
-          backgroundColor: "#eee", // Slightly lighter grey than #999
+          backgroundColor: "#eee", // Slightly lighter grey than #eee
           borderRadius: "10px",
           padding: "10px",
         }}

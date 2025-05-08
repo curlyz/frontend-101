@@ -262,7 +262,7 @@ const NetworkRequestInOnClickSlide: React.FC = () => {
         className="mermaid"
         style={{
           textAlign: "center",
-          backgroundColor: "#999",
+          backgroundColor: "#eee",
           borderRadius: "10px",
           padding: "10px",
         }}

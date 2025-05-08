@@ -134,6 +134,7 @@ const ThrottleDebounceDemo: React.FC = () => {
           border: "1px solid #f0f0f0",
           borderRadius: "4px",
           marginBottom: 16,
+          backgroundColor: "#eee",
         }}
       >
         {throttleDebounceDiagram}
