@@ -30,6 +30,7 @@ import KubbSlide from "./slides/MarkdownSlides/KubbSlide";
 import LayoutAndRoutingSlide from "./slides/MarkdownSlides/LayoutAndRoutingSlide";
 import PropsDrillingSlide from "./slides/MarkdownSlides/PropsDrillingSlide";
 import StateUpdateBatchingSlide from "./slides/MarkdownSlides/StateUpdateBatchingSlide";
+import ElectronSlide from "./slides/MarkdownSlides/ElectronSlide";
 /**
  * Defines the application's routes using React Router.
  *
@@ -109,10 +110,6 @@ export const router = createBrowserRouter([
         element: <BuildDeploySlide />,
       },
       {
-        path: "capacitor",
-        element: <CapacitorSlide />,
-      },
-      {
         path: "kubb",
         element: <KubbSlide />,
       },
@@ -123,6 +120,10 @@ export const router = createBrowserRouter([
       {
         path: "props-drilling",
         element: <PropsDrillingSlide />,
+      },
+      {
+        path: "state-batching",
+        element: <StateUpdateBatchingSlide />,
       },
       {
         path: "idempotency",
@@ -137,16 +138,21 @@ export const router = createBrowserRouter([
         element: <PWASlide />,
       },
       {
+        path: "electron",
+        element: <ElectronSlide />,
+      },
+      {
+        path: "capacitor",
+        element: <CapacitorSlide />,
+      },
+
+      {
         path: "developer-tools",
         element: <DeveloperToolsSlide />,
       },
       {
         path: "cors",
         element: <CORSSlide />,
-      },
-      {
-        path: "state-update-batching",
-        element: <StateUpdateBatchingSlide />,
       },
       {
         path: "*",

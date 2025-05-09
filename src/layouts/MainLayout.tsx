@@ -25,6 +25,8 @@ import {
   LayoutOutlined,
   SecurityScanOutlined,
   ShareAltOutlined,
+  ThunderboltOutlined,
+  DesktopOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -97,6 +99,11 @@ const proLayoutRoutes = {
       icon: <ShareAltOutlined />,
     },
     {
+      path: "/state-batching",
+      name: "State Update Batching",
+      icon: <ThunderboltOutlined />,
+    },
+    {
       path: "/client-components",
       name: "Client Components Slide",
       icon: <UserOutlined />,
@@ -120,6 +127,11 @@ const proLayoutRoutes = {
       path: "/kubb",
       name: "Kubb OpenAPI Slide",
       icon: <ApiOutlined />,
+    },
+    {
+      path: "/electron",
+      name: "Electron Slide",
+      icon: <DesktopOutlined />,
     },
     {
       path: "/idempotency",
