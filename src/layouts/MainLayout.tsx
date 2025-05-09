@@ -28,6 +28,13 @@ import {
   ThunderboltOutlined,
   DesktopOutlined,
   LinkOutlined,
+  SlidersOutlined,
+  SolutionOutlined,
+  TransactionOutlined,
+  UploadOutlined,
+  VideoCameraOutlined,
+  WifiOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -116,6 +123,17 @@ const proLayoutRoutes = {
       icon: <CloudDownloadOutlined />,
     },
     {
+      path: "pkg-mgt-overview",
+      name: "Package Management",
+      icon: <GlobalOutlined />,
+    },
+    {
+      path: "npm-vs-yarn",
+      name: "NPM vs Yarn",
+      icon: <GlobalOutlined />,
+    },
+
+    {
       path: "/build-deploy",
       name: "Build & Deployment Slide",
       icon: <ToolOutlined />,
@@ -159,6 +177,11 @@ const proLayoutRoutes = {
       path: "/cors",
       name: "CORS Scenarios",
       icon: <SecurityScanOutlined />,
+    },
+    {
+      name: "Network Protocols",
+      path: "/network-protocols",
+      icon: <GlobalOutlined />,
     },
   ],
 };

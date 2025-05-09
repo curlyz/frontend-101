@@ -4,7 +4,7 @@ import ReactScanSlide from "./slides/ReactScanSlide";
 // import ComponentDemoSlide from "./slides/ComponentDemoSlide"; // Removed unused import
 import StateLiftingSlide from "./slides/StateLiftingSlide";
 import FormHandlingSlide from "./slides/FormHandlingSlide";
-import PerformanceSlide from "./slides/PerformanceSlide";
+import PerformanceSlide from "@/slides/PerformanceSlide";
 import DataFetchingSlide from "./slides/DataFetchingSlide";
 import ReduxDemoSlide from "./slides/ReduxDemoSlide";
 import StateOptimizationSlide from "./slides/StateOptimizationSlide";
@@ -31,6 +31,7 @@ import PropsDrillingSlide from "./slides/MarkdownSlides/PropsDrillingSlide";
 import StateUpdateBatchingSlide from "./slides/MarkdownSlides/StateUpdateBatchingSlide";
 import ElectronSlide from "./slides/MarkdownSlides/ElectronSlide";
 import NuqsSlide from "./slides/MarkdownSlides/NuqsSlide";
+import NetworkProtocolsSlide from "./slides/MarkdownSlides/NetworkProtocolsSlide";
 
 /**
  * Defines the application's routes using React Router.
@@ -161,6 +162,10 @@ export const router = createBrowserRouter([
       {
         path: "cors",
         element: <CORSSlide />,
+      },
+      {
+        path: "network-protocols",
+        element: <NetworkProtocolsSlide />,
       },
       {
         path: "*",
