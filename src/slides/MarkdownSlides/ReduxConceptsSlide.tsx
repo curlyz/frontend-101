@@ -58,7 +58,7 @@ const ReduxConceptsSlide: React.FC = () => {
           <Paragraph>
             A "slice" is a collection of Redux reducer logic and actions for a
             single feature in your app, typically defined together in one file.
-            RTK\'s <Tag>createSlice</Tag> utility simplifies this process
+            RTK's <Tag>createSlice</Tag> utility simplifies this process
             significantly.
           </Paragraph>
           <Paragraph>
@@ -187,7 +187,7 @@ export default themeSlice.reducer;`}
         <>
           <Paragraph>
             The Redux store brings together your state, reducers, and
-            middleware. RTK\'s <Tag>configureStore</Tag> function simplifies
+            middleware. RTK's <Tag>configureStore</Tag> function simplifies
             store setup.
           </Paragraph>
           <Paragraph>
@@ -333,11 +333,11 @@ root.render(
               </List.Item>
               <List.Item>
                 <Tag>useDispatch</Tag>: A hook from <Tag>react-redux</Tag> that
-                returns a reference to the store\'s <Text code>dispatch</Text>{" "}
+                returns a reference to the store's <Text code>dispatch</Text>{" "}
                 function. You use this to dispatch actions (plain action objects
                 or thunks) to trigger state changes. The{" "}
                 <Text code>dispatch</Text> function reference is stable and
-                generally doesn\'t need to be included in dependency arrays of{" "}
+                generally doesn't need to be included in dependency arrays of{" "}
                 <Text code>useEffect</Text> or <Text code>useCallback</Text>.
               </List.Item>
             </List>
@@ -468,7 +468,7 @@ export default postsSlice.reducer;
         <Title level={4}>Core Idea & Principles of Redux</Title>
         <Paragraph>
           Redux provides a <Text strong>predictable state container</Text> for
-          JavaScript applications. It centralizes your application\'s state,
+          JavaScript applications. It centralizes your application's state,
           making it easier to manage, debug, and reason about, especially in
           larger applications. It enforces a{" "}
           <Text strong>unidirectional data flow</Text>.
@@ -554,7 +554,7 @@ export default postsSlice.reducer;
           >
             <Paragraph>
               Middleware provides a third-party extension point between
-              dispatching an action and the moment it reaches the reducer. It\'s
+              dispatching an action and the moment it reaches the reducer. It's
               used for side effects like logging, crash reporting, talking to
               asynchronous APIs, routing, and more.
             </Paragraph>
@@ -567,7 +567,7 @@ export default postsSlice.reducer;
             </Paragraph>
             <Paragraph>
               <Tag>Redux Thunk</Tag> (for basic async side effects like simple
-              API calls) is included by default in RTK\'s{" "}
+              API calls) is included by default in RTK's{" "}
               <Tag>configureStore</Tag>. For more complex async scenarios, you
               might consider <Tag>Redux Saga</Tag> (uses ES6 Generators) or{" "}
               <Tag>Redux Observable</Tag> (uses RxJS). Custom middleware can
@@ -632,7 +632,7 @@ export const store = configureStore({
               </List.Item>
             </List>
             <Paragraph>
-              RTK\'s <Tag>createSlice</Tag> and <Tag>createReducer</Tag> use{" "}
+              RTK's <Tag>createSlice</Tag> and <Tag>createReducer</Tag> use{" "}
               <Tag>Immer</Tag> internally. Immer lets you write "mutating" code
               (e.g., <Text code>state.value = action.payload</Text>) within your
               reducers. Immer detects these "draft state" mutations and produces
@@ -659,9 +659,9 @@ export const store = configureStore({
             </Paragraph>
             <Paragraph>
               <Tag>createAsyncThunk</Tag> generates three action types (e.g.,
-              \'posts/fetchPosts/pending\', \'posts/fetchPosts/fulfilled\',
-              \'posts/fetchPosts/rejected\') and dispatches them automatically.
-              You handle these actions in your slice\'s <Tag>extraReducers</Tag>{" "}
+              'posts/fetchPosts/pending', 'posts/fetchPosts/fulfilled',
+              'posts/fetchPosts/rejected') and dispatches them automatically.
+              You handle these actions in your slice's <Tag>extraReducers</Tag>{" "}
               section to update the state accordingly (e.g., set loading status,
               store fetched data, or save error messages).
             </Paragraph>
@@ -712,7 +712,7 @@ export const store = configureStore({
               </List>
             </Paragraph>
             <Paragraph>
-              RTK\'s <Tag>configureStore</Tag> automatically enables DevTools
+              RTK's <Tag>configureStore</Tag> automatically enables DevTools
               integration in development environments.
             </Paragraph>
             <Alert
@@ -910,7 +910,7 @@ export default postsSlice.reducer;`}
           </SyntaxHighlighter>
           <Paragraph>
             <Text strong>Selectors:</Text> Encapsulate the logic for deriving
-            data from your state. Use <Tag>reselect</Tag> (or RTK\'s{" "}
+            data from your state. Use <Tag>reselect</Tag> (or RTK's{" "}
             <Tag>createSelector</Tag>) to create memoized selectors for
             performance, especially for computed data or when components
             subscribe to parts of the state that change frequently.

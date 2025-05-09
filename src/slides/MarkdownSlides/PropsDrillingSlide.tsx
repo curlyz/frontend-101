@@ -252,7 +252,7 @@ function GrandchildComponent() {
         </Paragraph>
         <List
           dataSource={[
-            "Props are passed through 3+ levels of components that don\'t use them.",
+            "Props are passed through 3+ levels of components that don't use them.",
             "Refactoring becomes a pain due to prop threading.",
             "Component reusability is significantly impacted.",
             "You are considering global state management for the data anyway.",

@@ -428,7 +428,7 @@ export default AppRouter;
                 <Text strong>Layout Integration:</Text> Parent routes can
                 specify a layout component. Child routes defined within its{" "}
                 <Text code>children</Text> array will render inside that
-                layout\'s <Text code>{`<Outlet />`}</Text>.
+                layout's <Text code>{`<Outlet />`}</Text>.
               </List.Item>
               <List.Item>
                 <BranchesOutlined style={{ marginRight: 8 }} />{" "}
@@ -438,7 +438,7 @@ export default AppRouter;
               <List.Item>
                 <SettingOutlined style={{ marginRight: 8 }} />{" "}
                 <Text strong>Features:</Text> Handles dynamic path segments
-                (e.g., <Text code>path: \':productId\'</Text>), index routes
+                (e.g., <Text code>path: ':productId'</Text>), index routes
                 (defaults for parent paths), error elements, and more.
               </List.Item>
             </List>

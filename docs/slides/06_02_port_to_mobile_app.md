@@ -23,7 +23,7 @@ For responsive React app, it can be port to Mobile app through third party frame
 
 Capacitor workflow:
 
-1.  **Building your web code**: Once you are ready to test your web app on a mobile device, you\'ll need to build your web app for distribution. If you are using a tool like Create React App or Vite that command will be `npm run build`.
+1.  **Building your web code**: Once you are ready to test your web app on a mobile device, you'll need to build your web app for distribution. If you are using a tool like Create React App or Vite that command will be `npm run build`.
 
 2.  **Syncing web code to your Capacitor project**: Once your web code has been built for distribution, you will need to push your web code to the web native Capacitor application. To do this, you can use the capacitor to "sync" your web code and install/update the required native dependencies.
     
@@ -35,7 +35,7 @@ Capacitor workflow:
     
     Running `npx cap sync` will copy over your already built web bundle to both your Android and iOS projects as well as update the native dependencies that Capacitor uses.
 
-3.  **Testing your Capacitor app**[​](https://capacitorjs.com/docs/basics/workflow#testing-your-capacitor-app): Once you\'ve synced over your web bundle to your native project, it is time to test your application on a mobile device. There are a few different ways to do this, but the easiest way is to use the built in Capacitor CLI commands.
+3.  **Testing your Capacitor app**[​](https://capacitorjs.com/docs/basics/workflow#testing-your-capacitor-app): Once you've synced over your web bundle to your native project, it is time to test your application on a mobile device. There are a few different ways to do this, but the easiest way is to use the built in Capacitor CLI commands.
     
     To run a debug build of your Capacitor app on an iOS device, you can run:
     
@@ -51,7 +51,7 @@ Capacitor workflow:
 
 4.  **Compiling your native binary**:
     
-    After `sync`, you are encouraged to open your target platform\'s IDE: Xcode for iOS or Android Studio for Android, for compiling your native app.
+    After `sync`, you are encouraged to open your target platform's IDE: Xcode for iOS or Android Studio for Android, for compiling your native app.
     
     Alternatively, to compile your app in a terminal or in CI environments, you can use the build command to build the native project, outputting a signed AAB, APK or IPA file ready for distribution to a device or end users.
     

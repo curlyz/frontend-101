@@ -181,7 +181,7 @@ const DeveloperToolsSlide: React.FC = () => {
             <Alert
               type="success"
               message="Tip for LocatorJS Extension"
-              description="If using the LocatorJS browser extension, ensure it\'s enabled and correctly configured for your IDE. It often works best with React DevTools installed."
+              description="If using the LocatorJS browser extension, ensure it's enabled and correctly configured for your IDE. It often works best with React DevTools installed."
               showIcon
               style={{ marginTop: 16 }}
             />
