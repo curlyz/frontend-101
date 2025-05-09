@@ -66,6 +66,10 @@ export const router = createBrowserRouter([
         element: <StateOptimizationSlide />,
       },
       {
+        path: "state-update-batching",
+        element: <StateUpdateBatchingSlide />,
+      },
+      {
         path: "data-fetching",
         element: <DataFetchingSlide />,
       },
