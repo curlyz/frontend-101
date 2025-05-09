@@ -59,14 +59,19 @@ const proLayoutRoutes = {
       icon: <DashboardOutlined />,
     },
     {
-      path: "/state-optimization",
-      name: "React Context Slide",
-      icon: <ControlOutlined />,
-    },
-    {
       path: "/state-update-batching",
       name: "State Update Batching",
       icon: <ReadOutlined />,
+    },
+    {
+      path: "/props-drilling",
+      name: "Props Drilling Slide",
+      icon: <ShareAltOutlined />,
+    },
+    {
+      path: "/state-optimization",
+      name: "React Context Slide",
+      icon: <ControlOutlined />,
     },
     {
       path: "/redux-concepts",
@@ -93,11 +98,7 @@ const proLayoutRoutes = {
       name: "Layouts & Routing",
       icon: <LayoutOutlined />,
     },
-    {
-      path: "/props-drilling",
-      name: "Props Drilling Slide",
-      icon: <ShareAltOutlined />,
-    },
+
     {
       path: "/state-batching",
       name: "State Update Batching",
