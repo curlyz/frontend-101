@@ -86,31 +86,28 @@ const proLayoutRoutes = {
       name: "Redux Concepts Slide",
       icon: <ReadOutlined />,
     },
-    // {
-    //   path: "/state-mgt-conclusion",
-    //   name: "State Mgt. Conclusion Slide",
-    //   icon: <InfoCircleOutlined />,
-    // },
-    {
-      path: "/network-in-onclick",
-      name: "Network in onClick",
-      icon: <AlertOutlined />,
-    },
-    {
-      path: "/data-fetching",
-      name: "Data Fetching",
-      icon: <CloudDownloadOutlined />,
-    },
     {
       path: "/layout-routing",
       name: "Layouts & Routing",
       icon: <LayoutOutlined />,
     },
 
+    // {
+    //   path: "/state-mgt-conclusion",
+    //   name: "State Mgt. Conclusion Slide",
+    //   icon: <InfoCircleOutlined />,
+    // },
+
+    // -- State Management --
     {
       path: "/state-batching",
       name: "State Update Batching",
       icon: <ThunderboltOutlined />,
+    },
+    {
+      path: "/nuqs",
+      name: "Nuqs URL State Slide",
+      icon: <LinkOutlined />,
     },
     {
       path: "/client-components",
@@ -122,6 +119,24 @@ const proLayoutRoutes = {
       name: "Server Components Slide",
       icon: <CloudDownloadOutlined />,
     },
+    // -- Network Protocols --
+    {
+      path: "/network-in-onclick",
+      name: "Network in onClick",
+      icon: <AlertOutlined />,
+    },
+    {
+      path: "/data-fetching",
+      name: "Data Fetching",
+      icon: <CloudDownloadOutlined />,
+    },
+    {
+      path: "/kubb",
+      name: "Kubb OpenAPI Slide",
+      icon: <ApiOutlined />,
+    },
+
+    // -- Package Management --
     {
       path: "pkg-mgt-overview",
       name: "Package Management",
@@ -132,7 +147,7 @@ const proLayoutRoutes = {
       name: "NPM vs Yarn",
       icon: <GlobalOutlined />,
     },
-
+    // -- Build & Deployment --
     {
       path: "/build-deploy",
       name: "Build & Deployment Slide",
@@ -144,20 +159,16 @@ const proLayoutRoutes = {
       icon: <MobileOutlined />,
     },
     {
-      path: "/kubb",
-      name: "Kubb OpenAPI Slide",
-      icon: <ApiOutlined />,
-    },
-    {
       path: "/electron",
-      name: "Electron Slide",
+      name: "Electron",
       icon: <DesktopOutlined />,
     },
     {
-      path: "/nuqs",
-      name: "Nuqs URL State Slide",
-      icon: <LinkOutlined />,
+      path: "/pwa",
+      name: "PWA Example",
+      icon: <MobileOutlined />,
     },
+    // -- Network Protocols --
     {
       path: "/idempotency",
       name: "Idempotency Slide",
@@ -167,11 +178,6 @@ const proLayoutRoutes = {
       path: "/frontend-security",
       name: "Frontend Security",
       icon: <AlertOutlined />,
-    },
-    {
-      path: "/pwa",
-      name: "PWA Example",
-      icon: <MobileOutlined />,
     },
     {
       path: "/cors",
