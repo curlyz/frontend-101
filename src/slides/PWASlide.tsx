@@ -35,8 +35,7 @@ const codeSnippetStyle: React.CSSProperties = {
   wordBreak: "break-all",
 };
 
-const pwaComponentsDiagram = `
-graph LR
+const pwaComponentsDiagram = `graph LR
     User[User]
     Browser[Browser]
     AppShell[App Shell UI]
@@ -66,7 +65,7 @@ graph LR
     ServiceWorker -- Serves from Cache/Network --> Browser
     Browser -- Renders --> AppShell
     
-    note right of HTML "Crucial: Site must be exportable to static assets!" 
+    %% note right of HTML "Crucial: Site must be exportable to static assets!" 
     classDef static fill:#e6ffed,stroke:#333,stroke-width:1px;
     class HTML,CSS,JS,Images static;
 `;
@@ -494,6 +493,36 @@ const PWASlide: React.FC = () => {
           />
         </List.Item>
       </List>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To dive deeper into Progressive Web Apps, explore the resources on
+            <a
+              href="https://web.dev/explore/progressive-web-apps"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              web.dev (Google Developers)
+            </a>
+            {" and the "}
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MDN Web Docs on PWAs
+            </a>
+            . Also, check the documentation for tools like VitePWA for specific
+            implementation details.
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Typography, Row, Col, Divider, List, Card, Space } from "antd";
+import { Typography, Row, Col, Divider, List, Card, Space, Alert } from "antd";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
@@ -250,8 +250,7 @@ const StateOptimizationSlide: React.FC = () => {
             padding: "10px",
             border: "1px solid #f0f0f0",
             borderRadius: "4px",
-            marginTop: "10px",
-            marginBottom: "10px",
+            marginTop: 16,
             background: "#fff",
           }}
         >
@@ -259,92 +258,113 @@ const StateOptimizationSlide: React.FC = () => {
         </div>
       </Card>
 
-      <Row gutter={[24, 24]}>
+      <Row gutter={[24, 24]} style={{ marginBottom: 24 }}>
         <Col xs={24} lg={12}>
-          <Card
-            title={
-              <Title level={3} style={{ margin: 0, color: "#007bff" }}>
-                Standard Context Demo
-              </Title>
-            }
-            bordered={false}
-            style={{ boxShadow: "0 0 5px #007bff30", height: "100%" }}
-          >
+          <Card title="Standard Context Demo (Isolated State)">
             <StandardStateProvider>
               <StandardDemoWithControls />
             </StandardStateProvider>
-            <Divider>Code: Standard Context Setup</Divider>
-            <SyntaxHighlighter
-              language="tsx"
-              style={atomDark}
-              customStyle={{ fontSize: "0.8em", borderRadius: "4px" }}
-              showLineNumbers
-            >
-              {standardContextSetupCode.trim()}
-            </SyntaxHighlighter>
-            <Divider>Code: Standard Component Consumption</Divider>
-            <SyntaxHighlighter
-              language="tsx"
-              style={atomDark}
-              customStyle={{ fontSize: "0.8em", borderRadius: "4px" }}
-              showLineNumbers
-            >
-              {standardComponentCode.trim()}
-            </SyntaxHighlighter>
           </Card>
         </Col>
         <Col xs={24} lg={12}>
-          <Card
-            title={
-              <Title level={3} style={{ margin: 0, color: "#28a745" }}>
-                Optimized Context Demo (<code>use-context-selector</code>)
-              </Title>
-            }
-            bordered={false}
-            style={{ boxShadow: "0 0 5px #28a74530", height: "100%" }}
-          >
+          <Card title="Optimized Context (use-context-selector) Demo (Isolated State)">
             <OptimizedStateProvider>
               <OptimizedDemoWithControls />
             </OptimizedStateProvider>
-            <Divider>Code: Optimized Context Setup</Divider>
-            <SyntaxHighlighter
-              language="tsx"
-              style={atomDark}
-              customStyle={{ fontSize: "0.8em", borderRadius: "4px" }}
-              showLineNumbers
-            >
-              {optimizedContextSetupCode.trim()}
-            </SyntaxHighlighter>
-            <Divider>Code: Optimized Component Consumption</Divider>
-            <SyntaxHighlighter
-              language="tsx"
-              style={atomDark}
-              customStyle={{ fontSize: "0.8em", borderRadius: "4px" }}
-              showLineNumbers
-            >
-              {optimizedComponentCode.trim()}
-            </SyntaxHighlighter>
           </Card>
         </Col>
       </Row>
 
-      <Divider style={{ marginTop: "30px", marginBottom: "20px" }} />
+      <Card
+        title="Code Snippets: Conceptual Setup"
+        style={{ marginBottom: 24 }}
+      >
+        <Row gutter={[16, 16]}>
+          <Col xs={24} md={12}>
+            <Title level={5}>Standard Context</Title>
+            <SyntaxHighlighter
+              language="jsx"
+              style={atomDark}
+              customStyle={{ maxHeight: "300px", overflowY: "auto" }}
+            >
+              {standardContextSetupCode}
+            </SyntaxHighlighter>
+            <SyntaxHighlighter
+              language="jsx"
+              style={atomDark}
+              customStyle={{
+                maxHeight: "200px",
+                overflowY: "auto",
+                marginTop: "10px",
+              }}
+            >
+              {standardComponentCode}
+            </SyntaxHighlighter>
+          </Col>
+          <Col xs={24} md={12}>
+            <Title level={5}>Optimized Context (use-context-selector)</Title>
+            <SyntaxHighlighter
+              language="jsx"
+              style={atomDark}
+              customStyle={{ maxHeight: "300px", overflowY: "auto" }}
+            >
+              {optimizedContextSetupCode}
+            </SyntaxHighlighter>
+            <SyntaxHighlighter
+              language="jsx"
+              style={atomDark}
+              customStyle={{
+                maxHeight: "200px",
+                overflowY: "auto",
+                marginTop: "10px",
+              }}
+            >
+              {optimizedComponentCode}
+            </SyntaxHighlighter>
+          </Col>
+        </Row>
+      </Card>
 
-      <Title level={4}>Key Takeaways (with Isolated States):</Title>
-      <List
-        dataSource={takeaways}
-        renderItem={(item, index) => (
-          <List.Item key={index}>
-            <Text>{item}</Text>
-          </List.Item>
-        )}
-        style={{ marginBottom: "20px" }}
+      <Card title="Key Takeaways">
+        <List
+          dataSource={takeaways}
+          renderItem={(item) => (
+            <List.Item>
+              <Text>{item}</Text>
+            </List.Item>
+          )}
+        />
+      </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To further understand state management and optimization in React,
+            explore the official documentation on
+            <a
+              href="https://react.dev/learn/separating-data-and-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Separating Data and UI
+            </a>
+            {" and investigate libraries like "}
+            <a
+              href="https://github.com/dai-shi/use-context-selector"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              use-context-selector
+            </a>
+            {" for fine-grained context updates."}
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
       />
-      <Paragraph>
-        This setup clearly isolates the behavior of each context management
-        strategy when operating on its own independent state, allowing for a
-        direct comparison of their re-rendering characteristics.
-      </Paragraph>
     </div>
   );
 };

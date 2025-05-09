@@ -9,6 +9,7 @@ import {
   Col,
   Tree,
   Table,
+  Alert,
 } from "antd";
 import type { TreeProps, TableProps } from "antd";
 import {
@@ -501,6 +502,28 @@ export default AppRouter;
           )}
         />
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information on React Router, its features, and
+            advanced usage patterns, visit the official
+            <a
+              href="https://reactrouter.com/en/main/start/tutorial"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Router Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

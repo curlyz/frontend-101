@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Typography, List, Divider } from "antd";
+import { Card, Typography, List, Divider, Alert } from "antd";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import mermaid from "mermaid";
@@ -139,6 +139,36 @@ const ReactScanSlide: React.FC = () => {
       >
         {viteConfigSnippet.trim()}
       </SyntaxHighlighter>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To understand more about React component rendering and performance,
+            explore the official
+            <a
+              href="https://react.dev/learn/understanding-your-ui-as-a-tree"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Documentation on UI as a Tree
+            </a>
+            {" and learn about the "}
+            <a
+              href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React Developer Tools
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Card>
   );
 };

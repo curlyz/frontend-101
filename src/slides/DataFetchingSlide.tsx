@@ -891,6 +891,36 @@ const DataFetchingSlide: React.FC = () => {
           various scenarios.
         </Paragraph>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more in-depth information on modern data fetching libraries,
+            explore the official documentation for
+            <a
+              href="https://tanstack.com/query/latest/docs/react/overview"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              TanStack Query (formerly React Query)
+            </a>
+            {" and "}
+            <a
+              href="https://swr.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SWR
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

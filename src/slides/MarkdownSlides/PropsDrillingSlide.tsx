@@ -247,15 +247,15 @@ function GrandchildComponent() {
         </Title>
         <Paragraph>
           Not all prop passing is prop drilling. Passing props one or two levels
-          deep is often fine and the simplest solution.
+          deep is often fine and the simplest solution. Consider addressing prop
+          drilling when:
         </Paragraph>
-        <Paragraph>Consider alternatives when:</Paragraph>
         <List
           dataSource={[
-            "Props are passed through 3 or more levels of intermediate components that don't use them.",
-            "You find yourself refactoring many intermediate components frequently due to changes in these passed-down props.",
-            "The primary purpose of an intermediate component becomes just passing props.",
-            "State is needed by many components at different nesting levels (global or shared state).",
+            "Props are passed through 3+ levels of components that don\'t use them.",
+            "Refactoring becomes a pain due to prop threading.",
+            "Component reusability is significantly impacted.",
+            "You are considering global state management for the data anyway.",
           ]}
           renderItem={(item) => (
             <List.Item>
@@ -264,36 +264,37 @@ function GrandchildComponent() {
             </List.Item>
           )}
         />
-        <Divider />
-        <Title level={4}>Common Solutions</Title>
-        <List
-          dataSource={[
-            {
-              title: "React Context API",
-              description:
-                "Good for sharing data that can be considered 'global' for a tree of React components, such as current authenticated user, theme, or preferred language.",
-            },
-            {
-              title: "State Management Libraries (Redux, Zustand, Jotai)",
-              description:
-                "More robust solutions for complex application state, offering advanced features like middleware, devtools, and more structured state updates.",
-            },
-            {
-              title: "Component Composition",
-              description:
-                "Sometimes, restructuring your components using composition (e.g., passing JSX as children) can avoid the need to drill props. For example, a Layout component that takes specific sections as props: <Layout sidebar={<Sidebar />} content={<Content />} />.",
-            },
-          ]}
-          renderItem={(item) => (
-            <List.Item>
-              <List.Item.Meta
-                title={<Text strong>{item.title}</Text>}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information on managing data flow and avoiding
+            prop drilling in React, explore the official documentation on
+            <a
+              href="https://react.dev/learn/passing-data-deeply-with-context"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Context
+            </a>
+            {" and concepts like "}
+            <a
+              href="https://react.dev/learn/composition-vs-inheritance"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Composition
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

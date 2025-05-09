@@ -1,5 +1,15 @@
 import React, { useEffect } from "react";
-import { Typography, Card, Row, Col, List, Tag, Space, Divider } from "antd";
+import {
+  Typography,
+  Card,
+  Row,
+  Col,
+  List,
+  Tag,
+  Space,
+  Divider,
+  Alert,
+} from "antd";
 import {
   CodeOutlined,
   ApiOutlined,
@@ -420,6 +430,28 @@ export default defineConfig(async () => {
 
       <Divider style={{ marginTop: "40px", marginBottom: "20px" }} />
       <MarkdownSlideRenderer filePath={markdownFilePath} />
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information, best practices, and API references,
+            visit the official
+            <a
+              href="https://kubb.dev/getting-started/at-glance"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Kubb Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

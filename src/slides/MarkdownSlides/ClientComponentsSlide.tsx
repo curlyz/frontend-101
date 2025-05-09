@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Card, List, Row, Col, Timeline, Tag } from "antd";
+import { Typography, Card, List, Row, Col, Timeline, Tag, Alert } from "antd";
 import {
   InteractionOutlined,
   SyncOutlined,
@@ -160,6 +160,28 @@ const ClientComponentsSlide: React.FC = () => {
           <Tag color="purple">browser APIs</Tag>.
         </Paragraph>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information on React Client Components, especially
+            in the context of Next.js, visit the official
+            <a
+              href="https://nextjs.org/docs/getting-started/react-essentials#client-components"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Next.js Client Components Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

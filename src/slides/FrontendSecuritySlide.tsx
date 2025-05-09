@@ -410,6 +410,46 @@ document.getElementById('container').innerHTML = cleanHTML;
           </Col>
         </Row>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For comprehensive information on web security, including XSS and
+            CSRF, refer to the OWASP resources:
+            <a
+              href="https://owasp.org/www-project-top-ten/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              OWASP Top Ten
+            </a>
+            , the
+            <a
+              href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              XSS Prevention Cheat Sheet
+            </a>
+            , and the
+            <a
+              href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              CSRF Prevention Cheat Sheet
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

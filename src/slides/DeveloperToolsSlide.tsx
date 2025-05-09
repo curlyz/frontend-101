@@ -221,6 +221,45 @@ const DeveloperToolsSlide: React.FC = () => {
         developer experience. Consider trying them out to see which fits your
         workflow best!
       </Paragraph>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            Beyond these specific tools, master your browser's built-in
+            developer tools and the React Developer Tools:
+            <a
+              href="https://developer.chrome.com/docs/devtools/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Chrome DevTools
+            </a>
+            ,
+            <a
+              href="https://firefox-source-docs.mozilla.org/devtools-user/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Firefox Developer Tools
+            </a>
+            , and the
+            <a
+              href="https://react.dev/learn/react-developer-tools"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Developer Tools
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

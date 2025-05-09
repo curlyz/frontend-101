@@ -19,7 +19,6 @@ import CORSSlide from "./slides/CORSSlide";
 
 // Import newly created placeholder slide components
 import ReduxConceptsSlide from "./slides/MarkdownSlides/ReduxConceptsSlide";
-import StateMgtConclusionSlide from "./slides/MarkdownSlides/StateMgtConclusionSlide";
 import ClientComponentsSlide from "./slides/MarkdownSlides/ClientComponentsSlide";
 import ServerComponentsSlide from "./slides/MarkdownSlides/ServerComponentsSlide";
 import PkgMgtOverviewSlide from "./slides/MarkdownSlides/PkgMgtOverviewSlide";
@@ -31,6 +30,8 @@ import LayoutAndRoutingSlide from "./slides/MarkdownSlides/LayoutAndRoutingSlide
 import PropsDrillingSlide from "./slides/MarkdownSlides/PropsDrillingSlide";
 import StateUpdateBatchingSlide from "./slides/MarkdownSlides/StateUpdateBatchingSlide";
 import ElectronSlide from "./slides/MarkdownSlides/ElectronSlide";
+import NuqsSlide from "./slides/MarkdownSlides/NuqsSlide";
+
 /**
  * Defines the application's routes using React Router.
  *
@@ -149,7 +150,10 @@ export const router = createBrowserRouter([
         path: "capacitor",
         element: <CapacitorSlide />,
       },
-
+      {
+        path: "nuqs",
+        element: <NuqsSlide />,
+      },
       {
         path: "developer-tools",
         element: <DeveloperToolsSlide />,

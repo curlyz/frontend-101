@@ -362,6 +362,36 @@ const handleAsyncUpdates = () => {
           )}
         />
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For a deeper understanding of how React handles state updates and
+            batching, refer to the official
+            <a
+              href="https://react.dev/learn/queueing-a-series-of-state-updates"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Documentation on State Updates
+            </a>
+            {" and "}
+            <a
+              href="https://react.dev/blog/2022/03/29/react-v18#automatic-batching"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React 18's Automatic Batching
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

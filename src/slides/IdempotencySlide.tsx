@@ -565,6 +565,28 @@ async function createItemIdempotent(itemName, idempotencyKey) {
           </Flex>
         </Row>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For a general understanding of idempotence in web APIs, refer to the
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Glossary/Idempotent"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              MDN Web Docs on Idempotence
+            </a>
+            . Many API providers (e.g., Stripe, PayPal) also have specific
+            documentation on how they handle idempotency keys.
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

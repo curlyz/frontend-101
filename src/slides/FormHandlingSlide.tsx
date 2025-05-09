@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Typography, Space, Row, Col, Divider } from "antd";
+import { Card, Typography, Space, Row, Col, Divider, Alert } from "antd";
 import MultiStepForm from "@/components/features/MultiStepForm"; // Use alias
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"; // Add SyntaxHighlighter
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"; // Add style
@@ -227,6 +227,35 @@ const FormHandlingSlide: React.FC = () => {
         */}
       </Card>
       <MultiStepForm />
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To learn more about form handling in React, explore the official
+            <a
+              href="https://react.dev/learn/sharing-state-between-components#controlling-a-form-with-state-variables"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Forms Documentation
+            </a>
+            {" and consider libraries like "}
+            <a
+              href="https://react-hook-form.com/get-started"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React Hook Form
+            </a>
+            {" for more complex scenarios."}
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

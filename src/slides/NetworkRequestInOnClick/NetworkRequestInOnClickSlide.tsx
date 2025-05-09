@@ -269,6 +269,28 @@ const NetworkRequestInOnClickSlide: React.FC = () => {
       >
         {problematicFlowDiagram}
       </div>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To understand how to properly handle side effects like data fetching
+            in React, refer to the official
+            <a
+              href="https://react.dev/learn/synchronizing-with-effects"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React useEffect Documentation
+            </a>
+            . Consider using data fetching libraries for more complex scenarios.
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

@@ -610,6 +610,28 @@ export default function SharedCard({ title, children }) {
           and their code needs to be sent to the browser.
         </Paragraph>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information on React Server Components, especially
+            in the context of Next.js, visit the official
+            <a
+              href="https://nextjs.org/docs/getting-started/react-essentials#server-components"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Next.js Server Components Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

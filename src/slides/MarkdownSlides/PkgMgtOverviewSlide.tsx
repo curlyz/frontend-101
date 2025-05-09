@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Typography, Card, List, Row, Col, Tag, Space } from "antd";
+import { Typography, Card, List, Row, Col, Tag, Space, Alert } from "antd";
 import {
   CodeSandboxOutlined,
   CloudDownloadOutlined,
@@ -180,6 +180,36 @@ graph TD
           , developed by Facebook (now Meta).
         </Paragraph>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information, best practices, and API references,
+            visit the official
+            <a
+              href="https://docs.npmjs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              npm documentation
+            </a>
+            {" and the "}
+            <a
+              href="https://yarnpkg.com/getting-started"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Yarn documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

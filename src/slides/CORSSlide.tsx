@@ -1218,6 +1218,28 @@ const CORSSlide: React.FC = () => {
         </ReferenceLink>
         .
       </Paragraph>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For an in-depth understanding of Cross-Origin Resource Sharing, the
+            primary reference is the
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              MDN Web Docs on CORS
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

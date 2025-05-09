@@ -774,6 +774,47 @@ graph TD
           <Text>Rollback Strategy</Text>
         </Space>
       </Card>
+
+      {/* Further Learning Section */}
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information on build tools and deployment
+            platforms, visit the official documentation for
+            <a
+              href="https://vitejs.dev/guide/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Vite
+            </a>
+            ,
+            <a
+              href="https://vercel.com/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Vercel
+            </a>
+            , and
+            <a
+              href="https://docs.netlify.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Netlify
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

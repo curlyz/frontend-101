@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Typography, Space, Row, Col, Divider } from "antd";
+import { Card, Typography, Space, Row, Col, Divider, Alert } from "antd";
 import ReduxCounter from "@/components/features/redux/ReduxCounter";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -216,6 +216,28 @@ const ReduxDemoSlide: React.FC = () => {
           <code>src/main.tsx</code>.
         </Paragraph>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To dive deeper into Redux Toolkit, its features, and best practices,
+            visit the official
+            <a
+              href="https://redux-toolkit.js.org/introduction/getting-started"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Redux Toolkit Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

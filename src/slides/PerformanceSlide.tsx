@@ -616,6 +616,36 @@ inputElement.addEventListener('input', debouncedInputHandler);`}
         }
         demoComponent={<ThrottleDebounceDemo />}
       />
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more comprehensive information on React performance, consult the
+            <a
+              href="https://react.dev/reference/react"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              official React Performance Optimization guide
+            </a>
+            . For a structured approach to web performance, learn about the
+            <a
+              href="https://web.dev/articles/rail"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              RAIL model
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

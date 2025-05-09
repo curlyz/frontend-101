@@ -27,6 +27,7 @@ import {
   ShareAltOutlined,
   ThunderboltOutlined,
   DesktopOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Avatar, Dropdown, Tooltip } from "antd";
 import { useThemeMode, useToggleTheme } from "@/contexts/ThemeContext";
@@ -133,6 +134,11 @@ const proLayoutRoutes = {
       path: "/electron",
       name: "Electron Slide",
       icon: <DesktopOutlined />,
+    },
+    {
+      path: "/nuqs",
+      name: "Nuqs URL State Slide",
+      icon: <LinkOutlined />,
     },
     {
       path: "/idempotency",

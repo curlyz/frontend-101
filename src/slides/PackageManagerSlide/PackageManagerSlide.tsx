@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Table, Tag, List } from "antd";
+import { Typography, Table, Tag, List, Alert } from "antd";
 import type { TableProps } from "antd";
 
 const { Title, Paragraph, Text } = Typography;
@@ -250,10 +250,57 @@ const PackageManagerSlide: React.FC = () => {
           color: "#888",
         }}
       >
-        The choice of package manager often depends on project requirements,
-        team familiarity, performance needs, and specific features like monorepo
-        support or disk space efficiency.
+        This table provides a high-level comparison. The "best" choice often
+        depends on specific project needs, team familiarity, and the evolving
+        features of each manager. This project uses Yarn (as seen by the
+        presence of a <Text code>yarn.lock</Text> file).
       </Paragraph>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For detailed information on npm and Yarn, visit their official
+            documentation:
+            <a
+              href="https://docs.npmjs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              npm Documentation
+            </a>
+            {" and the "}
+            <a
+              href="https://yarnpkg.com/getting-started"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Yarn Documentation
+            </a>
+            . For pnpm, see{" "}
+            <a
+              href="https://pnpm.io/motivation"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              pnpm.io
+            </a>
+            , and for Bun, see{" "}
+            <a
+              href="https://bun.sh/docs/cli/install"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              bun.sh
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

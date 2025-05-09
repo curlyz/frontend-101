@@ -240,6 +240,38 @@ graph LR
           Understanding these tools and trade-offs empowers you to build robust,
           maintainable, and scalable React applications.
         </Paragraph>
+
+        <Alert
+          message="Further Learning"
+          description={
+            <Paragraph>
+              For more detailed information on React state management concepts,
+              visit the official
+              <a
+                href="https://react.dev/learn/managing-state"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {" "}
+                React State Management Documentation
+              </a>
+              , and explore the section on
+              <a
+                href="https://react.dev/learn/passing-data-deeply-with-context"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {" "}
+                React Context
+              </a>
+              .
+            </Paragraph>
+          }
+          type="success"
+          showIcon
+          style={{ marginTop: 20, marginBottom: 20 }}
+        />
+
         <Alert
           message="Next Chapter"
           description="On next chapter, we will explore about react client component and server components."

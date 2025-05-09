@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Typography, Space, Divider, Row, Col } from "antd";
+import { Card, Typography, Space, Divider, Row, Col, Alert } from "antd";
 import TaskManager from "@/components/features/state-lifting/TaskManager"; // Use alias
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"; // Add SyntaxHighlighter
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"; // Add style
@@ -233,6 +233,28 @@ const StateLiftingSlide: React.FC = () => {
         </Paragraph>
       </Card>
       <TaskManager />
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            To learn more about lifting state up and effectively sharing state
+            between components, refer to the official
+            <a
+              href="https://react.dev/learn/sharing-state-between-components"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              React Documentation on Sharing State Between Components
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </Space>
   );
 };

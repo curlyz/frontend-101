@@ -969,6 +969,28 @@ export default postsSlice.reducer;`}
           </List>
         </Panel>
       </Collapse>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information, best practices, and API references,
+            visit the official
+            <a
+              href="https://redux.js.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Redux Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };

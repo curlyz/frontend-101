@@ -42,6 +42,8 @@ const ConfiguredApp: React.FC<AppProvidersProps> = ({ children }) => {
       colorBgContainer: "transparent",
       colorText: "#fff",
       colorPrimary: "#000",
+      borderRadius: 10,
+      lineWidth: 2,
     },
   };
 

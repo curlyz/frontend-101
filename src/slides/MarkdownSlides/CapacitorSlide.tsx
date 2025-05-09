@@ -522,6 +522,28 @@ npx @capacitor/cli add android`}
           />
         </Space>
       </Card>
+
+      <Alert
+        message="Further Learning"
+        description={
+          <Paragraph>
+            For more detailed information, best practices, and API references,
+            visit the official
+            <a
+              href="https://capacitorjs.com/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              Capacitor Documentation
+            </a>
+            .
+          </Paragraph>
+        }
+        type="success"
+        showIcon
+        style={{ marginTop: 20 }}
+      />
     </div>
   );
 };
