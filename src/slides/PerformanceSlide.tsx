@@ -247,20 +247,30 @@ const PerformanceSlide: React.FC = () => {
               customStyle={codeSnippetStyle}
               showLineNumbers
             >
-              {`// 1. Accessing DOM
-const inputRef = useRef(null);
-useEffect(() => {
-  inputRef.current?.focus();
-}, []);
-return <input ref={inputRef} />;
+              {`// RefDomAccess.tsx (Simplified)
+import { useRef, useEffect, type InputRef } from 'react';
+import { Input, Button } from 'antd'; // Or similar
 
-// 2. Storing mutable value (no re-render on change)
-const timerIdRef = useRef(null);
-const startTimer = () => {
-  timerIdRef.current = setInterval(tick, 1000);
-};
-const stopTimer = () => {
-  clearInterval(timerIdRef.current);
+const MyComponent = () => {
+  const inputAntRef = useRef<InputRef>(null);
+
+  // Focus on initial mount
+  useEffect(() => {
+    inputAntRef.current?.focus();
+  }, []);
+
+  const handleFocusButtonClick = () => {
+    inputAntRef.current?.focus();
+  };
+
+  return (
+    <>
+      <Input ref={inputAntRef} placeholder="I will be focused" />
+      <Button onClick={handleFocusButtonClick}>
+        Focus the Input
+      </Button>
+    </>
+  );
 };`}
             </SyntaxHighlighter>
             <Paragraph strong>Key Use Cases:</Paragraph>
