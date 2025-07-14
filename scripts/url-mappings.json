@@ -1,0 +1,146 @@
+[
+  {
+    "url": "/frontend/scan",
+    "file": "app/frontend/scan/page.tsx"
+  },
+  {
+    "url": "/frontend/performance",
+    "file": "app/frontend/performance/page.tsx"
+  },
+  {
+    "url": "/frontend/state",
+    "file": "app/frontend/state/page.tsx"
+  },
+  {
+    "url": "/frontend/data",
+    "file": "app/frontend/data/page.tsx"
+  },
+  {
+    "url": "/frontend/forms",
+    "file": "app/frontend/forms/page.tsx"
+  },
+  {
+    "url": "/frontend/redux",
+    "file": "app/frontend/redux/page.tsx"
+  },
+  {
+    "url": "/frontend/context",
+    "file": "app/frontend/context/page.tsx"
+  },
+  {
+    "url": "/frontend/security",
+    "file": "app/frontend/security/page.tsx"
+  },
+  {
+    "url": "/frontend/cors",
+    "file": "app/frontend/cors/page.tsx"
+  },
+  {
+    "url": "/frontend/tools",
+    "file": "app/frontend/tools/page.tsx"
+  },
+  {
+    "url": "/frontend/pwa",
+    "file": "app/frontend/pwa/page.tsx"
+  },
+  {
+    "url": "/frontend/idempotency",
+    "file": "app/frontend/idempotency/page.tsx"
+  },
+  {
+    "url": "/frontend/batching",
+    "file": "app/frontend/batching/page.tsx"
+  },
+  {
+    "url": "/frontend/redux-concepts",
+    "file": "app/frontend/redux-concepts/page.tsx"
+  },
+  {
+    "url": "/frontend/routing",
+    "file": "app/frontend/routing/page.tsx"
+  },
+  {
+    "url": "/frontend/packages",
+    "file": "app/frontend/packages/page.tsx"
+  },
+  {
+    "url": "/frontend/npm-yarn",
+    "file": "app/frontend/npm-yarn/page.tsx"
+  },
+  {
+    "url": "/frontend/build",
+    "file": "app/frontend/build/page.tsx"
+  },
+  {
+    "url": "/frontend/kubb",
+    "file": "app/frontend/kubb/page.tsx"
+  },
+  {
+    "url": "/frontend/network",
+    "file": "app/frontend/network/page.tsx"
+  },
+  {
+    "url": "/frontend/mobile",
+    "file": "app/frontend/mobile/page.tsx"
+  },
+  {
+    "url": "/frontend/electron",
+    "file": "app/frontend/electron/page.tsx"
+  },
+  {
+    "url": "/frontend/props",
+    "file": "app/frontend/props/page.tsx"
+  },
+  {
+    "url": "/frontend/url-state",
+    "file": "app/frontend/url-state/page.tsx"
+  },
+  {
+    "url": "/frontend/client-components",
+    "file": "app/frontend/client-components/page.tsx"
+  },
+  {
+    "url": "/frontend/server-components",
+    "file": "app/frontend/server-components/page.tsx"
+  },
+  {
+    "url": "/frontend/network-onclick",
+    "file": "app/frontend/network-onclick/page.tsx"
+  },
+  {
+    "url": "/frontend/package-demo",
+    "file": "app/frontend/package-demo/page.tsx"
+  },
+  {
+    "url": "/ai/intro",
+    "file": "app/ai/intro/page.tsx"
+  },
+  {
+    "url": "/ai/llms",
+    "file": "app/ai/llms/page.tsx"
+  },
+  {
+    "url": "/ai/capabilities",
+    "file": "app/ai/capabilities/page.tsx"
+  },
+  {
+    "url": "/ai/myths",
+    "file": "app/ai/myths/page.tsx"
+  },
+  {
+    "url": "/ai/resources",
+    "file": "app/ai/resources/page.tsx"
+  },
+  {
+    "url": "/ai/compare",
+    "file": "app/ai/compare/page.tsx"
+  },
+  {
+    "url": "/ai/pricing",
+    "file": "app/ai/pricing/page.tsx"
+  },
+  {
+    "url": "/ai/prompts",
+    "file": "app/ai/prompts/page.tsx"
+  }
+]
