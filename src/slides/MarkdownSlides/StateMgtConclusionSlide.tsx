@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { Typography, Card, List, Row, Col, Space, Alert } from "antd";
+import { Typography, Card, List, Row, Col, Space } from "antd";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { CheckCircle, Info } from "lucide-react";
 import {
   CheckCircleOutlined,
   ProjectOutlined,
@@ -241,9 +243,10 @@ graph LR
           maintainable, and scalable React applications.
         </Paragraph>
 
-        <Alert
-          message="Further Learning"
-          description={
+        <Alert variant="default" style={{ marginTop: 20, marginBottom: 20 }}>
+          <CheckCircle className="h-4 w-4" />
+          <AlertDescription>
+            <strong>Further Learning</strong><br/>
             <Paragraph>
               For more detailed information on React state management concepts,
               visit the official
@@ -266,20 +269,16 @@ graph LR
               </a>
               .
             </Paragraph>
-          }
-          type="success"
-          showIcon
-          style={{ marginTop: 20, marginBottom: 20 }}
-        />
+          </AlertDescription>
+        </Alert>
 
-        <Alert
-          message="Next Chapter"
-          description="On next chapter, we will explore about react client component and server components."
-          type="info"
-          showIcon
-          icon={<RocketOutlined />}
-          style={{ marginTop: 20 }}
-        />
+        <Alert variant="default" style={{ marginTop: 20 }}>
+          <Info className="h-4 w-4" />
+          <AlertDescription>
+            <strong>Next Chapter</strong><br/>
+            On next chapter, we will explore about react client component and server components.
+          </AlertDescription>
+        </Alert>
       </Card>
     </div>
   );

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { Card, Typography, List, Divider, Tag, Row, Col, Alert } from "antd";
+import { Card, Typography, List, Divider, Tag, Row, Col } from "antd";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info, CheckCircle } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { RocketOutlined, CodeOutlined, BulbOutlined } from "@ant-design/icons";
@@ -61,13 +63,16 @@ const DeveloperToolsSlide: React.FC = () => {
         Developer Tools: Bridging Browser to Code
       </Title>
 
-      <Alert
-        message="Enhancing Development Workflow"
-        description="These tools help you quickly navigate from a UI element you see in the browser directly to its underlying source code in your IDE, significantly speeding up debugging and iteration."
-        type="info"
-        showIcon
-        style={{ marginBottom: "24px" }}
-      />
+      <Alert variant="default" style={{ marginBottom: "24px" }}>
+        <Info className="h-4 w-4" />
+        <AlertDescription>
+          <strong>Enhancing Development Workflow</strong>
+          <br />
+          These tools help you quickly navigate from a UI element you see in the
+          browser directly to its underlying source code in your IDE,
+          significantly speeding up debugging and iteration.
+        </AlertDescription>
+      </Alert>
 
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
@@ -178,13 +183,16 @@ const DeveloperToolsSlide: React.FC = () => {
               The browser extension offers a very convenient way to get started,
               often requiring no changes to your project's codebase.
             </Paragraph>
-            <Alert
-              type="success"
-              message="Tip for LocatorJS Extension"
-              description="If using the LocatorJS browser extension, ensure it's enabled and correctly configured for your IDE. It often works best with React DevTools installed."
-              showIcon
-              style={{ marginTop: 16 }}
-            />
+            <Alert variant="default" style={{ marginTop: 16 }}>
+              <CheckCircle className="h-4 w-4" />
+              <AlertDescription>
+                <strong>Tip for LocatorJS Extension</strong>
+                <br />
+                If using the LocatorJS browser extension, ensure it's enabled
+                and correctly configured for your IDE. It often works best with
+                React DevTools installed.
+              </AlertDescription>
+            </Alert>
           </Card>
         </Col>
       </Row>
@@ -222,9 +230,11 @@ const DeveloperToolsSlide: React.FC = () => {
         workflow best!
       </Paragraph>
 
-      <Alert
-        message="Further Learning"
-        description={
+      <Alert variant="default" style={{ marginTop: 20 }}>
+        <CheckCircle className="h-4 w-4" />
+        <AlertDescription>
+          <strong>Further Learning</strong>
+          <br />
           <Paragraph>
             Beyond these specific tools, master your browser's built-in
             developer tools and the React Developer Tools:
@@ -255,11 +265,8 @@ const DeveloperToolsSlide: React.FC = () => {
             </a>
             .
           </Paragraph>
-        }
-        type="success"
-        showIcon
-        style={{ marginTop: 20 }}
-      />
+        </AlertDescription>
+      </Alert>
     </div>
   );
 };
