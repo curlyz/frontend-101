@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { pokemonList } from "@/gen/clients/pokemonController";
+import { apiV2PokemonList } from "@/gen/clients/pokemonController";
 import type { PokemonList200 as PokemonListType } from "@/gen/models/pokemonController/PokemonList";
 import type { PokemonSummary } from "@/gen/models/PokemonSummary";
 import { Alert, Button, List, Spin, Typography, Card, Space } from "antd";
@@ -20,7 +20,7 @@ const DirectPokemonList: React.FC = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await pokemonList({
+      const result = await apiV2PokemonList({
         limit: 10,
         offset: (fetchCount * 10) % 100,
       });

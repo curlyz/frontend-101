@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Typography } from "antd";
+import { Card } from "antd";
 import { useOptimizationContext_Standard } from "@/contexts/OptimizationContext";
 import CounterDisplay from "@/components/common/CounterDisplay";
 import CounterControls from "@/components/common/CounterControls";
 
-const { Title, Paragraph } = Typography;
+import { Title, Paragraph } from "@/components/ui/typography";
 
 /**
  * Demonstrates optimized re-renders using standard Context with React.memo.

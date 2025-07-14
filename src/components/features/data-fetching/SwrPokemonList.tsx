@@ -1,9 +1,9 @@
 import React, { useState } from "react"; // useState for pagination control
 import {
-  usePokemonList,
-  pokemonListQueryKey, // Import queryKey
+  useApiV2PokemonList,
+  apiV2PokemonListQueryKey, // Import queryKey
 } from "@/gen/swr/pokemonController"; // Adjust if direct import is preferred
-import { pokemonList } from "@/gen/clients/pokemonController"; // Import client for preloading
+import { apiV2PokemonList } from "@/gen/clients/pokemonController"; // Import client for preloading
 import type { PokemonList200 as PokemonListType } from "@/gen/models/pokemonController/PokemonList";
 import type { PokemonSummary } from "@/gen/models/PokemonSummary"; // Corrected import path
 // PokemonSummary might need to be from "@/gen/models/PokemonSummary" if not re-exported with PokemonList200
@@ -27,7 +27,7 @@ const SwrPokemonList: React.FC = () => {
   // Parameters are passed as the second argument to the hook if the generated hook supports it.
   // The actual structure depends on how Kubb generated the SWR hooks.
   // Assuming it takes queryParams object similar to the client.
-  const { data, error, isLoading, isValidating, mutate } = usePokemonList({
+  const { data, error, isLoading, isValidating, mutate } = useApiV2PokemonList({
     limit,
     offset,
   });
@@ -51,8 +51,8 @@ const SwrPokemonList: React.FC = () => {
       const nextPageOffset = offset + limit;
       try {
         await preload(
-          pokemonListQueryKey({ limit, offset: nextPageOffset }),
-          () => pokemonList({ limit, offset: nextPageOffset }),
+          apiV2PokemonListQueryKey({ limit, offset: nextPageOffset }),
+          () => apiV2PokemonList({ limit, offset: nextPageOffset }),
         );
         console.log(`Prefetched page with offset: ${nextPageOffset}`);
       } catch (err) {
@@ -66,8 +66,8 @@ const SwrPokemonList: React.FC = () => {
       const prevPageOffset = Math.max(0, offset - limit);
       try {
         await preload(
-          pokemonListQueryKey({ limit, offset: prevPageOffset }),
-          () => pokemonList({ limit, offset: prevPageOffset }),
+          apiV2PokemonListQueryKey({ limit, offset: prevPageOffset }),
+          () => apiV2PokemonList({ limit, offset: prevPageOffset }),
         );
         console.log(`Prefetched page with offset: ${prevPageOffset}`);
       } catch (err) {

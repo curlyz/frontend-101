@@ -1,10 +1,10 @@
 import React from "react";
 import { useContextSelector } from "use-context-selector";
-import { Typography, Card } from "antd"; // Import antd components
+import { Card } from "antd"; // Import antd components
 import { OptimizedOptimizationContext } from "../../../../contexts/StateOptimizationContext";
 import RenderCounter from "../../../common/RenderCounter";
 
-const { Title, Text } = Typography;
+import { Title, Text } from "@/components/ui/typography";
 
 /**
  * Displays counter1 using the optimized context with useContextSelector.

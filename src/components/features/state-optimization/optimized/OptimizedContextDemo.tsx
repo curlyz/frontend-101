@@ -1,11 +1,11 @@
 import React from "react";
-import { Typography, Space } from "antd";
+import { Space } from "antd";
 import OptimizedCounter1Display from "./OptimizedCounter1Display";
 import OptimizedCounter2Display from "./OptimizedCounter2Display";
 import OptimizedText1Display from "./OptimizedText1Display";
 import OptimizedText2Display from "./OptimizedText2Display";
 
-const { Title, Paragraph } = Typography;
+import { Title, Paragraph } from "@/components/ui/typography";
 
 /**
  * Container component for the Optimized React Context (use-context-selector) demonstration.
