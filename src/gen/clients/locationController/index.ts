@@ -1,0 +1,8 @@
+export { apiV2LocationAreaList } from './apiV2LocationAreaList.ts'
+export { apiV2LocationAreaRetrieve } from './apiV2LocationAreaRetrieve.ts'
+export { apiV2LocationList } from './apiV2LocationList.ts'
+export { apiV2LocationRetrieve } from './apiV2LocationRetrieve.ts'
+export { apiV2PalParkAreaList } from './apiV2PalParkAreaList.ts'
+export { apiV2PalParkAreaRetrieve } from './apiV2PalParkAreaRetrieve.ts'
+export { apiV2RegionList } from './apiV2RegionList.ts'
+export { apiV2RegionRetrieve } from './apiV2RegionRetrieve.ts'

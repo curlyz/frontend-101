@@ -1,0 +1,8 @@
+export { apiV2GenerationList } from './apiV2GenerationList.ts'
+export { apiV2GenerationRetrieve } from './apiV2GenerationRetrieve.ts'
+export { apiV2PokedexList } from './apiV2PokedexList.ts'
+export { apiV2PokedexRetrieve } from './apiV2PokedexRetrieve.ts'
+export { apiV2VersionGroupList } from './apiV2VersionGroupList.ts'
+export { apiV2VersionGroupRetrieve } from './apiV2VersionGroupRetrieve.ts'
+export { apiV2VersionList } from './apiV2VersionList.ts'
+export { apiV2VersionRetrieve } from './apiV2VersionRetrieve.ts'

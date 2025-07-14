@@ -35,7 +35,4 @@ node_modules/
 # OS specific
 # Task files
 tasks.json
-tasks/
-
-# Generated API client code
-src/gen/ 
+tasks/ 

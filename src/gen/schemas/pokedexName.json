@@ -1,0 +1,1 @@
+{"type":"object","properties":{"name":{"type":"string","maxLength":200},"language":{"type":"object","properties":{"name":{"type":"string","maxLength":200},"url":{"type":"string","format":"uri","readOnly":true}},"required":["name","url"],"x-readme-ref-name":"LanguageSummary"}},"required":["language","name"],"x-readme-ref-name":"PokedexName"}
