@@ -1,2 +1,0 @@
-export type { LanguageListQueryParams, LanguageList200, LanguageListQueryResponse, LanguageListQuery } from './LanguageList.ts'
-export type { LanguageRetrievePathParams, LanguageRetrieve200, LanguageRetrieveQueryResponse, LanguageRetrieveQuery } from './LanguageRetrieve.ts'
